@@ -1,4 +1,6 @@
 package com.voxeldev.tinkofflab.ui.delivery
 
-class PlacedOrderFragment {
+import androidx.fragment.app.Fragment
+
+class PlacedOrderFragment : Fragment() {
 }
