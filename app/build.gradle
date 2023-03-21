@@ -36,6 +36,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    viewBinding {
+        enabled true
+    }
 }
 
 detekt {
@@ -60,6 +63,7 @@ dependencies {
     def okhttp_version = "4.10.0"
     def retrofit_version = "2.9.0"
     def glide_version = "4.14.2"
+    def cicerone_version = "7.1"
 
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
@@ -73,6 +77,8 @@ dependencies {
 
     implementation "com.github.bumptech.glide:glide:$glide_version"
     annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+
+    implementation "com.github.terrakok:cicerone:$cicerone_version"
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.core:core-ktx:1.9.0'
