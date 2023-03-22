@@ -5,13 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.github.terrakok.cicerone.Router
 import com.voxeldev.tinkofflab.databinding.ItemDeliveryTypeBinding
 import com.voxeldev.tinkofflab.ui.utils.setOnPressedAnim
 
-class DeliveryTypeAdapter(
-    private val router: Router
-) : ListAdapter<DeliveryTypeModel, DeliveryTypeAdapter.ViewHolder>(
+class DeliveryTypeAdapter : ListAdapter<DeliveryTypeModel, DeliveryTypeAdapter.ViewHolder>(
     object : DiffUtil.ItemCallback<DeliveryTypeModel>() {
         override fun areItemsTheSame(
             oldItem: DeliveryTypeModel,
@@ -41,7 +38,7 @@ class DeliveryTypeAdapter(
         position: Int
     ) = holder.bind(getItem(position))
 
-    inner class ViewHolder(
+    class ViewHolder(
         private val binding: ItemDeliveryTypeBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -54,7 +51,7 @@ class DeliveryTypeAdapter(
                 tvDeliveryType.text = root.context.getString(deliveryType.name)
                 ivDeliveryTypeIcon.setImageResource(deliveryType.icon)
                 root.setOnClickListener {
-                    router.navigateTo(deliveryType.nextScreen)
+                    deliveryType.onClick()
                 }
             }
         }
