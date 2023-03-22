@@ -1,4 +1,4 @@
-package com.voxeldev.tinkofflab.ui.delivery
+package com.voxeldev.tinkofflab.ui.delivery.deliverytype
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes

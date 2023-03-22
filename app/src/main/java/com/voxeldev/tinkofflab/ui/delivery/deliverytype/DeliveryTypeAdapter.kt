@@ -1,4 +1,4 @@
-package com.voxeldev.tinkofflab.ui.delivery
+package com.voxeldev.tinkofflab.ui.delivery.deliverytype
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
