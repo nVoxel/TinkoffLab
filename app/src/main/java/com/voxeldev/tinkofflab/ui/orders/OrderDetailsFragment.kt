@@ -1,4 +1,6 @@
 package com.voxeldev.tinkofflab.ui.orders
 
-class OrderDetailsFragment {
+import androidx.fragment.app.Fragment
+
+class OrderDetailsFragment : Fragment() {
 }

@@ -1,4 +1,6 @@
 package com.voxeldev.tinkofflab.ui.delivery
 
-class ConfirmationFragment {
+import androidx.fragment.app.Fragment
+
+class ConfirmationFragment : Fragment() {
 }

@@ -1,4 +1,6 @@
 package com.voxeldev.tinkofflab.ui.delivery
 
-class AddressAFragment {
+import androidx.fragment.app.Fragment
+
+class AddressAFragment : Fragment() {
 }

@@ -1,4 +1,6 @@
 package com.voxeldev.tinkofflab.ui.delivery
 
-class PickupFragment {
+import androidx.fragment.app.Fragment
+
+class PickupFragment : Fragment() {
 }

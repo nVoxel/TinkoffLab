@@ -1,4 +1,6 @@
 package com.voxeldev.tinkofflab.ui.delivery
 
-class SlotsChooserFragment {
+import androidx.fragment.app.Fragment
+
+class SlotsChooserFragment : Fragment() {
 }

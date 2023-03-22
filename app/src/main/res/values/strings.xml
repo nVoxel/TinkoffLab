@@ -10,4 +10,8 @@
     <string name="total_cost_text">Итоговая стоимость</string>
     <string name="make_order_text">Оформить</string>
     <string name="item_image_desc_text">Картинка товара</string>
+    <string name="choose_delivery_type">Выберите способ получения</string>
+    <string name="delivery_type_courier">Доставка</string>
+    <string name="delivery_type_pickup">Самовывоз</string>
+    <string name="next">Продолжить</string>
 </resources>
