@@ -30,8 +30,4 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
     private fun makeOrderButtonClicked() {
         App.router.navigateTo(Screens.DeliveryType())
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
 }
