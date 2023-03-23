@@ -4,4 +4,14 @@
     <string name="delivery_type_courier">Доставка</string>
     <string name="delivery_type_pickup">Самовывоз</string>
     <string name="next">Продолжить</string>
+    <string name="cart_title_text">Корзина</string>
+    <string name="cart_items_count_text">1 товар</string>
+    <string name="cart_item_title_text">Чайник электрический Xiaomi Mi Smart Kettle RU EAC White</string>
+    <string name="price_new_text">3 556 ₽</string>
+    <string name="price_old_text"><strike>3 499 ₽</strike></string>
+    <string name="price_new_cross_text">3 556 ₽ ×</string>
+    <string name="item_count_text">1 шт.</string>
+    <string name="total_cost_text">Итоговая стоимость</string>
+    <string name="make_order_text">Оформить</string>
+    <string name="item_image_desc_text">Картинка товара</string>
 </resources>
