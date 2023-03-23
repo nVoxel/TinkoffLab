@@ -1,8 +1,8 @@
-package com.voxeldev.tinkofflab.data.network.models
+package com.voxeldev.tinkofflab.data.network.expressapi.datasource.responses
 
 import com.google.gson.annotations.SerializedName
 
-data class TimeSlotModel(
+data class TimeSlotResponse(
     @SerializedName("date")
     val date: String?,
     @SerializedName("time_from")

@@ -1,14 +1,14 @@
-package com.voxeldev.tinkofflab.data.network.models
+package com.voxeldev.tinkofflab.data.network.expressapi.datasource.responses
 
 import com.google.gson.annotations.SerializedName
 
-data class OrderUpdateModel(
+data class OrderUpdateResponse(
     @SerializedName("address")
-    val address: AddressModel?,
+    val address: AddressResponse?,
     @SerializedName("payment_method")
     val paymentMethod: String?,
     @SerializedName("delivery_slot")
-    val deliverySlot: TimeSlotModel?,
+    val deliverySlot: TimeSlotResponse?,
     @SerializedName("comment")
     val comment: String?
 )
