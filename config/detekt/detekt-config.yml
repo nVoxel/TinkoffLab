@@ -1,3 +1,7 @@
 empty-blocks:
   EmptyClassBlock:
     active: false
+
+style:
+  ForbiddenComment:
+    active: false
