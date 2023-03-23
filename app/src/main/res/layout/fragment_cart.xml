@@ -41,13 +41,13 @@
             android:layout_width="100dp"
             android:layout_height="110dp"
             android:layout_margin="5dp"
-            android:src="@drawable/cart_item"
             android:background="@color/white"
-            app:strokeColor="@color/grey"
-            app:strokeWidth="2dp"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize15Percent"
+            android:src="@drawable/cart_item"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize15Percent"
+            app:strokeColor="@color/grey"
+            app:strokeWidth="2dp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textview_item_title"
@@ -118,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:clickable="false"
                     android:text="@string/item_count_text"
-                    android:textColor="@color/white"
+                    android:textColor="@color/white_fixed"
                     app:chipBackgroundColor="@color/blue"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -169,7 +169,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/yellow"
                 android:text="@string/make_order_text"
-                android:textColor="@color/black"
+                android:textColor="@color/black_fixed"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
