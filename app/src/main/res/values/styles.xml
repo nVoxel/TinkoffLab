@@ -5,6 +5,10 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.App.CornerSize15Percent" parent="">
+        <item name="cornerSize">15%</item>
+    </style>
+
     <style name="ButtonNext">
         <item name="android:backgroundTint">@color/yellow</item>]
         <item name="shapeAppearanceOverlay">@drawable/bg_btn_next</item>

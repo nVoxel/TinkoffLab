@@ -36,28 +36,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview_items_count">
 
-        <com.google.android.material.card.MaterialCardView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/cardview_item_image"
-            style="@style/Widget.Material3.CardView.Outlined"
-            android:layout_width="120dp"
-            android:layout_height="130dp"
+            android:layout_width="100dp"
+            android:layout_height="110dp"
             android:layout_margin="5dp"
-            app:cardCornerRadius="15dp"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/cart_item"
+            android:background="@color/white"
             app:strokeColor="@color/grey"
-            app:strokeWidth="2dp">
-
-            <ImageView
-                android:id="@+id/imageview_item"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:contentDescription="@string/item_image_desc_text"
-                android:scaleType="centerCrop"
-                android:src="@drawable/cart_item" />
-        </com.google.android.material.card.MaterialCardView>
+            app:strokeWidth="2dp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize15Percent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textview_item_title"
