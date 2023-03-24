@@ -30,5 +30,18 @@
 
         <item name="android:statusBarColor">@color/md_theme_surface</item>
         <item name="android:windowLightStatusBar">true</item>
+
+        <item name="materialButtonStyle">@style/Widget.TinkoffLab.Button</item>
+        <item name="chipStyle">@style/Widget.TinkoffLab.Chip</item>
+    </style>
+
+    <style name="Widget.TinkoffLab.Button" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/yellow</item>
+        <item name="android:textColor">@color/black_fixed</item>
+    </style>
+
+    <style name="Widget.TinkoffLab.Chip" parent="Widget.Material3.Chip.Assist">
+        <item name="chipBackgroundColor">@color/blue</item>
+        <item name="android:textColor">@color/white_fixed</item>
     </style>
 </resources>
