@@ -2,7 +2,6 @@ package com.voxeldev.tinkofflab.domain.repository
 
 import com.voxeldev.tinkofflab.domain.functional.Either
 import com.voxeldev.tinkofflab.domain.models.expressapi.OrderModel
-import com.voxeldev.tinkofflab.domain.models.expressapi.OrderRequestModel
 
 interface OrdersRepository {
 
@@ -17,7 +16,7 @@ interface OrdersRepository {
      * @param order Order data
      * @return Created order or exception
      */
-    fun createOrder(order: OrderRequestModel): Either<Exception, OrderModel>
+    fun createOrder(order: OrderModel): Either<Exception, OrderModel>
 
     /**
      * Updates order
@@ -25,5 +24,5 @@ interface OrdersRepository {
      * @param order Order data
      * @return Updated order or exception
      */
-    fun updateOrder(id: Int, order: OrderRequestModel): Either<Exception, OrderModel>
+    fun updateOrder(id: Int, order: OrderModel): Either<Exception, OrderModel>
 }
