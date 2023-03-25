@@ -6,5 +6,6 @@ data class OrderModel(
     val deliverySlot: TimeSlotModel,
     val items: List<ItemModel>,
     val comment: String,
+    val status: String,
     val id: Int
 )

@@ -1,8 +1,8 @@
-package com.voxeldev.tinkofflab.data.network.expressapi.datasource.responses
+package com.voxeldev.tinkofflab.data.network.expressapi.datasource.requests
 
 import com.google.gson.annotations.SerializedName
 
-data class AddressSearchResponse(
+data class AddressSearchRequest(
     @SerializedName("address")
     val address: String?,
     @SerializedName("lat")
