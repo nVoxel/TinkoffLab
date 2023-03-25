@@ -20,6 +20,8 @@ android {
         versionCode 1
         versionName "1.0"
 
+        buildConfigField("String", "EXPRESS_API_BASE_URL", '"http://185.204.0.180:8000/"')
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
