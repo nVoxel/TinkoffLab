@@ -1,6 +1,7 @@
 package com.voxeldev.tinkofflab.di.modules
 
 import com.voxeldev.tinkofflab.BuildConfig
+import com.voxeldev.tinkofflab.data.network.expressapi.datasource.ExpressApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,7 +18,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(): Retrofit =
+    fun provideExpressApi(): ExpressApi =
         Retrofit.Builder()
             .baseUrl(BuildConfig.EXPRESS_API_BASE_URL)
             .client(
@@ -25,4 +26,5 @@ class NetworkModule {
             )
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+            .create(ExpressApi::class.java)
 }
