@@ -6,6 +6,7 @@ import com.voxeldev.tinkofflab.utils.platform.NetworkHandler
 import retrofit2.Call
 import retrofit2.HttpException
 
+@Suppress("TooGenericExceptionCaught", "ReturnCount")
 open class BaseRepository(
     private val networkHandler: NetworkHandler
 ) {

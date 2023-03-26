@@ -8,6 +8,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
+@Suppress("ReturnCount")
 class NetworkHandler
 @Inject constructor(@ApplicationContext private val context: Context) {
     fun isNetworkAvailable(): Boolean {
