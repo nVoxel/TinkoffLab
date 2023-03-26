@@ -1,4 +1,4 @@
-package com.voxeldev.tinkofflab.data.mappers
+package com.voxeldev.tinkofflab.data.mappers.expressapi
 
 import com.voxeldev.tinkofflab.data.network.expressapi.datasource.requests.OrderCreateRequest
 import com.voxeldev.tinkofflab.data.network.expressapi.datasource.requests.OrderUpdateRequest

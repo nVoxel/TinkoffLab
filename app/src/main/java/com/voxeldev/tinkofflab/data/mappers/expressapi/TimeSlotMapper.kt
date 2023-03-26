@@ -1,4 +1,4 @@
-package com.voxeldev.tinkofflab.data.mappers
+package com.voxeldev.tinkofflab.data.mappers.expressapi
 
 import com.voxeldev.tinkofflab.data.network.expressapi.datasource.responses.TimeSlotResponse
 import com.voxeldev.tinkofflab.domain.models.expressapi.TimeSlotModel

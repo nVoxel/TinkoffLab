@@ -1,3 +1,3 @@
 package com.voxeldev.tinkofflab.utils.exceptions
 
-class NetworkIsNotAvailableException() : Exception()
+class NetworkIsNotAvailableException : Exception()

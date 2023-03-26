@@ -1,12 +1,12 @@
-package com.voxeldev.tinkofflab.data.network.expressapi.base
+package com.voxeldev.tinkofflab.data.network.base
 
-import com.voxeldev.tinkofflab.domain.functional.Either
+import com.voxeldev.tinkofflab.utils.functional.Either
 import com.voxeldev.tinkofflab.utils.exceptions.NetworkIsNotAvailableException
 import com.voxeldev.tinkofflab.utils.platform.NetworkHandler
 import retrofit2.Call
 import retrofit2.HttpException
 
-open class ExpressRepositoryBase(
+open class BaseRepository(
     private val networkHandler: NetworkHandler
 ) {
 
@@ -25,7 +25,7 @@ open class ExpressRepositoryBase(
 
             if (response.body() == null) {
                 return Either.Left(
-                    NullPointerException()
+                    NullPointerException("Response body is null")
                 )
             }
 

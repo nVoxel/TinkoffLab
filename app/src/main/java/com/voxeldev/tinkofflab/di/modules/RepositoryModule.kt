@@ -2,8 +2,8 @@ package com.voxeldev.tinkofflab.di.modules
 
 import com.voxeldev.tinkofflab.data.network.expressapi.DeliveryRepositoryImpl
 import com.voxeldev.tinkofflab.data.network.expressapi.OrdersRepositoryImpl
-import com.voxeldev.tinkofflab.domain.repository.DeliveryRepository
-import com.voxeldev.tinkofflab.domain.repository.OrdersRepository
+import com.voxeldev.tinkofflab.domain.repository.expressapi.DeliveryRepository
+import com.voxeldev.tinkofflab.domain.repository.expressapi.OrdersRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

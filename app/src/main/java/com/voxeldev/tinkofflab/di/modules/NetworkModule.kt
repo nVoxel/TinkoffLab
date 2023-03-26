@@ -17,7 +17,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit() {
+    fun provideRetrofit(): Retrofit =
         Retrofit.Builder()
             .baseUrl(BuildConfig.EXPRESS_API_BASE_URL)
             .client(
@@ -25,5 +25,4 @@ class NetworkModule {
             )
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-    }
 }

@@ -1,6 +1,6 @@
-package com.voxeldev.tinkofflab.domain.repository
+package com.voxeldev.tinkofflab.domain.repository.expressapi
 
-import com.voxeldev.tinkofflab.domain.functional.Either
+import com.voxeldev.tinkofflab.utils.functional.Either
 import com.voxeldev.tinkofflab.domain.models.expressapi.AddressModel
 import com.voxeldev.tinkofflab.domain.models.expressapi.TimeSlotModel
 

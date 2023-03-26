@@ -1,4 +1,4 @@
-package com.voxeldev.tinkofflab.domain.functional
+package com.voxeldev.tinkofflab.utils.functional
 
 /**
  * Represents a value of one of two possible types (a disjoint union).
