@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         if (savedInstanceState != null)
             return
-        App.router.newRootScreen(Screens.Orders())
+        App.router.newRootScreen(Screens.Cart())
     }
 
     override fun onResumeFragments() {

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="my_orders_title_text">My orders</string>
+    <string name="order_card_text">Delivery</string>
+    <string name="orders_get_error">Unable to get orders</string>
+    <string name="orders_date_today">Today</string>
+    <string name="orders_date_tomorrow">Tomorrow</string>
+    <string name="orders_date_in_one_day">In one day</string>
+    <string name="order_datetime_placeholder">%1$s, from %2$s to %3$s</string>
+</resources>
