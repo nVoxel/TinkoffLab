@@ -3,9 +3,9 @@ package com.voxeldev.tinkofflab.data.network.expressapi.datasource
 import com.voxeldev.tinkofflab.data.network.expressapi.datasource.requests.AddressSearchRequest
 import com.voxeldev.tinkofflab.data.network.expressapi.datasource.requests.OrderCreateRequest
 import com.voxeldev.tinkofflab.data.network.expressapi.datasource.requests.OrderUpdateRequest
-import com.voxeldev.tinkofflab.data.network.expressapi.datasource.responses.AddressResponse
-import com.voxeldev.tinkofflab.data.network.expressapi.datasource.responses.OrderResponse
-import com.voxeldev.tinkofflab.data.network.expressapi.datasource.responses.TimeSlotResponse
+import com.voxeldev.tinkofflab.data.network.expressapi.datasource.models.AddressApiModel
+import com.voxeldev.tinkofflab.data.network.expressapi.datasource.models.OrderApiModel
+import com.voxeldev.tinkofflab.data.network.expressapi.datasource.models.TimeSlotApiModel
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -17,29 +17,29 @@ import retrofit2.http.Query
 interface ExpressApi {
 
     @GET("orders")
-    fun getOrders() : Call<List<OrderResponse>>
+    fun getOrders() : Call<List<OrderApiModel>>
 
     @POST("orders")
     fun createOrder(
         @Body orderCreateRequest: OrderCreateRequest
-    ) : Call<OrderResponse>
+    ) : Call<OrderApiModel>
 
     @PUT("orders/{order_id}")
     fun updateOrder(
         @Path("order_id") orderId: Int,
         @Body orderCreateRequest: OrderUpdateRequest
-    ) : Call<OrderResponse>
+    ) : Call<OrderApiModel>
 
     @GET("addresses/my")
-    fun getAddresses(): Call<List<AddressResponse>>
+    fun getAddresses(): Call<List<AddressApiModel>>
 
     @POST("addresses/search")
     fun searchAddress(
         @Body addressSearchRequest: AddressSearchRequest
-    ): Call<List<AddressResponse>>
+    ): Call<List<AddressApiModel>>
 
     @GET("slots")
     fun getSlots(
         @Query("date") date: String
-    ): Call<List<TimeSlotResponse>>
+    ): Call<List<TimeSlotApiModel>>
 }
