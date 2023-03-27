@@ -10,6 +10,6 @@ class GetAddressesUseCase @Inject constructor(
     private val deliveryRepository: DeliveryRepository
 ) : BaseUseCase<BaseUseCase.None, List<AddressModel>>() {
 
-    override suspend fun run(params: None): Either<Exception, List<AddressModel>> =
+    override fun run(params: None): Either<Exception, List<AddressModel>> =
         deliveryRepository.getAddresses()
 }

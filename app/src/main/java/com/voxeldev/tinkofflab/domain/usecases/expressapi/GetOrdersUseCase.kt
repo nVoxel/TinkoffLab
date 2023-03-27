@@ -10,6 +10,6 @@ class GetOrdersUseCase @Inject constructor(
     private val ordersRepository: OrdersRepository
 ) : BaseUseCase<BaseUseCase.None, List<OrderModel>>() {
 
-    override suspend fun run(params: None): Either<Exception, List<OrderModel>> =
+    override fun run(params: None): Either<Exception, List<OrderModel>> =
         ordersRepository.getOrders()
 }

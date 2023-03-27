@@ -10,6 +10,6 @@ class SearchAddressUseCase @Inject constructor(
     private val deliveryRepository: DeliveryRepository
 ) : BaseUseCase<AddressModel, List<AddressModel>>() {
 
-    override suspend fun run(params: AddressModel): Either<Exception, List<AddressModel>> =
+    override fun run(params: AddressModel): Either<Exception, List<AddressModel>> =
         deliveryRepository.searchAddress(params)
 }

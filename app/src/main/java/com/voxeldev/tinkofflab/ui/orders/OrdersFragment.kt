@@ -1,6 +1,7 @@
 package com.voxeldev.tinkofflab.ui.orders
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,7 @@ class OrdersFragment : BaseFragment<FragmentOrdersBinding>() {
 
         with (ordersViewModel) {
             observe(orders, ::handleOrders)
+            observe(exception, ::handleException)
         }
 
         return binding?.root!!
@@ -46,9 +48,18 @@ class OrdersFragment : BaseFragment<FragmentOrdersBinding>() {
         } ?: showSnackbar(R.string.orders_get_error)
     }
 
+    private fun handleException(exception: Exception?) {
+        showSnackbar(R.string.orders_get_error)
+        Log.e(LOG_TAG, exception?.stackTraceToString() ?: "Unknown error")
+    }
+
     private fun setupRecyclerView() {
         orders?.let {
             binding?.recyclerviewOrders?.adapter = OrdersAdapter(it)
         }
+    }
+
+    companion object {
+        private const val LOG_TAG = "OrdersFragment"
     }
 }
