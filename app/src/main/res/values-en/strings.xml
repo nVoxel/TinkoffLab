@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tinkoff Express</string>
+    <string name="choose_delivery_type">Choose how to receive</string>
+    <string name="delivery_type_courier">Delivery</string>
+    <string name="delivery_type_pickup">Self-pickup</string>
+    <string name="next">Continue</string>
+    <string name="cart_title_text">Cart</string>
+    <string name="cart_items_count_text">1 item</string>
+    <string name="cart_item_title_text">Electric kettle Xiaomi Mi Smart Kettle RU EAC White</string>
+    <string name="price_new_text">3 556 ₽</string>
+    <string name="price_old_text"><strike>3 499 ₽</strike></string>
+    <string name="price_new_cross_text">3 556 ₽ ×</string>
+    <string name="item_count_text">1 pc.</string>
+    <string name="total_cost_text">Total cost</string>
+    <string name="make_order_text">Order</string>
+    <string name="item_image_desc_text">Item image</string>
+    <string name="my_orders_title_text">My orders</string>
+    <string name="order_card_text">Delivery</string>
+    <string name="orders_get_error">Unable to get orders</string>
+    <string name="orders_date_today">Today</string>
+    <string name="orders_date_tomorrow">Tomorrow</string>
+    <string name="orders_date_in_one_day">In one day</string>
+    <string name="order_datetime_placeholder">%1$s, from %2$s to %3$s</string>
+</resources>

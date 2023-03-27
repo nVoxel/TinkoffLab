@@ -10,6 +10,6 @@ class GetSlotsUseCase @Inject constructor(
     private val deliveryRepository: DeliveryRepository
 ) : BaseUseCase<String, List<TimeSlotModel>>() {
 
-    override suspend fun run(params: String): Either<Exception, List<TimeSlotModel>> =
+    override fun run(params: String): Either<Exception, List<TimeSlotModel>> =
         deliveryRepository.getSlots(params)
 }

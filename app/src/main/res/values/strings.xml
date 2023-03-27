@@ -14,4 +14,11 @@
     <string name="total_cost_text">Итоговая стоимость</string>
     <string name="make_order_text">Оформить</string>
     <string name="item_image_desc_text">Картинка товара</string>
+    <string name="my_orders_title_text">Мои заказы</string>
+    <string name="order_card_text">Доставка</string>
+    <string name="orders_get_error">Не удалось получить заказы</string>
+    <string name="orders_date_today">Сегодня</string>
+    <string name="orders_date_tomorrow">Завтра</string>
+    <string name="orders_date_in_one_day">Послезавтра</string>
+    <string name="order_datetime_placeholder">%1$s, с %2$s до %3$s</string>
 </resources>
