@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.voxeldev.tinkofflab.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private val navigator = AppNavigator(this, R.id.container)
@@ -14,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         if (savedInstanceState != null)
             return
-        App.router.newRootScreen(Screens.Cart())
+        App.router.newRootScreen(Screens.Orders())
     }
 
     override fun onResumeFragments() {
