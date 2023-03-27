@@ -8,14 +8,16 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.async
 
-abstract class BaseUseCase<in Params, out Type> where Type : Any {
+abstract class BaseUseCase<in Params, out Type> constructor(
+    private val asyncDispatcher: CoroutineDispatcher = Dispatchers.IO
+) where Type : Any {
 
     abstract fun run(params: Params): Either<Exception, Type>
 
     operator fun invoke(
         params: Params,
         scope: CoroutineScope = GlobalScope,
-        asyncDispatcher: CoroutineDispatcher = Dispatchers.IO,
+        asyncDispatcher: CoroutineDispatcher = this.asyncDispatcher,
         onResult: (Either<Exception, Type>) -> Unit = {}
     ) {
         scope.launch(Dispatchers.Main) {
