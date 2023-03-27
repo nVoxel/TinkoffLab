@@ -1,11 +1,17 @@
 package com.voxeldev.tinkofflab.ui.orders
 
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.voxeldev.tinkofflab.R
 import com.voxeldev.tinkofflab.databinding.ItemOrderBinding
 import com.voxeldev.tinkofflab.domain.models.expressapi.OrderModel
 import com.voxeldev.tinkofflab.domain.models.expressapi.TimeSlotModel
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
+import java.time.temporal.ChronoUnit
 
 
 class OrdersAdapter(
@@ -32,12 +38,31 @@ class OrdersAdapter(
 
         fun bind(order: OrderModel) {
             with(binding) {
-                textviewDatetime.text = timeSlotToString(order.deliverySlot)
+                cardviewOrder.setOnClickListener {
+                    // TODO: Open order details
+                }
+                textviewDatetime.text =
+                    timeSlotToString(binding.root.resources, order.deliverySlot)
             }
         }
 
-        private fun timeSlotToString(timeSlot: TimeSlotModel): String {
-            TODO()
+        private fun timeSlotToString(resources: Resources, timeSlot: TimeSlotModel): String {
+            val currentDate = LocalDate.now()
+            val timeSlotDate = LocalDate.parse(timeSlot.date, DateTimeFormatter.ISO_DATE)
+
+            val dateString = when (ChronoUnit.DAYS.between(currentDate, timeSlotDate)) {
+                0L -> resources.getString(R.string.orders_date_today)
+                1L -> resources.getString(R.string.orders_date_tomorrow)
+                2L -> resources.getString(R.string.orders_date_in_one_day)
+                else -> timeSlotDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
+            }
+
+            return resources.getString(
+                R.string.order_datetime_placeholder,
+                dateString,
+                timeSlot.timeFrom,
+                timeSlot.timeTo
+            )
         }
     }
 }
