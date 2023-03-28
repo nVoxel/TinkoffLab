@@ -22,4 +22,8 @@
     <string name="orders_date_tomorrow">Tomorrow</string>
     <string name="orders_date_in_one_day">In one day</string>
     <string name="order_datetime_placeholder">%1$s, from %2$s to %3$s</string>
+    <string name="onboarding_title_text">Order delivery of your debit card</string>
+    <string name="onboarding_first_text">Choose where and when it is convenient for you to bring it</string>
+    <string name="onboarding_second_text">We will contact you on the appointed day</string>
+    <string name="onboarding_third_text">A representative will bring the documents and a card - we will transfer the credit to it</string>
 </resources>
