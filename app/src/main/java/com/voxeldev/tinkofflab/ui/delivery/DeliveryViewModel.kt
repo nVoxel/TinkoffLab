@@ -1,39 +1,65 @@
 package com.voxeldev.tinkofflab.ui.delivery
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
+import android.content.res.Resources
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.voxeldev.tinkofflab.domain.usecases.GetAddressSuggestionsUseCase
+import com.voxeldev.tinkofflab.domain.models.AddressModel
+import com.voxeldev.tinkofflab.domain.usecases.dadataapi.GetAddressSuggestionsUseCase
+import com.voxeldev.tinkofflab.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.filterNot
-import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
 class DeliveryViewModel @Inject constructor(
     private val getAddressSuggestionsUseCase: GetAddressSuggestionsUseCase
-) : ViewModel() {
+) : BaseViewModel() {
 
-    private val _suggestionsFlow = MutableStateFlow<String?>(null)
+    private val suggestionsFlow = MutableStateFlow<String?>(null)
 
-    @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
-    val suggestions = _suggestionsFlow
-        .filterNot { it.isNullOrBlank() }
-        .distinctUntilChanged()
-        .debounce(SEARCH_TIMEOUT)
-        .flatMapLatest { getAddressSuggestionsUseCase(it!!) }
-        .asLiveData(viewModelScope.coroutineContext)
+    private val _suggestions = MutableLiveData<List<AddressModel>>()
+    val suggestions: LiveData<List<AddressModel>>
+        get() = _suggestions
+
+    private val _loading = MutableLiveData(false)
+    val loading: LiveData<Boolean>
+        get() = _loading
+
+    var selectedAddress = ""
+
+    private val locale get() = Resources.getSystem().configuration.locales[0].language
+
+    init {
+        subscribeToChanges()
+    }
+
+    private fun subscribeToChanges() {
+        suggestionsFlow
+            .filterNot { it.isNullOrBlank() }
+            .map { it?.trim() }
+            .distinctUntilChanged()
+            .onEach { _loading.postValue(true) }
+            .debounce(SEARCH_TIMEOUT)
+            .onEach { query ->
+                getAddressSuggestionsUseCase(query!! to locale, viewModelScope) { either ->
+                    either.fold(::handleException) {
+                        _suggestions.postValue(it)
+                    }
+                }
+                _loading.postValue(false)
+            }
+            .flowOn(Dispatchers.Default)
+            .launchIn(viewModelScope)
+    }
 
     fun getSuggestions(query: String?) {
-        _suggestionsFlow.value = query
+        suggestionsFlow.value = query
     }
 
     companion object {
+
         private const val SEARCH_TIMEOUT = 1000L // millis
     }
 }

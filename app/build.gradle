@@ -75,7 +75,7 @@ dependencies {
     def retrofit_version = "2.9.0"
     def glide_version = "4.14.2"
     def cicerone_version = "7.1"
-    def lifecycle_version = "2.6.0"
+    def lifecycle_version = "2.6.1"
 
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
@@ -96,7 +96,9 @@ dependencies {
 
     implementation "com.github.terrakok:cicerone:$cicerone_version"
 
-    implementation 'androidx.fragment:fragment-ktx:1.5.5'
+    implementation "com.facebook.shimmer:shimmer:0.5.0"
+
+    implementation 'androidx.fragment:fragment-ktx:1.5.6'
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.core:core-ktx:1.9.0'

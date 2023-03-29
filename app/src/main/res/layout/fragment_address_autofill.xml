@@ -20,6 +20,7 @@
         android:id="@+id/textview_fav_addresses_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/fav_addresses"
         android:textSize="20sp"
@@ -27,13 +28,34 @@
         app:layout_constraintStart_toStartOf="@+id/edittext_address"
         app:layout_constraintTop_toBottomOf="@+id/edittext_address" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_address_autofill"
+    <TextView
+        android:id="@+id/textview_address_not_found"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/address_not_found"
+        android:textColor="@color/sub_text"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/textview_fav_addresses_title"
+        app:layout_constraintTop_toBottomOf="@+id/textview_fav_addresses_title" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_address_autofill"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_fav_addresses_title" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_fav_addresses_title"
+        app:shimmer_auto_start="false">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_address_autofill"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

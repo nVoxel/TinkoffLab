@@ -27,4 +27,6 @@
     <string name="onboarding_first_text">Выберите, куда и когда вам удобно ее привезти</string>
     <string name="onboarding_second_text">В назначенный день мы свяжемся с вами</string>
     <string name="onboarding_third_text">Представитель привезет документы и карту — на нее перечислим кредит</string>
+    <string name="address_get_error">Не удалось получить адреса</string>
+    <string name="address_not_found">Мы не знаем такого адреса</string>
 </resources>

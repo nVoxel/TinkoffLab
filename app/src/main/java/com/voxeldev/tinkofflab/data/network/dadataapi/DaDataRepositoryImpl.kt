@@ -1,15 +1,23 @@
 package com.voxeldev.tinkofflab.data.network.dadataapi
 
+import com.voxeldev.tinkofflab.data.mappers.dadataapi.toAddressModel
+import com.voxeldev.tinkofflab.data.network.base.BaseRepository
 import com.voxeldev.tinkofflab.data.network.dadataapi.datasource.DaDataApi
 import com.voxeldev.tinkofflab.data.network.dadataapi.datasource.requests.QueryRequest
-import com.voxeldev.tinkofflab.data.network.dadataapi.mapper.toAddressModel
 import com.voxeldev.tinkofflab.domain.models.AddressModel
-import com.voxeldev.tinkofflab.domain.repository.DaDataRepository
+import com.voxeldev.tinkofflab.domain.repository.dadataapi.DaDataRepository
+import com.voxeldev.tinkofflab.ui.utils.Query
+import com.voxeldev.tinkofflab.utils.functional.Either
+import com.voxeldev.tinkofflab.utils.platform.NetworkHandler
 import javax.inject.Inject
 
 class DaDataRepositoryImpl @Inject constructor(
+    networkHandler: NetworkHandler,
     private val api: DaDataApi
-) : DaDataRepository {
-    override suspend fun getSuggestions(query: String): List<AddressModel> =
-        api.getSuggestions(QueryRequest(query)).toAddressModel()
+) : BaseRepository(networkHandler), DaDataRepository {
+
+    override fun getSuggestions(query: Query): Either<Exception, List<AddressModel>> =
+        request(
+            api.getSuggestions(QueryRequest(query.first, query.second))
+        ) { it.toAddressModel() }
 }

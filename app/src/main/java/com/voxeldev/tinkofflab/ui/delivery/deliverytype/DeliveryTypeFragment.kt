@@ -39,7 +39,8 @@ class DeliveryTypeFragment : Fragment(R.layout.fragment_delivery_type) {
                 R.string.delivery_type_pickup,
                 R.drawable.ic_pickup
             ) {
-                // todo: move to address input screen
+                // todo: add another way for a/b test
+                App.router.navigateTo(Screens.AddressAutofill())
             }
         )
         binding.rvDeliveryType.addItemDecoration(

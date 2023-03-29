@@ -24,6 +24,8 @@ data class DataResponse(
     val room: Any?,
     @SerializedName("street_with_type")
     val streetWithType: String?,
+    @SerializedName("settlement_with_type")
+    val settlementWithType: String?,
     @SerializedName("house_type")
     val houseType: String?,
     @SerializedName("house")
