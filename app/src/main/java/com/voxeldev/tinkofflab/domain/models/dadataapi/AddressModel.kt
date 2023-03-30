@@ -1,4 +1,4 @@
-package com.voxeldev.tinkofflab.domain.models
+package com.voxeldev.tinkofflab.domain.models.dadataapi
 
 data class AddressModel(
     val street: String = "-",

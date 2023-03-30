@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.voxeldev.tinkofflab.databinding.ItemAddressSuggestionBinding
-import com.voxeldev.tinkofflab.domain.models.AddressModel
+import com.voxeldev.tinkofflab.domain.models.dadataapi.AddressModel
 import com.voxeldev.tinkofflab.ui.utils.OnAddressClick
 
 class AddressAutofillAdapter(

@@ -1,6 +1,6 @@
 package com.voxeldev.tinkofflab.domain.usecases.dadataapi
 
-import com.voxeldev.tinkofflab.domain.models.AddressModel
+import com.voxeldev.tinkofflab.domain.models.dadataapi.AddressModel
 import com.voxeldev.tinkofflab.domain.repository.dadataapi.DaDataRepository
 import com.voxeldev.tinkofflab.domain.usecases.base.BaseUseCase
 import com.voxeldev.tinkofflab.ui.utils.Query

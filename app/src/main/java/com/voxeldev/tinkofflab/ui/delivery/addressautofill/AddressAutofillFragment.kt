@@ -10,7 +10,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import com.voxeldev.tinkofflab.R
 import com.voxeldev.tinkofflab.databinding.FragmentAddressAutofillBinding
-import com.voxeldev.tinkofflab.domain.models.AddressModel
+import com.voxeldev.tinkofflab.domain.models.dadataapi.AddressModel
 import com.voxeldev.tinkofflab.ui.base.BaseFragment
 import com.voxeldev.tinkofflab.ui.delivery.DeliveryViewModel
 import com.voxeldev.tinkofflab.ui.utils.SpaceItemDecoration

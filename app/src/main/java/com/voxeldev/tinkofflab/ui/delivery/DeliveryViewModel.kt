@@ -4,7 +4,7 @@ import android.content.res.Resources
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.voxeldev.tinkofflab.domain.models.AddressModel
+import com.voxeldev.tinkofflab.domain.models.dadataapi.AddressModel
 import com.voxeldev.tinkofflab.domain.usecases.dadataapi.GetAddressSuggestionsUseCase
 import com.voxeldev.tinkofflab.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

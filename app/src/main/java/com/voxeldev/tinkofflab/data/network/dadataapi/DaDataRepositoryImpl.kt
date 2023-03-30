@@ -3,8 +3,8 @@ package com.voxeldev.tinkofflab.data.network.dadataapi
 import com.voxeldev.tinkofflab.data.mappers.dadataapi.toAddressModel
 import com.voxeldev.tinkofflab.data.network.base.BaseRepository
 import com.voxeldev.tinkofflab.data.network.dadataapi.datasource.DaDataApi
-import com.voxeldev.tinkofflab.data.network.dadataapi.datasource.requests.QueryRequest
-import com.voxeldev.tinkofflab.domain.models.AddressModel
+import com.voxeldev.tinkofflab.data.network.dadataapi.datasource.requests.AddressSuggestionRequest
+import com.voxeldev.tinkofflab.domain.models.dadataapi.AddressModel
 import com.voxeldev.tinkofflab.domain.repository.dadataapi.DaDataRepository
 import com.voxeldev.tinkofflab.ui.utils.Query
 import com.voxeldev.tinkofflab.utils.functional.Either
@@ -18,6 +18,6 @@ class DaDataRepositoryImpl @Inject constructor(
 
     override fun getSuggestions(query: Query): Either<Exception, List<AddressModel>> =
         request(
-            api.getSuggestions(QueryRequest(query.first, query.second))
+            api.getSuggestions(AddressSuggestionRequest(query.first, query.second))
         ) { it.toAddressModel() }
 }
