@@ -5,8 +5,8 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 abstract class BaseUseCase<in Params, out Type> constructor(
     private val asyncDispatcher: CoroutineDispatcher = Dispatchers.IO
@@ -18,7 +18,7 @@ abstract class BaseUseCase<in Params, out Type> constructor(
         params: Params,
         scope: CoroutineScope = GlobalScope,
         asyncDispatcher: CoroutineDispatcher = this.asyncDispatcher,
-        onResult: (Either<Exception, Type>) -> Unit = {}
+        onResult: suspend (Either<Exception, Type>) -> Unit = {}
     ) {
         scope.launch(Dispatchers.Main) {
             val deferred = async(asyncDispatcher) {

@@ -4,6 +4,8 @@
     <string name="delivery_type_courier">Доставка</string>
     <string name="delivery_type_pickup">Самовывоз</string>
     <string name="next">Продолжить</string>
+    <string name="address_hint">Адрес</string>
+    <string name="fav_addresses">Ваши адреса</string>
     <string name="cart_title_text">Корзина</string>
     <string name="cart_items_count_text">1 товар</string>
     <string name="cart_item_title_text">Чайник электрический Xiaomi Mi Smart Kettle RU EAC White</string>
@@ -25,4 +27,6 @@
     <string name="onboarding_first_text">Выберите, куда и когда вам удобно ее привезти</string>
     <string name="onboarding_second_text">В назначенный день мы свяжемся с вами</string>
     <string name="onboarding_third_text">Представитель привезет документы и карту — на нее перечислим кредит</string>
+    <string name="address_get_error">Не удалось получить адреса</string>
+    <string name="address_not_found">Мы не знаем такого адреса</string>
 </resources>

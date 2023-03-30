@@ -5,3 +5,8 @@ empty-blocks:
 style:
   ForbiddenComment:
     active: false
+  WildcardImport:
+    excludeImports:
+      - 'kotlinx.coroutines.flow.*'
+      - 'java.util.*'
+      - 'org.junit.Assert.*'

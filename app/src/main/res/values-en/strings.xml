@@ -5,6 +5,8 @@
     <string name="delivery_type_courier">Delivery</string>
     <string name="delivery_type_pickup">Self-pickup</string>
     <string name="next">Continue</string>
+    <string name="address_hint">Address</string>
+    <string name="fav_addresses">Your addresses</string>
     <string name="cart_title_text">Cart</string>
     <string name="cart_items_count_text">1 item</string>
     <string name="cart_item_title_text">Electric kettle Xiaomi Mi Smart Kettle RU EAC White</string>
@@ -26,4 +28,6 @@
     <string name="onboarding_first_text">Choose where and when it is convenient for you to bring it</string>
     <string name="onboarding_second_text">We will contact you on the appointed day</string>
     <string name="onboarding_third_text">A representative will bring the documents and a card - we will transfer the credit to it</string>
+    <string name="address_get_error">Unable to get addresses</string>
+    <string name="address_not_found">We don\'t know such address</string>
 </resources>

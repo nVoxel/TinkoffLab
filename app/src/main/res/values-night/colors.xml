@@ -5,7 +5,8 @@
     <color name="white_fixed">#FFFFFFFF</color>
     <color name="black_fixed">#FF000000</color>
     <color name="grey">#FF333333</color>
-
+    <color name="main_text">#F6F7F8</color>
+    <color name="sub_text">#99FFFFFF</color>
     <color name="md_theme_primary">#ABC7FF</color>
     <color name="md_theme_onPrimary">#002F66</color>
     <color name="md_theme_primaryContainer">#004590</color>
