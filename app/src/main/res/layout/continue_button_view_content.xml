@@ -7,12 +7,12 @@
         android:id="@+id/textview_button_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/black_fixed"
         android:textSize="16sp" />
 
     <ProgressBar
         android:id="@+id/progressbar_button"
-        android:indeterminateTint="@color/black"
+        android:indeterminateTint="@color/black_fixed"
         android:layout_width="20sp"
         android:layout_height="20sp" />
 </merge>

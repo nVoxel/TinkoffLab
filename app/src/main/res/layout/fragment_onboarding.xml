@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/textview_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/onboarding_title_text"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textview_description_first"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/onboarding_first_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/barrier_first"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageview_first"
+        app:layout_constraintTop_toBottomOf="@+id/textview_title" />
+
+    <ImageView
+        android:id="@+id/imageview_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/ic_onboarding_1"
+        app:layout_constraintBottom_toTopOf="@id/barrier_first"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_title" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="textview_description_first,imageview_first" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textview_description_second"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/onboarding_second_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/barrier_second"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageview_second"
+        app:layout_constraintTop_toBottomOf="@+id/barrier_first" />
+
+    <ImageView
+        android:id="@+id/imageview_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/ic_onboarding_2"
+        app:layout_constraintBottom_toBottomOf="@id/barrier_second"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barrier_first" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="textview_description_second,imageview_second" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textview_description_third"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/onboarding_third_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/barrier_trird"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageview_third"
+        app:layout_constraintTop_toBottomOf="@id/barrier_second" />
+
+    <ImageView
+        android:id="@+id/imageview_third"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/ic_onboarding_3"
+        app:layout_constraintBottom_toBottomOf="@id/barrier_trird"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barrier_second" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_trird"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="textview_description_third,imageview_third" />
+
+    <com.voxeldev.tinkofflab.ui.views.ContinueButtonView
+        android:id="@+id/button_continue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:text="@string/next" />
+</androidx.constraintlayout.widget.ConstraintLayout>
