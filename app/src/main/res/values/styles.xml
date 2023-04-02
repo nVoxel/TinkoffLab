@@ -9,4 +9,11 @@
         <item name="cornerSize">15%</item>
     </style>
 
+    <style name="Widget.TinkoffLab.SelectableChip" parent="Widget.Material3.Chip.Suggestion">
+        <item name="chipBackgroundColor">@color/background_selectable_chip</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="chipCornerRadius">20dp</item>
+        <item name="android:textColor">@color/text_selectable_chip</item>
+    </style>
+
 </resources>

@@ -46,6 +46,10 @@ class ContinueButtonView @JvmOverloads constructor(
         isClickable = true
     }
 
+    fun setText(text: String) {
+        textView.text = text
+    }
+
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         var measuredWidth = paddingLeft + paddingRight
         var measuredHeight = paddingTop + paddingBottom
