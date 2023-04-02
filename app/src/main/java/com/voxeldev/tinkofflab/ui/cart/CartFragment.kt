@@ -43,6 +43,8 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
 
     companion object {
         private fun getCartItems(resources: Resources) =
-            listOf(ItemModel(resources.getString(R.string.cart_item_title_text), 3556))
+            listOf(ItemModel(resources.getString(R.string.cart_item_title_text), CART_ITEM_PRICE))
+
+        private const val CART_ITEM_PRICE = 3556
     }
 }

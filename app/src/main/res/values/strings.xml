@@ -19,10 +19,13 @@
     <string name="my_orders_title_text">Мои заказы</string>
     <string name="order_card_text">Доставка</string>
     <string name="orders_get_error">Не удалось получить заказы</string>
+    <string name="request_process_error">Не удалось обработать запрос</string>
     <string name="orders_date_today">Сегодня</string>
     <string name="orders_date_tomorrow">Завтра</string>
     <string name="orders_date_in_one_day">Послезавтра</string>
     <string name="order_datetime_placeholder">%1$s, с %2$s до %3$s</string>
+    <string name="appointment_button_placeholder">Доставить %1$s</string>
+    <string name="timeslot_time_placeholder">%1$s–%2$s</string>
     <string name="onboarding_title_text">Оформите доставку дебетовой карты</string>
     <string name="onboarding_first_text">Выберите, куда и когда вам удобно ее привезти</string>
     <string name="onboarding_second_text">В назначенный день мы свяжемся с вами</string>

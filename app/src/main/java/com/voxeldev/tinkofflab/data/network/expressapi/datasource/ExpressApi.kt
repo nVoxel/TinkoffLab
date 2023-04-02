@@ -40,6 +40,6 @@ interface ExpressApi {
 
     @GET("slots")
     fun getSlots(
-        @Query("date") date: String
+        @Query("d") date: String
     ): Call<List<TimeSlotApiModel>>
 }
