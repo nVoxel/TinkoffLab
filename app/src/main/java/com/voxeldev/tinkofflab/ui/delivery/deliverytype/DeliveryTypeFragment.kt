@@ -32,7 +32,7 @@ class DeliveryTypeFragment : Fragment(R.layout.fragment_delivery_type) {
                 R.string.delivery_type_courier,
                 R.drawable.ic_delivery
             ) {
-                App.router.navigateTo(Screens.AddressAutofill())
+                App.router.navigateTo(Screens.Onboarding())
             },
             // todo: remove pickup
             DeliveryTypeModel(
@@ -40,7 +40,7 @@ class DeliveryTypeFragment : Fragment(R.layout.fragment_delivery_type) {
                 R.drawable.ic_pickup
             ) {
                 // todo: add another way for a/b test
-                App.router.navigateTo(Screens.AddressAutofill())
+                App.router.navigateTo(Screens.Onboarding())
             }
         )
         binding.rvDeliveryType.addItemDecoration(
