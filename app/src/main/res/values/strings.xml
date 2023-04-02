@@ -29,4 +29,5 @@
     <string name="onboarding_third_text">Представитель привезет документы и карту — на нее перечислим кредит</string>
     <string name="address_get_error">Не удалось получить адреса</string>
     <string name="address_not_found">Мы не знаем такого адреса</string>
+    <string name="comment_hint_text">Как добраться и когда вам позвонить</string>
 </resources>

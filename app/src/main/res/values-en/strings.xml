@@ -30,4 +30,5 @@
     <string name="onboarding_third_text">A representative will bring the documents and a card - we will transfer the credit to it</string>
     <string name="address_get_error">Unable to get addresses</string>
     <string name="address_not_found">We don\'t know such address</string>
+    <string name="comment_hint_text">How to reach and when to call you</string>
 </resources>
