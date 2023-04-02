@@ -13,6 +13,7 @@ import com.voxeldev.tinkofflab.databinding.FragmentAddressAutofillBinding
 import com.voxeldev.tinkofflab.domain.models.dadataapi.AddressModel
 import com.voxeldev.tinkofflab.ui.base.BaseFragment
 import com.voxeldev.tinkofflab.ui.delivery.DeliveryViewModel
+import com.voxeldev.tinkofflab.ui.utils.ExpressAddressModel
 import com.voxeldev.tinkofflab.ui.utils.SpaceItemDecoration
 import com.voxeldev.tinkofflab.utils.extensions.observe
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,8 +25,11 @@ class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
 
     private val adapter by lazy {
         AddressAutofillAdapter { address ->
-            deliveryViewModel.selectedAddress = address
-            // todo: navigate to slots fragment
+            deliveryViewModel.setSharedOrderAddress(
+                ExpressAddressModel(address, 0f, 0f)
+            )
+
+            // App.router.navigateTo(Screens.AppointmentFragment())
         }
     }
 
