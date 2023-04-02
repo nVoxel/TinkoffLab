@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.voxeldev.tinkofflab.R
 import com.voxeldev.tinkofflab.databinding.FragmentAddressAutofillBinding
 import com.voxeldev.tinkofflab.domain.models.dadataapi.AddressModel
+import com.voxeldev.tinkofflab.ui.App
+import com.voxeldev.tinkofflab.ui.Screens
 import com.voxeldev.tinkofflab.ui.base.BaseFragment
 import com.voxeldev.tinkofflab.ui.delivery.DeliveryViewModel
 import com.voxeldev.tinkofflab.ui.utils.ExpressAddressModel
@@ -22,6 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
 
     private val deliveryViewModel by activityViewModels<DeliveryViewModel>()
+    private val addressAutofillViewModel by viewModels<AddressAutofillViewModel>()
 
     private val adapter by lazy {
         AddressAutofillAdapter { address ->
@@ -29,7 +33,7 @@ class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
                 ExpressAddressModel(address, 0f, 0f)
             )
 
-            // App.router.navigateTo(Screens.AppointmentFragment())
+            App.router.navigateTo(Screens.Appointment())
         }
     }
 
@@ -58,12 +62,12 @@ class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
 
     private fun setTextChangeListener() {
         binding?.edittextAddress?.addTextChangedListener {
-            deliveryViewModel.getSuggestions(it?.toString())
+            addressAutofillViewModel.getSuggestions(it?.toString())
         }
     }
 
     private fun observeViewModel() {
-        with(deliveryViewModel) {
+        with(addressAutofillViewModel) {
             observe(suggestions, ::handleSuggestions)
             observe(loading, ::handleLoading)
             observe(exception, ::handleException)
