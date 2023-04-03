@@ -169,9 +169,8 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
     private fun buttonContinueCallback() {
         val selectedTimeSlot = appointmentViewModel.getSelectedTimeSlot() ?: return
 
-        showSnackbar(selectedTimeSlot.toString())
-
         deliveryViewModel.setSharedOrderDeliverySlot(selectedTimeSlot)
+        deliveryViewModel.setSharedOrderComment(binding?.edittextComment?.text?.toString() ?: "")
 
         // TODO: Navigate to confirmation screen
     }

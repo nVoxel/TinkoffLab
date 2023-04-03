@@ -45,7 +45,7 @@ class AddressAutofillAdapter(
                 textviewItemAddressFull.text = address.fullAddress
                 textviewItemAddressStreet.text = address.street
                 root.setOnClickListener {
-                    onAddressClick(address.fullAddress)
+                    onAddressClick(address)
                 }
             }
         }

@@ -14,6 +14,8 @@ class DeliveryViewModel : BaseViewModel() {
     val sharedOrderBuilder: LiveData<OrderModel.Builder>
         get() = _sharedOrderBuilder
 
+    fun getSharedOrder() = _sharedOrderBuilder.value?.build()
+
     fun setSharedOrderAddress(
         address: ExpressAddressModel
     ) = _sharedOrderBuilder.value?.address(address)

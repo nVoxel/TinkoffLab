@@ -29,9 +29,11 @@ class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
 
     private val adapter by lazy {
         AddressAutofillAdapter { address ->
-            deliveryViewModel.setSharedOrderAddress(
-                ExpressAddressModel(address, 0f, 0f)
-            )
+            with(address) {
+                deliveryViewModel.setSharedOrderAddress(
+                    ExpressAddressModel(fullAddress, latitude, longitude)
+                )
+            }
 
             App.router.navigateTo(Screens.Appointment())
         }
