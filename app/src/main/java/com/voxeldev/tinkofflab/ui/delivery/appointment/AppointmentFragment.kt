@@ -31,8 +31,6 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
 
     private val chipDays: List<LocalDate> by lazy { appointmentViewModel.getDays() }
 
-    private var selectedTimeSlot: TimeSlotModel? = null
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,9 +38,19 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
     ): View? {
         binding = FragmentAppointmentBinding.inflate(inflater, container, false)
 
+        setupDaysChipGroup()
+
+        if (savedInstanceState != null) {
+            with(binding!!) {
+                appointmentViewModel.getCheckedChipIndex()?.let { index ->
+                    chipgroupDays.check(chipgroupDays.getChildAt(index).id)
+                }
+            }
+        }
+
         with(binding!!) {
             edittextAddress.setOnClickListener {
-                App.router.navigateTo(Screens.AddressAutofill())
+                App.router.backTo(Screens.AddressAutofill())
             }
 
             chipgroupDays.setOnCheckedStateChangeListener { group, checkedId ->
@@ -79,41 +87,46 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
 
             binding?.edittextAddress?.setText(it[0].address)
 
-            setupDaysChipGroup()
+            toggleLoading(false)
         } ?: showSnackbar(R.string.request_process_error)
     }
 
     private fun handleSlots(slots: List<TimeSlotModel>?) {
         slots?.let {
-            binding?.recyclerviewTimeslots?.adapter = AppointmentTimeslotsAdapter(slots) {
-                recyclerViewClickCallback(it)
+            if (slots.isEmpty()) {
+                toggleLoading(false)
+                return
             }
+
+            binding?.recyclerviewTimeslots?.adapter = AppointmentTimeslotsAdapter(slots) { slot, index ->
+                appointmentViewModel.setSelectedTimeSlot(slot, index)
+            }
+
+            val selectedTimeSlotIndex = appointmentViewModel.getSelectedTimeSlotIndex() ?: 0
+            appointmentViewModel.setSelectedTimeSlot(
+                slots[selectedTimeSlotIndex], selectedTimeSlotIndex
+            )
+
+            if (appointmentViewModel.getSelectedTimeSlot() != null) {
+                (binding?.recyclerviewTimeslots?.adapter as AppointmentTimeslotsAdapter).selectItem(
+                    selectedTimeSlotIndex
+                )
+            }
+
+            binding?.buttonContinue?.apply {
+                visibility = View.VISIBLE
+                setText(
+                    resources.getString(
+                        R.string.appointment_button_placeholder, LocalDate
+                            .parse(slots[selectedTimeSlotIndex].date, DateTimeFormatter.ISO_DATE)
+                            .toRelativeString(LocalDate.now(), resources)
+                            .replaceFirstChar { it.lowercase() }
+                    )
+                )
+            }
+
+            toggleLoading(false)
         } ?: showSnackbar(R.string.request_process_error)
-    }
-
-    private fun handleException(exception: Exception?) {
-        showSnackbar(R.string.request_process_error)
-        Log.e(LOG_TAG, exception?.stackTraceToString() ?: "Unknown error")
-    }
-
-    private fun buttonContinueCallback() {
-        if (selectedTimeSlot == null) return
-
-        deliveryViewModel.setSharedOrderDeliverySlot(selectedTimeSlot!!)
-
-        // TODO: Navigate to confirmation screen
-    }
-
-    private fun chipCheckedCallback(group: ChipGroup, checkedId: Int) {
-        val chip = group.findViewById<Chip>(checkedId)
-
-        val day = chipDays[
-                group.indexOfChild(chip)
-        ]
-
-        appointmentViewModel.getSlots(day.format(DateTimeFormatter.ISO_DATE))
-
-        binding?.buttonContinue?.visibility = View.GONE
     }
 
     private fun setupDaysChipGroup() {
@@ -136,32 +149,43 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
                 )
             )
         }
-
-        toggleLoading(false)
     }
 
-    private fun recyclerViewClickCallback(slot: TimeSlotModel) {
-        binding?.buttonContinue?.apply {
-            visibility = View.VISIBLE
-            setText(
-                resources.getString(
-                    R.string.appointment_button_placeholder, LocalDate
-                        .parse(slot.date, DateTimeFormatter.ISO_DATE)
-                        .toRelativeString(LocalDate.now(), resources)
-                        .replaceFirstChar { it.lowercase() }
-                )
-            )
-        }
+    private fun chipCheckedCallback(group: ChipGroup, checkedId: Int) {
+        val chip = group.findViewById<Chip>(checkedId)
 
-        selectedTimeSlot = slot
+        val index = group.indexOfChild(chip)
+        appointmentViewModel.setCheckedChipIndex(index)
+
+        // reset selected time slot on day change
+        appointmentViewModel.setSelectedTimeSlot(null, null)
+
+        toggleLoading(true)
+
+        val day = chipDays[index]
+        appointmentViewModel.getSlots(day.format(DateTimeFormatter.ISO_DATE))
+    }
+
+    private fun buttonContinueCallback() {
+        val selectedTimeSlot = appointmentViewModel.getSelectedTimeSlot() ?: return
+
+        showSnackbar(selectedTimeSlot.toString())
+
+        deliveryViewModel.setSharedOrderDeliverySlot(selectedTimeSlot)
+
+        // TODO: Navigate to confirmation screen
     }
 
     private fun toggleLoading(isLoading: Boolean) {
         with(binding!!) {
-            loaderAppointment.visibility = if (isLoading) View.VISIBLE else View.GONE
-            scrollviewRoot.visibility = if (isLoading) View.GONE else View.VISIBLE
-            buttonContinue.visibility = if (isLoading) View.GONE else View.VISIBLE
+            blockingLoader.layoutLoader.visibility = if (isLoading) View.VISIBLE else View.GONE
+            if (isLoading) buttonContinue.visibility = View.GONE
         }
+    }
+
+    private fun handleException(exception: Exception?) {
+        showSnackbar(R.string.request_process_error)
+        Log.e(LOG_TAG, exception?.stackTraceToString() ?: "Unknown error")
     }
 
     companion object {

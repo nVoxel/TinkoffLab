@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter
 
 class AppointmentTimeslotsAdapter(
     private val timeslots: List<TimeSlotModel>,
-    private val onItemClickCallback: (TimeSlotModel) -> Unit = {}
+    private val onItemClickCallback: (TimeSlotModel, Int) -> Unit = { _, _ -> }
 ) : RecyclerView.Adapter<AppointmentTimeslotsAdapter.ViewHolder>() {
 
     private var selectedItemPosition = -1
@@ -25,15 +25,8 @@ class AppointmentTimeslotsAdapter(
                 false
             )
         ) {
-            if (selectedItemPosition == it) return@ViewHolder
-
-            val previousPosition = selectedItemPosition
-            selectedItemPosition = it
-
-            notifyItemChanged(previousPosition)
-            notifyItemChanged(selectedItemPosition)
-
-            onItemClickCallback(timeslots[it])
+            selectItem(it)
+            onItemClickCallback(timeslots[it], it)
         }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -65,5 +58,15 @@ class AppointmentTimeslotsAdapter(
                 root.strokeWidth = if (selectedItemPosition == position) 2 else 0
             }
         }
+    }
+
+    fun selectItem (position: Int) {
+        if (selectedItemPosition == position) return
+
+        val previousPosition = selectedItemPosition
+        selectedItemPosition = position
+
+        notifyItemChanged(previousPosition)
+        notifyItemChanged(selectedItemPosition)
     }
 }

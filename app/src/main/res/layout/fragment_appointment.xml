@@ -6,26 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/loader_appointment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminate="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="gone" />
+    <include
+        android:id="@+id/blocking_loader"
+        layout="@layout/view_blocking_loader" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollview_root"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="20dp"
-        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/button_continue"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_appointment"
@@ -91,6 +82,7 @@
                 android:layout_marginTop="30dp"
                 android:background="@drawable/bg_edittext"
                 android:hint="@string/comment_hint_text"
+                android:maxLength="150"
                 android:padding="18dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -26,6 +26,11 @@ class AppointmentViewModel @Inject constructor(
     private val _slots: MutableLiveData<List<TimeSlotModel>> = MutableLiveData()
     val slots: LiveData<List<TimeSlotModel>> = _slots
 
+    private var selectedTimeSlot: TimeSlotModel? = null
+    private var selectedTimeSlotIndex: Int? = null
+
+    private var checkedChipIndex: Int? = null
+
     fun getAddresses() = getAddressesUseCase(BaseUseCase.None, viewModelScope) { either ->
         either.fold(::handleException) {
             _addresses.value = it
@@ -39,6 +44,18 @@ class AppointmentViewModel @Inject constructor(
     }
 
     fun getDays(): List<LocalDate> = LocalDate.now().generateOrderedDates(DAYS_COUNT)
+
+    fun getSelectedTimeSlot(): TimeSlotModel? = selectedTimeSlot
+    fun getSelectedTimeSlotIndex(): Int? = selectedTimeSlotIndex
+    fun setSelectedTimeSlot(timeSlot: TimeSlotModel?, index: Int?) {
+        selectedTimeSlot = timeSlot
+        selectedTimeSlotIndex = index
+    }
+
+    fun getCheckedChipIndex(): Int? = checkedChipIndex
+    fun setCheckedChipIndex(chipId: Int) {
+        checkedChipIndex = chipId
+    }
 
     companion object {
         private const val DAYS_COUNT = 15
