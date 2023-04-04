@@ -7,9 +7,11 @@
     <color name="grey">#FF333333</color>
     <color name="main_text">#F6F7F8</color>
     <color name="sub_text">#99FFFFFF</color>
-    <color name="cardview_background">#2C2C2E</color>
+    <color name="cardview_background">#1C1C1E</color>
     <color name="edittext_background">#1AFFFFFF</color>
     <color name="edittext_ripple">#0DFFFFFF</color>
+    <color name="chip_background">@color/md_theme_background</color>
+    <color name="chip_text">#9299A2</color>
     <color name="md_theme_primary">#ABC7FF</color>
     <color name="md_theme_onPrimary">#002F66</color>
     <color name="md_theme_primaryContainer">#004590</color>
@@ -26,7 +28,7 @@
     <color name="md_theme_errorContainer">#93000A</color>
     <color name="md_theme_onError">#690005</color>
     <color name="md_theme_onErrorContainer">#FFDAD6</color>
-    <color name="md_theme_background">#1A1B1F</color>
+    <color name="md_theme_background">#121212</color>
     <color name="md_theme_onBackground">#E3E2E6</color>
     <color name="md_theme_surface">#1A1B1F</color>
     <color name="md_theme_onSurface">#E3E2E6</color>

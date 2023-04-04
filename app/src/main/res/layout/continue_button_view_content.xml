@@ -15,4 +15,5 @@
         android:indeterminateTint="@color/black_fixed"
         android:layout_width="20sp"
         android:layout_height="20sp" />
+
 </merge>

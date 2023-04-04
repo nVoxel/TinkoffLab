@@ -41,13 +41,12 @@
             android:layout_width="100dp"
             android:layout_height="110dp"
             android:layout_margin="5dp"
-            android:background="@color/white"
             android:src="@drawable/cart_item"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize15Percent"
-            app:strokeColor="@color/grey"
-            app:strokeWidth="2dp" />
+            app:strokeColor="@color/grey_stroke"
+            app:strokeWidth="1dp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textview_item_title"
@@ -66,6 +65,7 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/grey"
             app:cardUseCompatPadding="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +75,6 @@
                 android:id="@+id/layout_cardview_item_price"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/grey"
                 android:padding="5dp"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp">
@@ -131,8 +130,7 @@
         android:id="@+id/cardview_make_order"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="3dp"
+        style="@style/CardView.Default"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
