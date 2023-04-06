@@ -55,12 +55,13 @@ class AppointmentTimeslotsAdapter(
                     onItemClickCallback(position)
                 }
 
-                root.strokeWidth = if (selectedItemPosition == position) 2 else 0
+                root.strokeWidth =
+                    if (selectedItemPosition == position) SELECTED_STROKE_WIDTH else 0
             }
         }
     }
 
-    fun selectItem (position: Int) {
+    fun selectItem(position: Int) {
         if (selectedItemPosition == position) return
 
         val previousPosition = selectedItemPosition
@@ -68,5 +69,9 @@ class AppointmentTimeslotsAdapter(
 
         notifyItemChanged(previousPosition)
         notifyItemChanged(selectedItemPosition)
+    }
+
+    companion object {
+        private const val SELECTED_STROKE_WIDTH = 5
     }
 }

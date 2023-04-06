@@ -8,7 +8,8 @@
 
     <include
         android:id="@+id/blocking_loader"
-        layout="@layout/view_blocking_loader" />
+        layout="@layout/view_blocking_loader"
+        android:visibility="gone" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollview_root"
@@ -62,7 +63,6 @@
                 android:id="@+id/recyclerview_timeslots"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:clipToPadding="false"
                 android:orientation="horizontal"
                 android:paddingStart="12dp"
@@ -74,19 +74,38 @@
                 tools:itemCount="3"
                 tools:listitem="@layout/item_timeslot" />
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/edittext_comment"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textinputlayout_comment"
+                style="@style/Widget.TinkoffLab.CustomTextInputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/bg_edittext"
+                android:layout_marginTop="10dp"
                 android:hint="@string/comment_hint_text"
-                android:maxLength="150"
-                android:padding="18dp"
+                app:endIconDrawable="@drawable/ic_end_clear"
+                app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerview_timeslots" />
+                app:layout_constraintTop_toBottomOf="@+id/recyclerview_timeslots">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textinputedittext_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="150" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textview_counter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="38dp"
+                android:layout_marginTop="12dp"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textinputlayout_comment"
+                tools:text="Можно написать 150 символов" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
