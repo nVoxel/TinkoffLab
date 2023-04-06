@@ -26,6 +26,8 @@
     <string name="order_datetime_placeholder">%1$s, с %2$s до %3$s</string>
     <string name="appointment_button_placeholder">Доставить %1$s</string>
     <string name="timeslot_time_placeholder">%1$s–%2$s</string>
+    <string name="comment_empty_placeholder">Можно написать %1$d %2$s</string>
+    <string name="comment_placeholder">Осталось %1$d %2$s</string>
     <string name="onboarding_title_text">Оформите доставку дебетовой карты</string>
     <string name="onboarding_first_text">Выберите, куда и когда вам удобно ее привезти</string>
     <string name="onboarding_second_text">В назначенный день мы свяжемся с вами</string>
@@ -33,4 +35,13 @@
     <string name="address_get_error">Не удалось получить адреса</string>
     <string name="address_not_found">Мы не знаем такого адреса</string>
     <string name="comment_hint_text">Как добраться и когда вам позвонить</string>
+    
+    <plurals name="comment_symbols">
+        <item quantity="zero">символов</item>
+        <item quantity="one">символ</item>
+        <item quantity="two">символа</item>
+        <item quantity="few">символа</item>
+        <item quantity="many">символов</item>
+        <item quantity="other">символов</item>
+    </plurals>
 </resources>
