@@ -15,7 +15,7 @@ import com.voxeldev.tinkofflab.domain.models.dadataapi.AddressModel
 import com.voxeldev.tinkofflab.ui.App
 import com.voxeldev.tinkofflab.ui.Screens
 import com.voxeldev.tinkofflab.ui.base.BaseFragment
-import com.voxeldev.tinkofflab.ui.delivery.DeliveryViewModel
+import com.voxeldev.tinkofflab.ui.delivery.SharedOrderViewModel
 import com.voxeldev.tinkofflab.ui.utils.ExpressAddressModel
 import com.voxeldev.tinkofflab.ui.utils.SpaceItemDecoration
 import com.voxeldev.tinkofflab.utils.extensions.observe
@@ -24,13 +24,13 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
 
-    private val deliveryViewModel by activityViewModels<DeliveryViewModel>()
+    private val sharedOrderViewModel by activityViewModels<SharedOrderViewModel>()
     private val addressAutofillViewModel by viewModels<AddressAutofillViewModel>()
 
     private val adapter by lazy {
         AddressAutofillAdapter { address ->
             with(address) {
-                deliveryViewModel.setSharedOrderAddress(
+                sharedOrderViewModel.setAddress(
                     ExpressAddressModel(fullAddress, latitude, longitude)
                 )
             }
