@@ -72,8 +72,6 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
                 val selectedTimeSlot =
                     appointmentViewModel.selectedTimeSlot ?: return@setOnClickListener
 
-                showSnackbar(selectedTimeSlot.toString())
-
                 sharedOrderViewModel.setDeliverySlot(selectedTimeSlot)
                 sharedOrderViewModel.setComment(
                     binding?.textinputedittextComment?.text?.toString() ?: ""
