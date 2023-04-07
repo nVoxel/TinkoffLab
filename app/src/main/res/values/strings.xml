@@ -41,6 +41,14 @@
     <string name="what_title_text">Что привезём</string>
     <string name="ok_button_text">Хорошо</string>
 
+    <string name="country_hint">Страна</string>
+    <string name="region_hint">Регион</string>
+    <string name="street_hint">Улица</string>
+    <string name="house_hint">Строение/корпус</string>
+    <string name="city_hint">Населенный пункт</string>
+    <string name="index_hint">Индекс</string>
+    <string name="button_done">Готово</string>
+
     <plurals name="comment_symbols">
         <item quantity="zero">символов</item>
         <item quantity="one">символ</item>
@@ -49,4 +57,5 @@
         <item quantity="many">символов</item>
         <item quantity="other">символов</item>
     </plurals>
+    <string name="address_toggle">Использовать автозаполнение адреса</string>
 </resources>
