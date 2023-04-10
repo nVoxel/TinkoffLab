@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.voxeldev.tinkofflab.databinding.FragmentOnboardingBinding
+import com.voxeldev.tinkofflab.ui.App
+import com.voxeldev.tinkofflab.ui.Screens
 import com.voxeldev.tinkofflab.ui.base.BaseFragment
 
 class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
@@ -18,7 +20,7 @@ class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
 
         with(binding!!) {
             buttonContinue.setOnClickListener {
-                // TODO: Open address fragment
+                App.router.navigateTo(Screens.AddressAutofill())
             }
             return root
         }

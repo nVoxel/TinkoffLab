@@ -10,8 +10,15 @@
     <color name="light_grey">#08001024</color>
     <color name="blue">#FF428BF9</color>
     <color name="yellow">#FFFFDD2D</color>
+    <color name="continue_button_ripple">#B69F24</color>
     <color name="main_text">#333333</color>
     <color name="sub_text">#70333333</color>
+    <color name="cardview_background">#FFFFFF</color>
+    <color name="edittext_background">#08001024</color>
+    <color name="edittext_ripple">#08000812</color>
+    <color name="blocking_loader_background">#1000</color>
+    <color name="chip_background">#08001024</color>
+    <color name="chip_background_selected">#FF428BF9</color>
     <color name="seed">#428BF9</color>
     <color name="md_theme_primary">#005CBC</color>
     <color name="md_theme_onPrimary">#FFFFFF</color>

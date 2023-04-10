@@ -8,11 +8,15 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.voxeldev.tinkofflab.R
 import com.voxeldev.tinkofflab.databinding.FragmentAddressAutofillBinding
 import com.voxeldev.tinkofflab.domain.models.dadataapi.AddressModel
+import com.voxeldev.tinkofflab.ui.App
+import com.voxeldev.tinkofflab.ui.Screens
 import com.voxeldev.tinkofflab.ui.base.BaseFragment
-import com.voxeldev.tinkofflab.ui.delivery.DeliveryViewModel
+import com.voxeldev.tinkofflab.ui.delivery.SharedOrderViewModel
+import com.voxeldev.tinkofflab.ui.utils.ExpressAddressModel
 import com.voxeldev.tinkofflab.ui.utils.SpaceItemDecoration
 import com.voxeldev.tinkofflab.utils.extensions.observe
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,12 +24,18 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
 
-    private val deliveryViewModel by activityViewModels<DeliveryViewModel>()
+    private val sharedOrderViewModel by activityViewModels<SharedOrderViewModel>()
+    private val addressAutofillViewModel by viewModels<AddressAutofillViewModel>()
 
     private val adapter by lazy {
         AddressAutofillAdapter { address ->
-            deliveryViewModel.selectedAddress = address
-            // todo: navigate to slots fragment
+            with(address) {
+                sharedOrderViewModel.setAddress(
+                    ExpressAddressModel(fullAddress, latitude, longitude)
+                )
+            }
+
+            App.router.navigateTo(Screens.Appointment())
         }
     }
 
@@ -54,12 +64,12 @@ class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
 
     private fun setTextChangeListener() {
         binding?.edittextAddress?.addTextChangedListener {
-            deliveryViewModel.getSuggestions(it?.toString())
+            addressAutofillViewModel.getSuggestions(it?.toString())
         }
     }
 
     private fun observeViewModel() {
-        with(deliveryViewModel) {
+        with(addressAutofillViewModel) {
             observe(suggestions, ::handleSuggestions)
             observe(loading, ::handleLoading)
             observe(exception, ::handleException)

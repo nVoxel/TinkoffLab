@@ -20,14 +20,25 @@
     <string name="my_orders_title_text">My orders</string>
     <string name="order_card_text">Delivery</string>
     <string name="orders_get_error">Unable to get orders</string>
+    <string name="request_process_error">Unable to process request</string>
     <string name="orders_date_today">Today</string>
     <string name="orders_date_tomorrow">Tomorrow</string>
     <string name="orders_date_in_one_day">In one day</string>
     <string name="order_datetime_placeholder">%1$s, from %2$s to %3$s</string>
+    <string name="appointment_button_placeholder">Deliver %1$s</string>
+    <string name="timeslot_time_placeholder">%1$s–%2$s</string>
+    <string name="comment_empty_placeholder">You can write up to %1$d %2$s</string>
+    <string name="comment_placeholder">%1$d %2$s left</string>
     <string name="onboarding_title_text">Order delivery of your debit card</string>
     <string name="onboarding_first_text">Choose where and when it is convenient for you to bring it</string>
     <string name="onboarding_second_text">We will contact you on the appointed day</string>
     <string name="onboarding_third_text">A representative will bring the documents and a card - we will transfer the credit to it</string>
     <string name="address_get_error">Unable to get addresses</string>
     <string name="address_not_found">We don\'t know such address</string>
+    <string name="comment_hint_text">How to reach and when to call you</string>
+
+    <plurals name="comment_symbols">
+        <item quantity="one">character</item>
+        <item quantity="other">characters</item>
+    </plurals>
 </resources>

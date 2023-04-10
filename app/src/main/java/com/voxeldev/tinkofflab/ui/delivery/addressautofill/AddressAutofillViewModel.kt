@@ -1,4 +1,4 @@
-package com.voxeldev.tinkofflab.ui.delivery
+package com.voxeldev.tinkofflab.ui.delivery.addressautofill
 
 import android.content.res.Resources
 import androidx.lifecycle.LiveData
@@ -13,10 +13,9 @@ import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
-class DeliveryViewModel @Inject constructor(
+class AddressAutofillViewModel @Inject constructor(
     private val getAddressSuggestionsUseCase: GetAddressSuggestionsUseCase
 ) : BaseViewModel() {
-
     private val suggestionsFlow = MutableStateFlow<String?>(null)
 
     private val _suggestions = MutableLiveData<List<AddressModel>>()
@@ -26,8 +25,6 @@ class DeliveryViewModel @Inject constructor(
     private val _loading = MutableLiveData(false)
     val loading: LiveData<Boolean>
         get() = _loading
-
-    var selectedAddress = ""
 
     private val locale get() = Resources.getSystem().configuration.locales[0].language
 
