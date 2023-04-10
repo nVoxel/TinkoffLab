@@ -85,8 +85,8 @@ class AppointmentViewModel @Inject constructor(
     fun getContinueButtonText(resources: Resources) {
         _continueButtonText.value = selectedTimeSlot?.let {
             resources.getString(
-                R.string.appointment_button_placeholder, LocalDate
-                    .parse(selectedTimeSlot?.date, DateTimeFormatter.ISO_DATE)
+                R.string.appointment_button_placeholder,
+                LocalDate.parse(selectedTimeSlot?.date, DateTimeFormatter.ISO_DATE)
                     .toRelativeString(LocalDate.now(), resources)
                     .replaceFirstChar { it.lowercase() }
             )
