@@ -35,7 +35,12 @@
     <string name="address_get_error">Не удалось получить адреса</string>
     <string name="address_not_found">Мы не знаем такого адреса</string>
     <string name="comment_hint_text">Как добраться и когда вам позвонить</string>
-    
+    <string name="order_placed_title_text">Заказ оформлен</string>
+    <string name="where_title_text">Куда</string>
+    <string name="when_title_text">Когда</string>
+    <string name="what_title_text">Что привезём</string>
+    <string name="ok_button_text">Хорошо</string>
+
     <plurals name="comment_symbols">
         <item quantity="zero">символов</item>
         <item quantity="one">символ</item>
