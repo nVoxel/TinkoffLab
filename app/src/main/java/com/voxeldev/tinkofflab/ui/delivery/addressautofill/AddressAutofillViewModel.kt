@@ -16,6 +16,7 @@ import javax.inject.Inject
 class AddressAutofillViewModel @Inject constructor(
     private val getAddressSuggestionsUseCase: GetAddressSuggestionsUseCase
 ) : BaseViewModel() {
+
     private val suggestionsFlow = MutableStateFlow<String?>(null)
 
     private val _suggestions = MutableLiveData<List<AddressModel>>()

@@ -57,6 +57,7 @@
                     app:singleLine="true"
                     app:singleSelection="true"
                     tools:layout_height="40dp" />
+
             </HorizontalScrollView>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -106,7 +107,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textinputlayout_comment"
                 tools:text="Можно написать 150 символов" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.core.widget.NestedScrollView>
 
     <com.voxeldev.tinkofflab.ui.views.ContinueButtonView

@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:contentPadding="16dp"
-    app:cardCornerRadius="20dp"
-    app:cardElevation="4dp"
+    style="@style/CardView.Default"
     app:layout_anchorGravity="center">
 
     <TextView
@@ -23,6 +22,5 @@
         android:layout_gravity="end"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
         android:src="@drawable/ic_delivery" />
-
 
 </androidx.cardview.widget.CardView>

@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cart_title_text"
-        android:textColor="@color/black"
+        android:textColor="@color/title_text_color"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,13 +41,12 @@
             android:layout_width="100dp"
             android:layout_height="110dp"
             android:layout_margin="5dp"
-            android:background="@color/white"
             android:src="@drawable/cart_item"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize15Percent"
-            app:strokeColor="@color/grey"
-            app:strokeWidth="2dp" />
+            app:strokeColor="@color/item_outline"
+            app:strokeWidth="1dp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textview_item_title"
@@ -66,6 +65,7 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/item_price_background"
             app:cardUseCompatPadding="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +75,6 @@
                 android:id="@+id/layout_cardview_item_price"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/grey"
                 android:padding="5dp"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp">
@@ -119,7 +118,7 @@
                     android:clickable="false"
                     android:text="@string/item_count_text"
                     android:textColor="@color/white_fixed"
-                    app:chipBackgroundColor="@color/blue"
+                    app:chipBackgroundColor="@color/default_chip_background"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -131,8 +130,7 @@
         android:id="@+id/cardview_make_order"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="3dp"
+        style="@style/CardView.Default"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -167,7 +165,7 @@
                 android:id="@+id/button_make_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/yellow"
+                android:backgroundTint="@color/continue_button"
                 android:text="@string/make_order_text"
                 android:textColor="@color/black_fixed"
                 app:layout_constraintBottom_toBottomOf="parent"
