@@ -97,6 +97,11 @@ class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
         Log.e(LOG_TAG, exception?.stackTraceToString() ?: "Unknown error")
     }
 
+    override fun onStart() {
+        super.onStart()
+        binding?.shimmerAddressAutofill?.hideShimmer()
+    }
+
     companion object {
 
         private const val LOG_TAG = "AddressAutofillFragment"
