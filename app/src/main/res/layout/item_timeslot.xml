@@ -9,7 +9,7 @@
     app:cardBackgroundColor="@color/cardview_background"
     app:cardCornerRadius="20dp"
     app:cardElevation="3dp"
-    app:strokeColor="@color/blue"
+    app:strokeColor="@color/default_chip_background"
     app:cardUseCompatPadding="true"
     app:contentPadding="12dp">
 

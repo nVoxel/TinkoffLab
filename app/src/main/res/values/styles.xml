@@ -29,4 +29,19 @@
         <item name="android:background">@drawable/bg_edittext</item>
     </style>
 
+    <style name="ActionBar" parent="Widget.Material3.ActionBar.Solid">
+        <item name="background">@color/md_theme_background</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="Widget.TinkoffLab.Button" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/continue_button</item>
+        <item name="android:textColor">@color/black_fixed</item>
+    </style>
+
+    <style name="Widget.TinkoffLab.Chip" parent="Widget.Material3.Chip.Assist">
+        <item name="chipBackgroundColor">@color/default_chip_background</item>
+        <item name="android:textColor">@color/white_fixed</item>
+    </style>
+
 </resources>

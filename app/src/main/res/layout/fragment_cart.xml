@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cart_title_text"
-        android:textColor="@color/black"
+        android:textColor="@color/title_text_color"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -45,7 +45,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize15Percent"
-            app:strokeColor="@color/grey_stroke"
+            app:strokeColor="@color/item_outline"
             app:strokeWidth="1dp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
-            app:cardBackgroundColor="@color/grey"
+            app:cardBackgroundColor="@color/item_price_background"
             app:cardUseCompatPadding="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -118,7 +118,7 @@
                     android:clickable="false"
                     android:text="@string/item_count_text"
                     android:textColor="@color/white_fixed"
-                    app:chipBackgroundColor="@color/blue"
+                    app:chipBackgroundColor="@color/default_chip_background"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -165,7 +165,7 @@
                 android:id="@+id/button_make_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/yellow"
+                android:backgroundTint="@color/continue_button"
                 android:text="@string/make_order_text"
                 android:textColor="@color/black_fixed"
                 app:layout_constraintBottom_toBottomOf="parent"

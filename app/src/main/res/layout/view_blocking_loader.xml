@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminate="true"
-            app:indicatorColor="@color/yellow"
+            app:indicatorColor="@color/continue_button"
             app:indicatorSize="50dp" />
 
     </com.google.android.material.card.MaterialCardView>

@@ -18,7 +18,7 @@
             android:id="@+id/imageview_order_icon"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@color/blue"
+            android:background="@color/default_chip_background"
             android:src="@drawable/ic_order"
             app:contentPadding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
