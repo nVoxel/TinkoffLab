@@ -38,7 +38,7 @@ class OrderPlacedFragment : BaseFragment<FragmentOrderPlacedBinding>() {
             }
 
             buttonContinue.setOnClickListener {
-                App.router.navigateTo(Screens.Orders())
+                App.router.newRootScreen(Screens.Orders())
             }
             return root
         } ?: return null
