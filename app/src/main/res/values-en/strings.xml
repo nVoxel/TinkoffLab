@@ -57,4 +57,7 @@
     <string name="ok_button_text">OK</string>
     <string name="title_address_toggle">Change address input-type</string>
     <string name="save">Save</string>
+    <string name="catalog_title">Catalog</string>
+    <string name="cart_title">Cart</string>
+    <string name="orders_title">My orders</string>
 </resources>

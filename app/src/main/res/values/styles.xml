@@ -44,4 +44,10 @@
         <item name="android:textColor">@color/white_fixed</item>
     </style>
 
+    <style name="BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:background">@color/bottom_nav_background</item>
+        <item name="colorPrimary">@color/bottom_nav_selected</item>
+        <item name="colorSecondary">@color/bottom_nav_not_selected</item>
+    </style>
+
 </resources>
