@@ -4,12 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.activityViewModels
+import com.voxeldev.tinkofflab.data.local.AddressInputModeRepositoryImpl.Companion.toAddressInputMode
+import com.voxeldev.tinkofflab.data.local.AddressInputModeRepositoryImpl.Companion.toBoolean
 import com.voxeldev.tinkofflab.databinding.FragmentToggleAddressBinding
+import com.voxeldev.tinkofflab.ui.App
+import com.voxeldev.tinkofflab.ui.Screens
 import com.voxeldev.tinkofflab.ui.base.BaseFragment
+import com.voxeldev.tinkofflab.ui.delivery.SharedOrderViewModel
 
 class ToggleAddressFragment : BaseFragment<FragmentToggleAddressBinding>() {
+
+    private val viewModel: SharedOrderViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,22 +26,27 @@ class ToggleAddressFragment : BaseFragment<FragmentToggleAddressBinding>() {
         return binding?.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        binding?.addressSwitch?.isChecked = viewModel.addressInputMode?.toBoolean() ?: false
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.run {
             buttonContinue.setOnClickListener {
-                setFragmentResult(
-                    TOGGLE_REQUEST_KEY,
-                    bundleOf(TOGGLE_KEY to addressSwitch.isChecked)
-                )
-                parentFragmentManager.popBackStack()
+                onSave(addressSwitch.isChecked)
             }
         }
     }
 
-    companion object {
-
-        const val TOGGLE_REQUEST_KEY = "TOGGLE_REQUEST_KEY"
-        const val TOGGLE_KEY = "TOGGLE_KEY"
+    private fun onSave(isChecked: Boolean) {
+        val newMode = isChecked.toAddressInputMode()
+        val oldMode = viewModel.addressInputMode
+        viewModel.setAddressInputMode(newMode)
+        if (newMode != oldMode)
+            App.router.backTo(Screens.Onboarding())
+        else
+            App.router.exit()
     }
 }

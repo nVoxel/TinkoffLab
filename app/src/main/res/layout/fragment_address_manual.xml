@@ -19,7 +19,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edittext_country"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textImeMultiLine"
+            android:imeOptions="actionNext"
+            android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -38,7 +41,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edittext_region"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textImeMultiLine"
+            android:imeOptions="actionNext"
+            android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,7 +63,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edittext_street"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textImeMultiLine"
+            android:imeOptions="actionNext"
+            android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,7 +85,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edittext_house"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textImeMultiLine"
+            android:imeOptions="actionNext"
+            android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -95,7 +107,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edittext_city"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textImeMultiLine"
+            android:imeOptions="actionNext"
+            android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,18 +130,20 @@
             android:id="@+id/edittext_index"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:inputType="number|textImeMultiLine"
+            android:imeOptions="actionDone"
+            android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/button_done"
-        android:text="@string/button_done"
-        android:backgroundTint="@color/default_chip_background"
-        android:textColor="@color/white_fixed"
         android:layout_width="wrap_content"
-        android:layout_margin="16dp"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/default_chip_background"
+        android:text="@string/button_done"
+        android:textColor="@color/white_fixed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

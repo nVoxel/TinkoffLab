@@ -48,6 +48,8 @@
     <string name="city_hint">Населенный пункт</string>
     <string name="index_hint">Индекс</string>
     <string name="button_done">Готово</string>
+    <string name="title_address_toggle">Изменить ввод адреса</string>
+    <string name="save">Сохранить</string>
 
     <plurals name="comment_symbols">
         <item quantity="zero">символов</item>

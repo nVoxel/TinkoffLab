@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.activityViewModels
 import com.voxeldev.tinkofflab.databinding.FragmentAddressManualBinding
 import com.voxeldev.tinkofflab.ui.App
@@ -29,26 +30,36 @@ class AddressManualFragment : BaseFragment<FragmentAddressManualBinding>() {
         super.onViewCreated(view, savedInstanceState)
         binding?.run {
             buttonDone.setOnClickListener {
-                val data = listOf(
-                    edittextIndex.text,
-                    edittextCountry.text,
-                    edittextRegion.text,
-                    edittextCity.text,
-                    edittextStreet.text,
-                    edittextHouse.text
-                )
-
-                sharedOrderViewModel.setAddress(
-                    ExpressAddressModel(
-                        data.filterNot { it.isNullOrEmpty() }.joinToString(),
-                        // todo: fix
-                        0f,
-                        0f
-                    )
-                )
-
-                App.router.navigateTo(Screens.Appointment())
+                onDone()
+            }
+            edittextIndex.setOnEditorActionListener { _, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    onDone()
+                }
+                true
             }
         }
+    }
+
+    private fun onDone() {
+        val data = listOf(
+            binding?.edittextIndex?.text,
+            binding?.edittextCountry?.text,
+            binding?.edittextRegion?.text,
+            binding?.edittextCity?.text,
+            binding?.edittextStreet?.text,
+            binding?.edittextHouse?.text
+        )
+
+        sharedOrderViewModel.setAddress(
+            ExpressAddressModel(
+                data.filterNot { it.isNullOrEmpty() }.joinToString(),
+                // todo: fix
+                0f,
+                0f
+            )
+        )
+
+        App.router.navigateTo(Screens.Appointment())
     }
 }

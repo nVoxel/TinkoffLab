@@ -1,10 +1,15 @@
 package com.voxeldev.tinkofflab.ui
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuProvider
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.voxeldev.tinkofflab.R
-import com.voxeldev.tinkofflab.ui.toggleaddress.ToggleAddressFragment
+import com.voxeldev.tinkofflab.ui.delivery.SharedOrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -12,34 +17,16 @@ class MainActivity : AppCompatActivity() {
 
     private val navigator = AppNavigator(this, R.id.container)
 
-    var addressAutofillToggle: Boolean? = null
+    private val viewModel: SharedOrderViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        if (savedInstanceState != null) {
-            addressAutofillToggle = savedInstanceState.getBoolean(TOGGLE_KEY, true)
-        } else {
-            startToggleFragmentForResult()
-        }
-    }
-
-    private fun startToggleFragmentForResult() {
-        supportFragmentManager.setFragmentResultListener(
-            ToggleAddressFragment.TOGGLE_REQUEST_KEY,
-            this
-        ) { _, bundle ->
-            addressAutofillToggle = bundle.getBoolean(ToggleAddressFragment.TOGGLE_KEY, true)
-            App.router.newRootScreen(Screens.Cart())
-        }
-        App.router.newRootScreen(Screens.ToggleAddress())
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        addressAutofillToggle?.let {
-            outState.putBoolean(TOGGLE_KEY, it)
-        }
-        super.onSaveInstanceState(outState)
+        viewModel.initAddressInputMode()
+        setMenuItems()
+        if (savedInstanceState != null)
+            return
+        App.router.newRootScreen(Screens.Cart())
     }
 
     override fun onResumeFragments() {
@@ -52,8 +39,20 @@ class MainActivity : AppCompatActivity() {
         App.navigatorHolder.removeNavigator()
     }
 
-    companion object {
+    private fun setMenuItems() {
+        addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.toolbar_menu, menu)
+            }
 
-        private const val TOGGLE_KEY = "TOGGLE_KEY"
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                when (menuItem.itemId) {
+                    R.id.address_toggle -> {
+                        App.router.navigateTo(Screens.ToggleAddress())
+                    }
+                }
+                return true
+            }
+        })
     }
 }

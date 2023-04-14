@@ -55,4 +55,6 @@
     <string name="when_title_text">When</string>
     <string name="what_title_text">What we will bring</string>
     <string name="ok_button_text">OK</string>
+    <string name="title_address_toggle">Change address input-type</string>
+    <string name="save">Save</string>
 </resources>
