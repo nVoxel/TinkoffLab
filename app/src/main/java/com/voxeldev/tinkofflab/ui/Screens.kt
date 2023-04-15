@@ -14,6 +14,8 @@ import com.voxeldev.tinkofflab.ui.toggleaddress.ToggleAddressFragment
 @Suppress("FunctionName")
 object Screens {
 
+    fun HostFragment() = FragmentScreen { BottomNavigationFragment() }
+
     fun ToggleAddress() = FragmentScreen { ToggleAddressFragment() }
 
     fun AddressAutofill() = FragmentScreen { AddressAutofillFragment() }

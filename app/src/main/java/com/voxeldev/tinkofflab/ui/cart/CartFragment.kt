@@ -11,7 +11,6 @@ import com.voxeldev.tinkofflab.R
 import com.voxeldev.tinkofflab.databinding.FragmentCartBinding
 import com.voxeldev.tinkofflab.domain.models.expressapi.ItemModel
 import com.voxeldev.tinkofflab.ui.App
-import com.voxeldev.tinkofflab.ui.MainActivity
 import com.voxeldev.tinkofflab.ui.Screens
 import com.voxeldev.tinkofflab.ui.delivery.SharedOrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,13 +37,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
 
     private fun makeOrderButtonClicked() {
         sharedOrderViewModel.setItems(getCartItems(resources))
-        (activity as? MainActivity)?.hideBottomNavigation()
         App.router.navigateTo(Screens.DeliveryType())
-    }
-
-    override fun onStart() {
-        super.onStart()
-        (activity as? MainActivity)?.showBottomNavigation()
     }
 
     companion object {
