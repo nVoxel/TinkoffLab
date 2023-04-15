@@ -15,8 +15,11 @@ fun SuggestionsResponse.toAddressModel() = suggestions.map {
                     it.data.houseType?.let { houseType ->
                         append(", $houseType ${it.data.house}")
                     }
+                    it.data.flatType?.let { flatType ->
+                        append(", $flatType ${it.data.flat}")
+                    }
                 }
-            } ?: "-"
+            } ?: it.value ?: ""
     AddressModel(
         street = streetWithHouse,
         fullAddress = it.value ?: "",

@@ -38,10 +38,7 @@ class DeliveryTypeFragment : Fragment(R.layout.fragment_delivery_type) {
             DeliveryTypeModel(
                 R.string.delivery_type_pickup,
                 R.drawable.ic_pickup
-            ) {
-                // todo: add another way for a/b test
-                App.router.navigateTo(Screens.Onboarding())
-            }
+            ) { }
         )
         binding.rvDeliveryType.addItemDecoration(
             SpaceItemDecoration(requireContext(), ITEM_DECORATION_SPACING)

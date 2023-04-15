@@ -136,12 +136,13 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!--  todo: fix color and ripple  -->
     <Button
         android:id="@+id/button_done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:backgroundTint="@color/default_chip_background"
+        android:background="@drawable/bg_done_button"
         android:text="@string/button_done"
         android:textColor="@color/white_fixed"
         app:layout_constraintBottom_toBottomOf="parent"

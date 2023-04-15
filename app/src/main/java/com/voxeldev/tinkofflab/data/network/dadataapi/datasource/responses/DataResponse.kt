@@ -11,7 +11,9 @@ data class DataResponse(
     @SerializedName("country_iso_code")
     val countryIsoCode: String?,
     @SerializedName("flat")
-    val flat: Any?,
+    val flat: String?,
+    @SerializedName("flat_type")
+    val flatType: String?,
     @SerializedName("geo_lat")
     val geoLat: String?,
     @SerializedName("geo_lon")

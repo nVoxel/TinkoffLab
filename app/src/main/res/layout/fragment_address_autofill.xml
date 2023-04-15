@@ -11,20 +11,11 @@
         android:layout_margin="16dp"
         android:background="@drawable/bg_edittext"
         android:hint="@string/address_hint"
+        android:imeOptions="actionDone"
+        android:inputType="textImeMultiLine"
+        android:maxLines="1"
         android:padding="16dp"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textview_fav_addresses_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/fav_addresses"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/edittext_address"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_address" />
 
     <TextView
         android:id="@+id/textview_address_not_found"
@@ -34,18 +25,18 @@
         android:text="@string/address_not_found"
         android:textColor="@color/sub_text"
         android:visibility="gone"
-        app:layout_constraintStart_toStartOf="@+id/textview_fav_addresses_title"
-        app:layout_constraintTop_toBottomOf="@+id/textview_fav_addresses_title" />
+        app:layout_constraintStart_toStartOf="@+id/edittext_address"
+        app:layout_constraintTop_toBottomOf="@+id/edittext_address" />
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer_address_autofill"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_fav_addresses_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/edittext_address"
+        app:layout_constraintTop_toBottomOf="@+id/edittext_address"
         app:shimmer_auto_start="false">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -55,5 +46,29 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <include
+        android:id="@+id/loader"
+        layout="@layout/loader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edittext_address" />
+
+    <!--  todo: fix color and ripple  -->
+    <Button
+        android:id="@+id/button_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/bg_done_button"
+        android:text="@string/button_done"
+        android:textColor="@color/white_fixed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,3 +10,7 @@ style:
       - 'kotlinx.coroutines.flow.*'
       - 'java.util.*'
       - 'org.junit.Assert.*'
+
+complexity:
+  TooManyFunctions:
+    active: false
