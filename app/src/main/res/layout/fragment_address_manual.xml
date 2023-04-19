@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:background="@drawable/bg_edittext"
-        android:hint="@string/country_hint"
         app:endIconDrawable="@drawable/ic_end_clear"
         app:endIconMode="clear_text"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,8 +19,9 @@
             android:id="@+id/edittext_country"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textImeMultiLine"
+            android:hint="@string/country_hint"
             android:imeOptions="actionNext"
+            android:inputType="textImeMultiLine"
             android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -33,7 +33,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:background="@drawable/bg_edittext"
-        android:hint="@string/region_hint"
         app:endIconDrawable="@drawable/ic_end_clear"
         app:endIconMode="clear_text"
         app:layout_constraintTop_toBottomOf="@id/textinputlayout_country">
@@ -42,8 +41,9 @@
             android:id="@+id/edittext_region"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textImeMultiLine"
+            android:hint="@string/region_hint"
             android:imeOptions="actionNext"
+            android:inputType="textImeMultiLine"
             android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -55,7 +55,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:background="@drawable/bg_edittext"
-        android:hint="@string/street_hint"
         app:endIconDrawable="@drawable/ic_end_clear"
         app:endIconMode="clear_text"
         app:layout_constraintTop_toBottomOf="@id/textinputlayout_region">
@@ -64,8 +63,9 @@
             android:id="@+id/edittext_street"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textImeMultiLine"
+            android:hint="@string/street_hint"
             android:imeOptions="actionNext"
+            android:inputType="textImeMultiLine"
             android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -77,7 +77,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:background="@drawable/bg_edittext"
-        android:hint="@string/house_hint"
         app:endIconDrawable="@drawable/ic_end_clear"
         app:endIconMode="clear_text"
         app:layout_constraintTop_toBottomOf="@id/textinputlayout_street">
@@ -86,8 +85,9 @@
             android:id="@+id/edittext_house"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textImeMultiLine"
+            android:hint="@string/house_hint"
             android:imeOptions="actionNext"
+            android:inputType="textImeMultiLine"
             android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -99,7 +99,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:background="@drawable/bg_edittext"
-        android:hint="@string/city_hint"
         app:endIconDrawable="@drawable/ic_end_clear"
         app:endIconMode="clear_text"
         app:layout_constraintTop_toBottomOf="@id/textinputlayout_house">
@@ -108,8 +107,9 @@
             android:id="@+id/edittext_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textImeMultiLine"
+            android:hint="@string/city_hint"
             android:imeOptions="actionNext"
+            android:inputType="textImeMultiLine"
             android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -121,7 +121,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:background="@drawable/bg_edittext"
-        android:hint="@string/index_hint"
         app:endIconDrawable="@drawable/ic_end_clear"
         app:endIconMode="clear_text"
         app:layout_constraintTop_toBottomOf="@id/textinputlayout_city">
@@ -130,8 +129,10 @@
             android:id="@+id/edittext_index"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number|textImeMultiLine"
+            android:digits="0123456789"
+            android:hint="@string/index_hint"
             android:imeOptions="actionDone"
+            android:inputType="textImeMultiLine|numberDecimal"
             android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -141,11 +142,11 @@
         android:layout_width="100sp"
         android:layout_height="50sp"
         android:layout_margin="16dp"
+        android:backgroundTint="@color/default_chip_background"
+        android:text="@string/button_done"
+        android:textColor="@color/white_fixed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/button_done"
-        android:backgroundTint="@color/default_chip_background"
-        android:textColor="@color/white_fixed"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize30Percent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
