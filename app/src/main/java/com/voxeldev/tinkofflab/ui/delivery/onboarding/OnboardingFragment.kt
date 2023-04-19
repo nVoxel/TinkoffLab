@@ -15,14 +15,18 @@ class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = FragmentOnboardingBinding.inflate(inflater, container, false)
+        return binding?.root
+    }
 
-        with(binding!!) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding?.run {
             buttonContinue.setOnClickListener {
                 App.router.navigateTo(Screens.AddressAutofill())
             }
-            return root
         }
     }
 }

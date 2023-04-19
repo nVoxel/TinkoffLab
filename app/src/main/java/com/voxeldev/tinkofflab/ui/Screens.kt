@@ -6,6 +6,7 @@ import com.voxeldev.tinkofflab.ui.delivery.addressautofill.AddressAutofillFragme
 import com.voxeldev.tinkofflab.ui.delivery.appointment.AppointmentFragment
 import com.voxeldev.tinkofflab.ui.delivery.deliverytype.DeliveryTypeFragment
 import com.voxeldev.tinkofflab.ui.delivery.onboarding.OnboardingFragment
+import com.voxeldev.tinkofflab.ui.delivery.orderplaced.OrderPlacedFragment
 import com.voxeldev.tinkofflab.ui.orders.OrdersFragment
 
 @Suppress("FunctionName")
@@ -20,6 +21,8 @@ object Screens {
     fun DeliveryType() = FragmentScreen { DeliveryTypeFragment() }
 
     fun Onboarding() = FragmentScreen { OnboardingFragment() }
+
+    fun OrderPlaced() = FragmentScreen { OrderPlacedFragment() }
 
     fun Orders() = FragmentScreen { OrdersFragment() }
 }

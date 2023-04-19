@@ -11,6 +11,7 @@
     <color name="main_text">#333333</color>
     <color name="chip_text">@color/main_text</color>
     <color name="sub_text">#70333333</color>
+    <color name="small_text">#FF9299A2</color>
     <color name="cardview_background">#FFFFFF</color>
     <color name="edittext_background">#08001024</color>
     <color name="edittext_ripple">#08000812</color>

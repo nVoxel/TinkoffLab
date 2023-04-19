@@ -41,4 +41,9 @@
         <item quantity="one">character</item>
         <item quantity="other">characters</item>
     </plurals>
+    <string name="order_placed_title_text">Order placed</string>
+    <string name="where_title_text">Where</string>
+    <string name="when_title_text">When</string>
+    <string name="what_title_text">What we will bring</string>
+    <string name="ok_button_text">OK</string>
 </resources>
