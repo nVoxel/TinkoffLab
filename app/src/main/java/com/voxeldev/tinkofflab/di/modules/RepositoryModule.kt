@@ -15,6 +15,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module(includes = [RepositoryModule.Provide::class])
 @InstallIn(SingletonComponent::class)
@@ -41,6 +42,7 @@ abstract class RepositoryModule {
     class Provide {
 
         @Provides
+        @Singleton
         fun provideAddressInputModeRepository(
             @ApplicationContext context: Context
         ): AddressInputModeRepository = AddressInputModeRepositoryImpl(context)
