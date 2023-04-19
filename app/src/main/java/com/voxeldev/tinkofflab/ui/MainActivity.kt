@@ -36,13 +36,28 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private val menuProvider = object : MenuProvider {
+        override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+            menuInflater.inflate(R.menu.toolbar_menu, menu)
+        }
+
+        override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+            when (menuItem.itemId) {
+                R.id.address_toggle -> {
+                    App.router.navigateTo(Screens.ToggleAddress())
+                }
+            }
+            return true
+        }
+    }
+
     private val viewModel: SharedOrderViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         viewModel.initAddressInputMode()
-        setMenuItems()
+        showMenuItems()
         if (savedInstanceState != null)
             return
         App.router.newRootScreen(Screens.HostFragment())
@@ -58,20 +73,11 @@ class MainActivity : AppCompatActivity() {
         App.navigatorHolder.removeNavigator()
     }
 
-    private fun setMenuItems() {
-        addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.toolbar_menu, menu)
-            }
+    fun showMenuItems() {
+        addMenuProvider(menuProvider)
+    }
 
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                when (menuItem.itemId) {
-                    R.id.address_toggle -> {
-                        App.router.navigateTo(Screens.ToggleAddress())
-                    }
-                }
-                return true
-            }
-        })
+    fun hideMenuItems() {
+        removeMenuProvider(menuProvider)
     }
 }

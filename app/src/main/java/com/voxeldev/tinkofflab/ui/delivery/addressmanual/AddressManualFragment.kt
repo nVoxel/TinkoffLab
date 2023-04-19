@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.activityViewModels
+import com.voxeldev.tinkofflab.R
 import com.voxeldev.tinkofflab.databinding.FragmentAddressManualBinding
 import com.voxeldev.tinkofflab.ui.App
 import com.voxeldev.tinkofflab.ui.Screens
@@ -51,15 +52,20 @@ class AddressManualFragment : BaseFragment<FragmentAddressManualBinding>() {
             binding?.edittextHouse?.text
         )
 
-        sharedOrderViewModel.setAddress(
-            ExpressAddressModel(
-                data.filterNot { it.isNullOrEmpty() }.joinToString(),
-                // todo: fix
-                0f,
-                0f
-            )
-        )
-
-        App.router.navigateTo(Screens.Appointment())
+        data
+            .filterNot { it.isNullOrBlank() }
+            .joinToString()
+            .takeIf { it.isNotBlank() }
+            ?.let {
+                sharedOrderViewModel.setAddress(
+                    ExpressAddressModel(
+                        it,
+                        // todo: fix
+                        0f,
+                        0f
+                    )
+                )
+                App.router.navigateTo(Screens.Appointment())
+            } ?: showSnackbar(R.string.empty_address_error)
     }
 }

@@ -9,7 +9,9 @@ import com.voxeldev.tinkofflab.domain.usecases.dadataapi.GetAddressSuggestionsUs
 import com.voxeldev.tinkofflab.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
+import java.util.concurrent.atomic.AtomicBoolean
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,13 +31,26 @@ class AddressAutofillViewModel @Inject constructor(
 
     private val locale get() = Resources.getSystem().configuration.locales[0].language
 
+    val isNotAutofilled = AtomicBoolean(true)
+
     init {
         subscribeToChanges()
     }
 
+    @OptIn(FlowPreview::class)
     private fun subscribeToChanges() {
         suggestionsFlow
-            .filterNot { it.isNullOrBlank() }
+            .filterNot {
+                it.isNullOrBlank().also { isNullOrBlank ->
+                    if (isNullOrBlank)
+                        _suggestions.postValue(emptyList())
+                }
+            }
+            .filter {
+                it?.length!! >= MIN_QUERY_LENGTH && isNotAutofilled.get().also { value ->
+                    if (!value) isNotAutofilled.set(true)
+                }
+            }
             .map { it?.trim() }
             .distinctUntilChanged()
             .onEach { _loading.postValue(true) }
@@ -59,5 +74,7 @@ class AddressAutofillViewModel @Inject constructor(
     companion object {
 
         private const val SEARCH_TIMEOUT = 1000L // millis
+
+        private const val MIN_QUERY_LENGTH = 3
     }
 }

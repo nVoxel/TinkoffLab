@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
@@ -28,14 +29,13 @@ class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
     private val addressAutofillViewModel by viewModels<AddressAutofillViewModel>()
 
     private val adapter by lazy {
-        AddressAutofillAdapter { address ->
-            with(address) {
-                sharedOrderViewModel.setAddress(
-                    ExpressAddressModel(fullAddress, latitude, longitude)
-                )
+        AddressAutofillAdapter {
+            binding?.edittextAddress?.apply {
+                // to skip search
+                addressAutofillViewModel.isNotAutofilled.set(false)
+                setText(it.fullAddress)
+                setSelection(it.fullAddress.length)
             }
-
-            App.router.navigateTo(Screens.Appointment())
         }
     }
 
@@ -51,6 +51,7 @@ class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setAdapter()
+        setDoneListeners()
         setTextChangeListener()
         observeViewModel()
     }
@@ -76,14 +77,45 @@ class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
         }
     }
 
+    private fun setDoneListeners() {
+        binding?.apply {
+            edittextAddress.setOnEditorActionListener { _, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    onDone()
+                }
+                true
+            }
+            buttonDone.setOnClickListener {
+                onDone()
+            }
+        }
+    }
+
+    private fun onDone() {
+        binding?.edittextAddress?.text
+            ?.takeIf { it.isNotBlank() }
+            ?.let {
+                sharedOrderViewModel.setAddress(
+                    // todo: fix lan and lon
+                    ExpressAddressModel(it.toString(), 0f, 0f)
+                )
+                App.router.navigateTo(Screens.Appointment())
+            } ?: showSnackbar(R.string.empty_address_error)
+    }
+
     private fun handleSuggestions(suggestions: List<AddressModel>?) {
         suggestions?.let {
-            binding?.textviewAddressNotFound?.isVisible = it.isEmpty()
+            binding?.apply {
+                val isNotAddressBlank = edittextAddress.text?.isNotBlank() ?: false
+                textviewAddressNotFound.isVisible = it.isEmpty() && isNotAddressBlank
+            }
             adapter.submitList(it)
         }
     }
 
     private fun handleLoading(isLoading: Boolean?) {
+        binding?.loader?.cardviewLoader?.isVisible =
+            isLoading == true && adapter.itemCount == 0
         binding?.shimmerAddressAutofill?.apply {
             if (isLoading == true)
                 showShimmer(true)
