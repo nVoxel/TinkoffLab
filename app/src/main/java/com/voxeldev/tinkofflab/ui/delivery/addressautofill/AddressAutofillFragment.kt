@@ -105,7 +105,10 @@ class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
 
     private fun handleSuggestions(suggestions: List<AddressModel>?) {
         suggestions?.let {
-            binding?.textviewAddressNotFound?.isVisible = it.isEmpty()
+            binding?.apply {
+                val isNotAddressBlank = edittextAddress.text?.isNotBlank() ?: false
+                textviewAddressNotFound.isVisible = it.isEmpty() && isNotAddressBlank
+            }
             adapter.submitList(it)
         }
     }

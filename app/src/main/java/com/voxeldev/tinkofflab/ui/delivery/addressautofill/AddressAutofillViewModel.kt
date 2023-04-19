@@ -40,7 +40,12 @@ class AddressAutofillViewModel @Inject constructor(
     @OptIn(FlowPreview::class)
     private fun subscribeToChanges() {
         suggestionsFlow
-            .filterNot { it.isNullOrBlank() }
+            .filterNot {
+                it.isNullOrBlank().also { isNullOrBlank ->
+                    if (isNullOrBlank)
+                        _suggestions.postValue(emptyList())
+                }
+            }
             .filter {
                 it?.length!! >= MIN_QUERY_LENGTH && isNotAutofilled.get().also { value ->
                     if (!value) isNotAutofilled.set(true)
