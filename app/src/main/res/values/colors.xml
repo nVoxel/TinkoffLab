@@ -12,6 +12,10 @@
     <color name="chip_text">@color/main_text</color>
     <color name="sub_text">#70333333</color>
     <color name="small_text">#FF9299A2</color>
+    <color name="bottom_nav_background">#F9F9F9</color>
+    <color name="bottom_nav_not_selected">#9299A2</color>
+    <color name="bottom_nav_selected">#428BF9</color>
+    <color name="divider">#C7C9CC</color>
     <color name="cardview_background">#FFFFFF</color>
     <color name="edittext_background">#08001024</color>
     <color name="edittext_ripple">#08000812</color>

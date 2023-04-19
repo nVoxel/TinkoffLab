@@ -4,24 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_delivery_type_title"
-        android:layout_width="300dp"
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/address_switch"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/choose_delivery_type"
-        android:textSize="28sp"
-        android:textStyle="bold"
+        android:text="@string/address_toggle"
+        android:textSize="16sp"
+        app:switchPadding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_delivery_type"
+    <com.voxeldev.tinkofflab.ui.views.ContinueButtonView
+        android:id="@+id/button_continue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/tv_delivery_type_title" />
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:text="@string/save" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

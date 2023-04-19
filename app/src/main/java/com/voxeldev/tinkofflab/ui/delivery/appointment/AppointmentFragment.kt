@@ -14,7 +14,6 @@ import com.google.android.material.chip.ChipGroup
 import com.voxeldev.tinkofflab.R
 import com.voxeldev.tinkofflab.databinding.FragmentAppointmentBinding
 import com.voxeldev.tinkofflab.ui.App
-import com.voxeldev.tinkofflab.ui.Screens
 import com.voxeldev.tinkofflab.ui.base.BaseFragment
 import com.voxeldev.tinkofflab.ui.delivery.SharedOrderViewModel
 import com.voxeldev.tinkofflab.ui.utils.scrollToBottom
@@ -47,7 +46,7 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
 
             edittextAddress.apply {
                 setText(sharedOrderViewModel.sharedAddress?.address ?: "")
-                setOnClickListener { App.router.backTo(Screens.AddressAutofill()) }
+                setOnClickListener { App.router.exit() }
             }
 
             chipgroupDays.setOnCheckedStateChangeListener { group, checkedId ->

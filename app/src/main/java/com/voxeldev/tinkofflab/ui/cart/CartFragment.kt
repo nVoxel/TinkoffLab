@@ -37,11 +37,11 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
 
     private fun makeOrderButtonClicked() {
         sharedOrderViewModel.setItems(getCartItems(resources))
-
         App.router.navigateTo(Screens.DeliveryType())
     }
 
     companion object {
+
         private fun getCartItems(resources: Resources) =
             listOf(ItemModel(resources.getString(R.string.cart_item_title_text), CART_ITEM_PRICE))
 

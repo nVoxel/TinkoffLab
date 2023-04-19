@@ -36,14 +36,28 @@
     <string name="address_get_error">Unable to get addresses</string>
     <string name="address_not_found">We don\'t know such address</string>
     <string name="comment_hint_text">How to reach and when to call you</string>
+    <string name="address_toggle">Use address autocompletion</string>
 
     <plurals name="comment_symbols">
         <item quantity="one">character</item>
         <item quantity="other">characters</item>
     </plurals>
+
+    <string name="country_hint">Counrty</string>
+    <string name="region_hint">Region</string>
+    <string name="street_hint">Street</string>
+    <string name="house_hint">Structure/building</string>
+    <string name="city_hint">City</string>
+    <string name="index_hint">Postal code</string>
+    <string name="button_done">Done</string>
     <string name="order_placed_title_text">Order placed</string>
     <string name="where_title_text">Where</string>
     <string name="when_title_text">When</string>
     <string name="what_title_text">What we will bring</string>
     <string name="ok_button_text">OK</string>
+    <string name="title_address_toggle">Change address input-type</string>
+    <string name="save">Save</string>
+    <string name="catalog_title">Catalog</string>
+    <string name="cart_title">Cart</string>
+    <string name="orders_title">My orders</string>
 </resources>
