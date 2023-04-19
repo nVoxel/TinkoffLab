@@ -36,12 +36,18 @@ class OrderPlacedFragment : BaseFragment<FragmentOrderPlacedBinding>() {
                     itemModel.name
                 }
             }
+            return root
+        } ?: return null
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding?.run {
             buttonContinue.setOnClickListener {
                 App.router.newRootScreen(Screens.Orders())
             }
-            return root
-        } ?: return null
+        }
     }
 
     private fun timeSlotToString(timeSlotModel: TimeSlotModel, resources: Resources) =
