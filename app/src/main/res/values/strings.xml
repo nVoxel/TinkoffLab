@@ -51,6 +51,7 @@
     <string name="title_address_toggle">Изменить ввод адреса</string>
     <string name="save">Сохранить</string>
     <string name="empty_address_error">Адрес не может быть пустым</string>
+    <string name="parcel">Посылку</string>
 
     <plurals name="comment_symbols">
         <item quantity="zero">символов</item>
@@ -64,4 +65,14 @@
     <string name="catalog_title">Каталог</string>
     <string name="cart_title">Корзина</string>
     <string name="orders_title">Мои заказы</string>
+    <string name="title_bring">Что привезем</string>
+    <string name="delivery_title">Доставка</string>
+    <string name="change">Изменить</string>
+    <string name="payment_method">Способ оплаты</string>
+    <string name="card_payment">Картой при получении</string>
+    <string name="cash_payment">Наличными курьеру</string>
+    <string name="time_range">%1$s с %2$s до %3$s</string>
+    <string name="confirm">Оформить</string>
+    <string name="order_creation_error">Не удалось создать заказ</string>
+    <string name="toggle_address_warning">Внимание: при подтверждении смены способа ввода адреса введенные данные сбросятся</string>
 </resources>

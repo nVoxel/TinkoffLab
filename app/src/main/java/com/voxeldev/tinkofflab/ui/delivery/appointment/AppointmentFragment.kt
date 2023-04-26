@@ -14,8 +14,10 @@ import com.google.android.material.chip.ChipGroup
 import com.voxeldev.tinkofflab.R
 import com.voxeldev.tinkofflab.databinding.FragmentAppointmentBinding
 import com.voxeldev.tinkofflab.ui.App
+import com.voxeldev.tinkofflab.ui.Screens
 import com.voxeldev.tinkofflab.ui.base.BaseFragment
 import com.voxeldev.tinkofflab.ui.delivery.SharedOrderViewModel
+import com.voxeldev.tinkofflab.ui.utils.ExpressAddressModel
 import com.voxeldev.tinkofflab.ui.utils.scrollToBottom
 import com.voxeldev.tinkofflab.ui.utils.toRelativeString
 import com.voxeldev.tinkofflab.utils.extensions.observe
@@ -44,9 +46,8 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
                 }
             }
 
-            edittextAddress.apply {
-                setText(sharedOrderViewModel.sharedAddress?.address ?: "")
-                setOnClickListener { App.router.exit() }
+            binding?.edittextAddress?.setOnClickListener {
+                App.router.exit()
             }
 
             chipgroupDays.setOnCheckedStateChangeListener { group, checkedId ->
@@ -67,6 +68,7 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
                     }
                 )
             }
+
             buttonContinue.setOnClickListener {
                 val selectedTimeSlot =
                     appointmentViewModel.selectedTimeSlot ?: return@setOnClickListener
@@ -76,7 +78,7 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
                     binding?.textinputedittextComment?.text?.toString() ?: ""
                 )
 
-                // TODO: Navigate to confirmation screen
+                App.router.navigateTo(Screens.Confirmation())
             }
         }
 
@@ -89,7 +91,13 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
             observe(exception, ::handleException)
         }
 
+        observe(sharedOrderViewModel.sharedAddress, ::handleAddress)
+
         return binding?.root
+    }
+
+    private fun handleAddress(address: ExpressAddressModel?) {
+        binding?.edittextAddress?.setText(address?.address ?: "")
     }
 
     private fun handleSlotsAdapter(adapter: AppointmentTimeslotsAdapter?) {

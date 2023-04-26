@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.voxeldev.tinkofflab.R
@@ -29,7 +30,9 @@ class BottomNavigationFragment : BaseFragment<FragmentBottomNavigationContainerB
         super.onViewCreated(view, savedInstanceState)
         setBottomNavigation()
         if (savedInstanceState == null)
-            binding?.bnvMain?.selectedItemId = R.id.item_cart
+            binding?.bnvMain?.selectedItemId =
+                arguments?.getInt(START_SCREEN_KEY)?.takeIf { it != 0 }
+                    ?: R.id.item_cart
     }
 
     private fun setBottomNavigation() {
@@ -72,5 +75,13 @@ class BottomNavigationFragment : BaseFragment<FragmentBottomNavigationContainerB
         private val router = cicerone.router
 
         private val navigatorHolder get() = cicerone.getNavigatorHolder()
+
+        private const val START_SCREEN_KEY = "START_SCREEN_KEY"
+
+        fun getInstance(startScreenId: Int? = null) = BottomNavigationFragment().apply {
+            startScreenId?.let {
+                arguments = bundleOf(START_SCREEN_KEY to it)
+            }
+        }
     }
 }

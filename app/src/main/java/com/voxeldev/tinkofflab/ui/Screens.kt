@@ -5,6 +5,7 @@ import com.voxeldev.tinkofflab.ui.cart.CartFragment
 import com.voxeldev.tinkofflab.ui.delivery.addressautofill.AddressAutofillFragment
 import com.voxeldev.tinkofflab.ui.delivery.addressmanual.AddressManualFragment
 import com.voxeldev.tinkofflab.ui.delivery.appointment.AppointmentFragment
+import com.voxeldev.tinkofflab.ui.delivery.confirmation.ConfirmationFragment
 import com.voxeldev.tinkofflab.ui.delivery.deliverytype.DeliveryTypeFragment
 import com.voxeldev.tinkofflab.ui.delivery.onboarding.OnboardingFragment
 import com.voxeldev.tinkofflab.ui.delivery.orderplaced.OrderPlacedFragment
@@ -14,7 +15,9 @@ import com.voxeldev.tinkofflab.ui.toggleaddress.ToggleAddressFragment
 @Suppress("FunctionName")
 object Screens {
 
-    fun HostFragment() = FragmentScreen { BottomNavigationFragment() }
+    fun HostFragment(startScreenId: Int? = null) = FragmentScreen {
+        BottomNavigationFragment.getInstance(startScreenId)
+    }
 
     fun ToggleAddress() = FragmentScreen { ToggleAddressFragment() }
 
@@ -33,4 +36,6 @@ object Screens {
     fun OrderPlaced() = FragmentScreen { OrderPlacedFragment() }
 
     fun Orders() = FragmentScreen { OrdersFragment() }
+
+    fun Confirmation() = FragmentScreen { ConfirmationFragment() }
 }
