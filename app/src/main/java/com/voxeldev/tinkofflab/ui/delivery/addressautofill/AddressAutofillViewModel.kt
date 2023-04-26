@@ -58,6 +58,7 @@ class AddressAutofillViewModel @Inject constructor(
             .onEach { query ->
                 getAddressSuggestionsUseCase(query!! to locale, viewModelScope) { either ->
                     either.fold(::handleException) {
+                        _loading.postValue(false)
                         _suggestions.postValue(it)
                     }
                     _loading.postValue(false)
