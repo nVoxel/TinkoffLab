@@ -10,7 +10,6 @@ import com.voxeldev.tinkofflab.domain.models.expressapi.OrderModel
 import com.voxeldev.tinkofflab.domain.models.expressapi.TimeSlotModel
 import com.voxeldev.tinkofflab.ui.utils.toRelativeString
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 
 class OrdersAdapter(
@@ -47,13 +46,14 @@ class OrdersAdapter(
 
         private fun timeSlotToString(resources: Resources, timeSlot: TimeSlotModel): String {
             val currentDate = LocalDate.now()
-            val timeSlotDate = LocalDate.parse(timeSlot.date, DateTimeFormatter.ISO_DATE)
+            var displayDate: String = timeSlot.date
+
+            runCatching { LocalDate.parse(timeSlot.date) }
+                .onSuccess { displayDate = it.toRelativeString(currentDate, resources) }
 
             return resources.getString(
                 R.string.order_datetime_placeholder,
-                timeSlotDate.toRelativeString(currentDate, resources),
-                timeSlot.timeFrom,
-                timeSlot.timeTo
+                displayDate, timeSlot.timeFrom, timeSlot.timeTo
             )
         }
     }
