@@ -46,19 +46,15 @@ class OrdersAdapter(
 
         private fun timeSlotToString(resources: Resources, timeSlot: TimeSlotModel): String {
             val currentDate = LocalDate.now()
+            var displayDate: String = timeSlot.date
 
-            runCatching {
-                LocalDate.parse(timeSlot.date)
-            }.onSuccess {
-                return resources.getString(
-                    R.string.order_datetime_placeholder,
-                    it.toRelativeString(currentDate, resources),
-                    timeSlot.timeFrom,
-                    timeSlot.timeTo
-                )
-            }
+            runCatching { LocalDate.parse(timeSlot.date) }
+                .onSuccess { displayDate = it.toRelativeString(currentDate, resources) }
 
-            return timeSlot.date
+            return resources.getString(
+                R.string.order_datetime_placeholder,
+                displayDate, timeSlot.timeFrom, timeSlot.timeTo
+            )
         }
     }
 }
