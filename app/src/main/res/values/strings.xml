@@ -75,4 +75,5 @@
     <string name="confirm">Оформить</string>
     <string name="order_creation_error">Не удалось создать заказ</string>
     <string name="toggle_address_warning">Внимание: при подтверждении смены способа ввода адреса введенные данные сбросятся</string>
+    <string name="no_connection">Нет интернета</string>
 </resources>
