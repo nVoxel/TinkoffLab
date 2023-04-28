@@ -27,20 +27,17 @@ class OrderPlacedFragment : BaseFragment<FragmentOrderPlacedBinding>() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentOrderPlacedBinding.inflate(inflater, container, false)
-
-        binding?.run {
-            sharedOrderViewModel.getOrder()?.let {
-                textviewWhere.text = it.address.address
-                textviewWhen.text = timeSlotToString(it.deliverySlot, resources)
-            }
-            return root
-        } ?: return null
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.run {
+            sharedOrderViewModel.createdOrder?.let {
+                textviewWhere.text = it.address.address
+                textviewWhen.text = timeSlotToString(it.deliverySlot, resources)
+            }
             buttonContinue.setOnClickListener {
                 App.router.newRootScreen(Screens.HostFragment(R.id.item_orders))
             }

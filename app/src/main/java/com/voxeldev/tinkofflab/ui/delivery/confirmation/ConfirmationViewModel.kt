@@ -19,13 +19,13 @@ class ConfirmationViewModel @Inject constructor(
     val loading: LiveData<Boolean>
         get() = _loading
 
-    val orderCreationSuccess = SingleLiveEvent<Unit>()
+    val createdOrder = SingleLiveEvent<OrderModel>()
 
     fun createOrder(order: OrderModel) {
         _loading.value = true
         createOrderUseCase(order, viewModelScope) { either ->
             either.fold(::handleException) {
-                orderCreationSuccess.value = Unit
+                createdOrder.value = it
             }
             _loading.value = false
         }

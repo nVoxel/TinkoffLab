@@ -36,6 +36,8 @@ class SharedOrderViewModel @Inject constructor(
     val deliverySlot: LiveData<TimeSlotModel>
         get() = _deliverySlot
 
+    var createdOrder: OrderModel? = null
+
     fun getOrder() = orderBuilder.value?.build()
 
     var addressInputMode: AddressInputMode? = null
