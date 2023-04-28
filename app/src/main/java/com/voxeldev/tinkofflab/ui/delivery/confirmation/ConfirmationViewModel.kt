@@ -8,8 +8,6 @@ import com.voxeldev.tinkofflab.domain.usecases.expressapi.CreateOrderUseCase
 import com.voxeldev.tinkofflab.ui.base.BaseViewModel
 import com.voxeldev.tinkofflab.ui.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,17 +21,8 @@ class ConfirmationViewModel @Inject constructor(
 
     val orderCreationSuccess = SingleLiveEvent<Unit>()
 
-    fun createOrder() {
-        viewModelScope.launch {
-            _loading.value = true
-            delay(FAKE_LOADING_DELAY) // request
-            _loading.value = false
-            orderCreationSuccess.value = Unit
-        }
-    }
-
-    // todo: fix api (500 error)
     fun createOrder(order: OrderModel) {
+        _loading.value = true
         createOrderUseCase(order, viewModelScope) { either ->
             either.fold(::handleException) {
                 orderCreationSuccess.value = Unit
@@ -42,5 +31,3 @@ class ConfirmationViewModel @Inject constructor(
         }
     }
 }
-
-private const val FAKE_LOADING_DELAY = 500L

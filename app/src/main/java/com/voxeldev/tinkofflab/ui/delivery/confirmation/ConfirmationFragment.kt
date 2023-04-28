@@ -56,7 +56,7 @@ class ConfirmationFragment : BaseFragment<FragmentConfirmationBinding>() {
                     setStatus("NEW")
                     setPaymentMethod(paymentMethod.value ?: error("impossible payment method"))
                 }.getOrder()?.let {
-                    confirmationViewModel.createOrder(/*it*/)
+                    confirmationViewModel.createOrder(it)
                 }
             }
         }
