@@ -13,6 +13,7 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.voxeldev.tinkofflab.R
 import com.voxeldev.tinkofflab.databinding.FragmentAppointmentBinding
+import com.voxeldev.tinkofflab.domain.models.expressapi.TimeSlotModel
 import com.voxeldev.tinkofflab.ui.App
 import com.voxeldev.tinkofflab.ui.Screens
 import com.voxeldev.tinkofflab.ui.base.BaseFragment
@@ -37,10 +38,11 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
     ): View? {
         binding = FragmentAppointmentBinding.inflate(inflater, container, false)
 
-        setupDaysChipGroup()
+        if (!sharedOrderViewModel.orderEditModeEnabled) setupDaysChipGroup()
 
         with(binding!!) {
             savedInstanceState?.let {
+                setupDaysChipGroup()
                 appointmentViewModel.checkedChipIndex?.let { index ->
                     chipgroupDays.check(chipgroupDays.getChildAt(index).id)
                 }
@@ -69,17 +71,7 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
                 )
             }
 
-            buttonContinue.setOnClickListener {
-                val selectedTimeSlot =
-                    appointmentViewModel.selectedTimeSlot ?: return@setOnClickListener
-
-                sharedOrderViewModel.setDeliverySlot(selectedTimeSlot)
-                sharedOrderViewModel.setComment(
-                    binding?.textinputedittextComment?.text?.toString() ?: ""
-                )
-
-                App.router.navigateTo(Screens.Confirmation())
-            }
+            buttonContinue.setOnClickListener { continueButtonOnClick() }
         }
 
         with(appointmentViewModel) {
@@ -89,15 +81,35 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
             observe(commentHintText, ::handleHintText)
             observe(commentCounterText, ::handleCounterText)
             observe(exception, ::handleException)
+            observe(orderUpdateSuccess) {
+                App.router.newRootScreen(Screens.HostFragment(R.id.item_orders))
+            }
         }
 
-        observe(sharedOrderViewModel.sharedAddress, ::handleAddress)
+
+        with(sharedOrderViewModel) {
+            observe(sharedAddress, ::handleAddress)
+            observe(deliverySlot, ::handleDeliverySlot)
+        }
 
         return binding?.root
     }
 
     private fun handleAddress(address: ExpressAddressModel?) {
         binding?.edittextAddress?.setText(address?.address ?: "")
+    }
+
+    private fun handleDeliverySlot(deliverySlot: TimeSlotModel?) {
+        appointmentViewModel.run {
+            editTimeSlot = deliverySlot
+            if (checkedChipIndex != null) return
+            setupDaysChipGroup()
+            binding?.run {
+                val foundCheckedChipIndex = findCheckedChipIndex()
+                checkedChipIndex = foundCheckedChipIndex
+                chipgroupDays.getChildAt(foundCheckedChipIndex)?.let { chipgroupDays.check(it.id) }
+            }
+        }
     }
 
     private fun handleSlotsAdapter(adapter: AppointmentTimeslotsAdapter?) {
@@ -125,6 +137,25 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
         val index = group.indexOfChild(chip)
 
         appointmentViewModel.getSlotsAdapter(index)
+    }
+
+    private fun continueButtonOnClick() {
+        val selectedTimeSlot =
+            appointmentViewModel.selectedTimeSlot ?: return
+
+        sharedOrderViewModel.run {
+            setDeliverySlot(selectedTimeSlot)
+            setComment(
+                binding?.textinputedittextComment?.text?.toString() ?: ""
+            )
+
+            if (!orderEditModeEnabled) return@run
+
+            getOrder()?.let { appointmentViewModel.updateOrder(it) }
+            return
+        }
+
+        App.router.navigateTo(Screens.Confirmation())
     }
 
     private fun handleContinueButtonText(text: String?) =

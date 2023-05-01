@@ -7,11 +7,14 @@
     <color name="item_outline">#DDDFE0</color>
     <color name="default_chip_background">#FF428BF9</color>
     <color name="continue_button">#FFFFDD2D</color>
+    <color name="continue_button_alternative">#08001024</color>
     <color name="continue_button_ripple">#B69F24</color>
+    <color name="continue_button_ripple_alternative">#32001024</color>
     <color name="main_text">#333333</color>
     <color name="chip_text">@color/main_text</color>
     <color name="sub_text">#70333333</color>
     <color name="small_text">#FF9299A2</color>
+    <color name="warning_text">#F52222</color>
     <color name="bottom_nav_background">#F9F9F9</color>
     <color name="bottom_nav_not_selected">#9299A2</color>
     <color name="bottom_nav_selected">#428BF9</color>
@@ -24,6 +27,11 @@
     <color name="change_text">#FF428BF9</color>
     <color name="bg_no_connection">#FFFFFF</color>
     <color name="chip_background_selected">#FF428BF9</color>
+    <color name="alert_dialog_button">#FF428BF9</color>
+    <color name="alert_dialog_background">#FFFF</color>
+    <color name="alert_dialog_text">#F333</color>
+    <color name="canceled_dialog_background">#FFFF</color>
+    <color name="canceled_dialog_outer_background">#0000</color>
     <color name="md_theme_primary">#005CBC</color>
     <color name="md_theme_onPrimary">#FFFFFF</color>
     <color name="md_theme_primaryContainer">#D7E2FF</color>

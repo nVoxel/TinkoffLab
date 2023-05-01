@@ -8,7 +8,8 @@ import com.voxeldev.tinkofflab.domain.models.expressapi.OrderModel
 
 
 class OrdersAdapter(
-    private val orders: List<OrderModel>
+    private val orders: List<OrderModel>,
+    private val onClickCallback: (OrderModel) -> Unit = {}
 ) : RecyclerView.Adapter<OrdersAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -31,9 +32,7 @@ class OrdersAdapter(
 
         fun bind(order: OrderModel) {
             with(binding) {
-                cardviewOrder.setOnClickListener {
-                    // TODO: Open order details
-                }
+                cardviewOrder.setOnClickListener { onClickCallback(order) }
                 textviewDatetime.text = order.deliverySlot.toString(binding.root.resources)
             }
         }

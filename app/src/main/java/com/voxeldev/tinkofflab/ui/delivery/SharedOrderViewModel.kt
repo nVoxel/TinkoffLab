@@ -43,6 +43,8 @@ class SharedOrderViewModel @Inject constructor(
     var addressInputMode: AddressInputMode? = null
         private set
 
+    var orderEditModeEnabled = false
+
     fun initAddressInputMode() {
         if (addressInputMode == null)
             getAddressInputModeUseCase(BaseUseCase.None, viewModelScope) { either ->
@@ -57,6 +59,18 @@ class SharedOrderViewModel @Inject constructor(
             either.fold(::handleException) {
                 addressInputMode = mode
             }
+        }
+    }
+
+    fun setOrder(orderModel: OrderModel) {
+        orderModel.run {
+            setAddress(address)
+            runCatching { setPaymentMethod(PaymentMethod.valueOf(paymentMethod)) }
+            setDeliverySlot(deliverySlot)
+            setItems(items)
+            setComment(comment)
+            setStatus(status)
+            setId(id)
         }
     }
 
@@ -82,4 +96,6 @@ class SharedOrderViewModel @Inject constructor(
     fun setComment(comment: String) = orderBuilder.value?.comment(comment)
 
     fun setStatus(status: String) = orderBuilder.value?.status(status)
+
+    fun setId(id: Int) = orderBuilder.value?.id(id)
 }

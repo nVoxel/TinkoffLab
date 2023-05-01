@@ -4,6 +4,8 @@
     <color name="white_fixed">#FFFFFFFF</color>
     <color name="black_fixed">#FF000000</color>
     <color name="item_price_background">#FF333333</color>
+    <color name="continue_button_alternative">#1AFFFFFF</color>
+    <color name="continue_button_ripple_alternative">#08FFFFFF</color>
     <color name="main_text">#F6F7F8</color>
     <color name="sub_text">#99FFFFFF</color>
     <color name="cardview_background">#1C1C1E</color>
@@ -14,6 +16,9 @@
     <color name="bottom_nav_background">#CC000000</color>
     <color name="bottom_nav_not_selected">#9299A2</color>
     <color name="bottom_nav_selected">#428BF9</color>
+    <color name="alert_dialog_background">#FF1C1C1E</color>
+    <color name="alert_dialog_text">#FFF6F7F8</color>
+    <color name="canceled_dialog_background">#F333</color>
     <color name="divider">#9299A2</color>
     <color name="bg_no_connection">#000000</color>
     <color name="md_theme_primary">#ABC7FF</color>

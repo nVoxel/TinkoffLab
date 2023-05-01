@@ -76,5 +76,11 @@
     <string name="confirm">Confirm</string>
     <string name="order_creation_error">Something went wrong while creating order</string>
     <string name="toggle_address_warning">Attention: confirmation of changing the address input method will result in the entered data to be reset</string>
+    <string name="order_cancel">Cancel</string>
+    <string name="order_update_error">Something went wrong while updating order</string>
+    <string name="order_cancel_confirmation">Are you sure you want to cancel the delivery?</string>
+    <string name="order_cancel_yes">YES</string>
+    <string name="order_cancel_no">NO</string>
+    <string name="delivery_canceled">Delivery canceled</string>
     <string name="no_connection">No internet</string>
 </resources>

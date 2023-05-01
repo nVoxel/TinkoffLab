@@ -29,6 +29,8 @@ class ContinueButtonView @JvmOverloads constructor(
             field = value
         }
 
+    private var alternativeView: Boolean = false
+
     init {
         inflate(context, R.layout.continue_button_view_content, this)
         textView = findViewById(R.id.textview_button_title)
@@ -36,14 +38,29 @@ class ContinueButtonView @JvmOverloads constructor(
         context.withStyledAttributes(attrs, R.styleable.ContinueButtonView) {
             textView.text = getString(R.styleable.ContinueButtonView_text)
             showLoading = getBoolean(R.styleable.ContinueButtonView_showLoading, false)
+            alternativeView = getBoolean(
+                R.styleable.ContinueButtonView_alternativeView, false
+            )
         }
         setUi()
     }
 
     private fun setUi() {
-        setBackgroundResource(R.drawable.bg_button_continue)
+        setView(alternativeView)
+
         setPadding(resources.getDimensionPixelSize(R.dimen.continue_button_padding))
         isClickable = true
+    }
+
+    fun setView(alternativeView: Boolean) {
+        if (alternativeView) {
+            setBackgroundResource(R.drawable.bg_button_continue_alternative)
+            textView.setTextColor(resources.getColor(R.color.warning_text, context.theme))
+        }
+        else {
+            setBackgroundResource(R.drawable.bg_button_continue)
+            textView.setTextColor(resources.getColor(R.color.black_fixed, context.theme))
+        }
     }
 
     fun setText(text: String) {

@@ -28,6 +28,7 @@ class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.buttonContinue?.setOnClickListener {
+            viewModel.orderEditModeEnabled = false
             App.router.navigateTo(
                 when (viewModel.addressInputMode) {
                     AddressInputMode.AUTOFILL -> Screens.AddressAutofill()

@@ -6,11 +6,18 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeFormatterBuilder
 import java.time.temporal.ChronoUnit
-import java.util.*
+import java.util.Locale
 
 
-fun LocalDate.generateOrderedDates(size: Int): List<LocalDate> =
-    (0 until size).map { this.plusDays(it.toLong()) }
+fun LocalDate.generateOrderedDates(size: Int, additionalDate: LocalDate? = null): List<LocalDate> {
+    var list = (0 until size).map { this.plusDays(it.toLong()) }.toMutableList()
+    additionalDate?.let {
+        list = if (it.isBefore(list.first())) (listOf(it) + list).toMutableList()
+        else if (it.isAfter(list.last())) (list + listOf(it)).toMutableList()
+        else list
+    }
+    return list
+}
 
 fun LocalDate.toRelativeString(
     startDate: LocalDate,
