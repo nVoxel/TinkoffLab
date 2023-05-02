@@ -64,4 +64,9 @@
         <item name="android:textColor">@color/change_text</item>
     </style>
 
+    <style name="RoundedExtendedFloatingActionButton" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">28dp</item>
+    </style>
+
 </resources>

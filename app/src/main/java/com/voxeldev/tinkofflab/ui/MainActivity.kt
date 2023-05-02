@@ -1,9 +1,12 @@
 package com.voxeldev.tinkofflab.ui
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
@@ -13,7 +16,12 @@ import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.voxeldev.tinkofflab.R
 import com.voxeldev.tinkofflab.ui.delivery.SharedOrderViewModel
+import com.voxeldev.tinkofflab.ui.utils.hideOnTouch
+import com.voxeldev.tinkofflab.ui.utils.slideFromTop
+import com.voxeldev.tinkofflab.ui.utils.slideToTop
+import com.voxeldev.tinkofflab.utils.platform.ConnectivityStateObserver
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -51,6 +59,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private val noConnectionView by lazy {
+        findViewById<View>(R.id.no_connection).apply {
+            hideOnTouch()
+        }
+    }
+
+    @Inject
+    lateinit var connectivityStateObserver: ConnectivityStateObserver
+
     private val viewModel: SharedOrderViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,9 +75,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         viewModel.initAddressInputMode()
         showMenuItems()
+        registerNetworkListener()
         if (savedInstanceState != null)
             return
         App.router.newRootScreen(Screens.HostFragment())
+    }
+
+    private fun registerNetworkListener() {
+        connectivityStateObserver.registerNetworkCallback(
+            onAvailable = { noConnectionView.slideToTop() },
+            onLost = {
+                noConnectionView.slideFromTop()
+                noConnectionView.postDelayed({
+                    noConnectionView.slideToTop()
+                }, NO_CONNECTION_TIMEOUT)
+            },
+            handler = Handler(Looper.getMainLooper())
+        )
     }
 
     override fun onResumeFragments() {
@@ -73,11 +104,21 @@ class MainActivity : AppCompatActivity() {
         App.navigatorHolder.removeNavigator()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        connectivityStateObserver.unregisterNetworkCallback()
+    }
+
     fun showMenuItems() {
         addMenuProvider(menuProvider)
     }
 
     fun hideMenuItems() {
         removeMenuProvider(menuProvider)
+    }
+
+    companion object {
+
+        private const val NO_CONNECTION_TIMEOUT = 3000L
     }
 }
