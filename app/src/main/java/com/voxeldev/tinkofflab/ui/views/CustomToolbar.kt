@@ -83,7 +83,7 @@ class CustomToolbar @JvmOverloads constructor(
         titleTextView.layout(left, top, right, bottom)
     }
 
-    fun setTitle(title: CharSequence?) {
+    fun setTitle(title: String?) {
         titleTextView.text = title
     }
 
