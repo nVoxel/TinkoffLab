@@ -1,15 +1,10 @@
 package com.voxeldev.tinkofflab.ui.orders
 
-import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.voxeldev.tinkofflab.R
 import com.voxeldev.tinkofflab.databinding.ItemOrderBinding
 import com.voxeldev.tinkofflab.domain.models.expressapi.OrderModel
-import com.voxeldev.tinkofflab.domain.models.expressapi.TimeSlotModel
-import com.voxeldev.tinkofflab.ui.utils.toRelativeString
-import java.time.LocalDate
 
 
 class OrdersAdapter(
@@ -39,22 +34,8 @@ class OrdersAdapter(
                 cardviewOrder.setOnClickListener {
                     // TODO: Open order details
                 }
-                textviewDatetime.text =
-                    timeSlotToString(binding.root.resources, order.deliverySlot)
+                textviewDatetime.text = order.deliverySlot.toString(binding.root.resources)
             }
-        }
-
-        private fun timeSlotToString(resources: Resources, timeSlot: TimeSlotModel): String {
-            val currentDate = LocalDate.now()
-            var displayDate: String = timeSlot.date
-
-            runCatching { LocalDate.parse(timeSlot.date) }
-                .onSuccess { displayDate = it.toRelativeString(currentDate, resources) }
-
-            return resources.getString(
-                R.string.order_datetime_placeholder,
-                displayDate, timeSlot.timeFrom, timeSlot.timeTo
-            )
         }
     }
 }
