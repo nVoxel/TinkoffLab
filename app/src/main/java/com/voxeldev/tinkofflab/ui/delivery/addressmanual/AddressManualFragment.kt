@@ -40,6 +40,7 @@ class AddressManualFragment : BaseFragment<FragmentAddressManualBinding>() {
                 true
             }
         }
+        addEndIconMenu()
     }
 
     private fun onDone() {

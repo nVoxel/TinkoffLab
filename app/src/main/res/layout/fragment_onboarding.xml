@@ -3,17 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp">
+    android:paddingHorizontal="16dp"
+    android:paddingBottom="24dp">
+
+    <com.voxeldev.tinkofflab.ui.views.CustomToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="16dp"
+        app:endIcon="@drawable/ic_toolbar_menu"
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIcon="@drawable/ic_toolbar_back" />
 
     <TextView
         android:id="@+id/textview_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="@string/onboarding_title_text"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textview_description_first"
@@ -33,7 +44,7 @@
         android:id="@+id/imageview_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="42dp"
         android:src="@drawable/ic_onboarding_1"
         app:layout_constraintBottom_toTopOf="@id/barrier_first"
         app:layout_constraintStart_toStartOf="parent"

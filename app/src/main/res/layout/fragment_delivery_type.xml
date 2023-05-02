@@ -4,17 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.voxeldev.tinkofflab.ui.views.CustomToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:paddingVertical="16dp"
+        app:endIcon="@drawable/ic_toolbar_menu"
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIcon="@drawable/ic_toolbar_cross" />
+
     <TextView
         android:id="@+id/tv_delivery_type_title"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/choose_delivery_type"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_delivery_type"

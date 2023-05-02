@@ -38,6 +38,10 @@
     <string name="comment_hint_text">How to reach and when to call you</string>
     <string name="address_toggle">Use address autocompletion</string>
 
+    <string name="orders_actionbar_title">My orders</string>
+    <string name="order_flow_actionbar_title">Checkout</string>
+    <string name="address_actionbar_title">Where to deliver</string>
+
     <plurals name="comment_symbols">
         <item quantity="one">character</item>
         <item quantity="other">characters</item>

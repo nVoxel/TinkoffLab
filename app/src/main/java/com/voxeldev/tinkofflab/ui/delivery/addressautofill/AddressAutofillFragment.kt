@@ -54,6 +54,7 @@ class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
         setDoneListeners()
         setTextChangeListener()
         observeViewModel()
+        addEndIconMenu()
     }
 
     private fun setAdapter() {

@@ -3,13 +3,9 @@ package com.voxeldev.tinkofflab.ui
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.github.terrakok.cicerone.androidx.AppNavigator
@@ -44,21 +40,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private val menuProvider = object : MenuProvider {
-        override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-            menuInflater.inflate(R.menu.toolbar_menu, menu)
-        }
-
-        override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-            when (menuItem.itemId) {
-                R.id.address_toggle -> {
-                    App.router.navigateTo(Screens.ToggleAddress())
-                }
-            }
-            return true
-        }
-    }
-
     private val noConnectionView by lazy {
         findViewById<View>(R.id.no_connection).apply {
             hideOnTouch()
@@ -74,7 +55,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         viewModel.initAddressInputMode()
-        showMenuItems()
         registerNetworkListener()
         if (savedInstanceState != null)
             return
@@ -109,16 +89,7 @@ class MainActivity : AppCompatActivity() {
         connectivityStateObserver.unregisterNetworkCallback()
     }
 
-    fun showMenuItems() {
-        addMenuProvider(menuProvider)
-    }
-
-    fun hideMenuItems() {
-        removeMenuProvider(menuProvider)
-    }
-
     companion object {
-
         private const val NO_CONNECTION_TIMEOUT = 3000L
     }
 }

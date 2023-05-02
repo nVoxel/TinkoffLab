@@ -26,6 +26,7 @@ class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding?.buttonContinue?.setOnClickListener {
             App.router.navigateTo(
                 when (viewModel.addressInputMode) {
@@ -35,5 +36,6 @@ class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
                 }
             )
         }
+        addEndIconMenu()
     }
 }
