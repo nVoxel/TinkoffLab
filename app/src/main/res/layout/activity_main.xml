@@ -17,7 +17,7 @@
         android:clickable="false"
         android:text="@string/no_connection"
         android:visibility="gone"
-        android:backgroundTint="@color/md_theme_surfaceVariant"
+        android:backgroundTint="@color/bg_no_connection"
         app:icon="@drawable/ic_no_connection"
         app:iconTint="@color/md_theme_error"
         app:layout_constraintEnd_toEndOf="parent"

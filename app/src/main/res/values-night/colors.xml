@@ -15,6 +15,7 @@
     <color name="bottom_nav_not_selected">#9299A2</color>
     <color name="bottom_nav_selected">#428BF9</color>
     <color name="divider">#9299A2</color>
+    <color name="bg_no_connection">#000000</color>
     <color name="md_theme_primary">#ABC7FF</color>
     <color name="md_theme_onPrimary">#002F66</color>
     <color name="md_theme_primaryContainer">#004590</color>
