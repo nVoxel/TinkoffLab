@@ -3,7 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingHorizontal="16dp"
+    android:paddingTop="64dp"
+    android:paddingBottom="24dp">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollview_content"
@@ -22,6 +25,7 @@
                 android:id="@+id/textview_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
                 android:text="@string/order_placed_title_text"
                 android:textSize="28sp"
                 android:textStyle="bold"
@@ -97,7 +101,6 @@
         android:id="@+id/button_continue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:text="@string/ok_button_text" />
 

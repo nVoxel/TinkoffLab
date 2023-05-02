@@ -77,7 +77,9 @@ class CustomToolbar @JvmOverloads constructor(
         endIcon.layout(right - endIcon.measuredWidth, top, right, bottom)
         right -= endIcon.measuredWidth
 
-        left += resources.getDimensionPixelSize(R.dimen.custom_toolbar_textview_margin_start)
+        val marginHorizontal = resources.getDimensionPixelSize(R.dimen.custom_toolbar_textview_margin_horizontal)
+        left += marginHorizontal
+        right -= marginHorizontal
         titleTextView.layout(left, top, right, bottom)
     }
 

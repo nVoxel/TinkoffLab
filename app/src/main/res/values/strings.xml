@@ -53,6 +53,15 @@
     <string name="empty_address_error">Адрес не может быть пустым</string>
     <string name="parcel">Посылку</string>
 
+    <string name="address_toggle">Использовать автозаполнение адреса</string>
+    <string name="catalog_title">Каталог</string>
+    <string name="cart_title">Корзина</string>
+    <string name="orders_title">Мои заказы</string>
+
+    <string name="order_flow_actionbar_title">Оформление заказа</string>
+    <string name="orders_actionbar_title">Мои заказы</string>
+    <string name="address_actionbar_title">Куда доставить</string>
+
     <plurals name="comment_symbols">
         <item quantity="zero">символов</item>
         <item quantity="one">символ</item>
@@ -61,10 +70,7 @@
         <item quantity="many">символов</item>
         <item quantity="other">символов</item>
     </plurals>
-    <string name="address_toggle">Использовать автозаполнение адреса</string>
-    <string name="catalog_title">Каталог</string>
-    <string name="cart_title">Корзина</string>
-    <string name="orders_title">Мои заказы</string>
+
     <string name="title_bring">Что привезем</string>
     <string name="delivery_title">Доставка</string>
     <string name="change">Изменить</string>

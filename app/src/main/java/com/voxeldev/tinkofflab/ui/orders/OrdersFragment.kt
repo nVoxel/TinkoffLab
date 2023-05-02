@@ -27,7 +27,7 @@ class OrdersFragment : BaseFragment<FragmentOrdersBinding>() {
     ): View {
         binding = FragmentOrdersBinding.inflate(inflater, container, false)
 
-        with (ordersViewModel) {
+        with(ordersViewModel) {
             observe(orders, ::handleOrders)
             observe(exception, ::handleException)
         }
