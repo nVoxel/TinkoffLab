@@ -75,9 +75,13 @@ class ConfirmationFragment : BaseFragment<FragmentConfirmationBinding>() {
             observe(loading) {
                 binding?.buttonContinue?.showLoading = it == true
             }
-            observe(orderCreationSuccess) {
+            observe(createdOrder) {
                 if (it == null) return@observe
-                App.router.newRootChain(Screens.OrderPlaced())
+                sharedOrderViewModel.createdOrder = it
+                App.router.newRootChain(
+                    Screens.HostFragment(R.id.item_orders),
+                    Screens.OrderPlaced()
+                )
             }
             observe(exception) {
                 showSnackbar(R.string.order_creation_error)
