@@ -1,5 +1,6 @@
 package com.voxeldev.tinkofflab.ui.delivery
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.voxeldev.tinkofflab.domain.models.config.AddressInputMode
@@ -10,6 +11,7 @@ import com.voxeldev.tinkofflab.domain.usecases.base.BaseUseCase
 import com.voxeldev.tinkofflab.domain.usecases.config.GetAddressInputModeUseCase
 import com.voxeldev.tinkofflab.domain.usecases.config.SetAddressInputModeUseCase
 import com.voxeldev.tinkofflab.ui.base.BaseViewModel
+import com.voxeldev.tinkofflab.ui.delivery.confirmation.paymentmethod.PaymentMethod
 import com.voxeldev.tinkofflab.ui.utils.ExpressAddressModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -22,7 +24,17 @@ class SharedOrderViewModel @Inject constructor(
 
     private val orderBuilder = MutableLiveData(OrderModel.Builder())
 
-    var sharedAddress: ExpressAddressModel? = null
+    private val _sharedAddress = MutableLiveData<ExpressAddressModel?>(null)
+    val sharedAddress: LiveData<ExpressAddressModel?>
+        get() = _sharedAddress
+
+    private val _paymentMethod = MutableLiveData(PaymentMethod.CARD)
+    val paymentMethod: LiveData<PaymentMethod>
+        get() = _paymentMethod
+
+    private val _deliverySlot = MutableLiveData<TimeSlotModel>()
+    val deliverySlot: LiveData<TimeSlotModel>
+        get() = _deliverySlot
 
     fun getOrder() = orderBuilder.value?.build()
 
@@ -49,15 +61,19 @@ class SharedOrderViewModel @Inject constructor(
     fun setAddress(
         address: ExpressAddressModel
     ) {
-        sharedAddress = address
+        _sharedAddress.value = address
         orderBuilder.value?.address(address)
     }
 
-    fun setPaymentMethod(paymentMethod: String) =
-        orderBuilder.value?.paymentMethod(paymentMethod)
+    fun setPaymentMethod(paymentMethod: PaymentMethod) {
+        _paymentMethod.value = paymentMethod
+        orderBuilder.value?.paymentMethod(paymentMethod.toString())
+    }
 
-    fun setDeliverySlot(deliverySlot: TimeSlotModel) =
+    fun setDeliverySlot(deliverySlot: TimeSlotModel) {
+        _deliverySlot.value = deliverySlot
         orderBuilder.value?.deliverySlot(deliverySlot)
+    }
 
     fun setItems(items: List<ItemModel>) = orderBuilder.value?.items(items)
 

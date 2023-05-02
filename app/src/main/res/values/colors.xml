@@ -21,6 +21,7 @@
     <color name="edittext_ripple">#08000812</color>
     <color name="blocking_loader_background">#1000</color>
     <color name="chip_background">#08001024</color>
+    <color name="change_text">#FF428BF9</color>
     <color name="chip_background_selected">#FF428BF9</color>
     <color name="md_theme_primary">#005CBC</color>
     <color name="md_theme_onPrimary">#FFFFFF</color>

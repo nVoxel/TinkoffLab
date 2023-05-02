@@ -61,4 +61,15 @@
     <string name="cart_title">Cart</string>
     <string name="orders_title">My orders</string>
     <string name="empty_address_error">Address can\'t be blank</string>
+    <string name="parcel">Parcel</string>
+    <string name="title_bring">What will we bring</string>
+    <string name="delivery_title">Delivery</string>
+    <string name="change">Edit</string>
+    <string name="payment_method">Payment method</string>
+    <string name="card_payment">By card upon receipt</string>
+    <string name="cash_payment">Cash to the courier</string>
+    <string name="time_range">%1$s from %2$s to %3$s</string>
+    <string name="confirm">Confirm</string>
+    <string name="order_creation_error">Something went wrong while creating order</string>
+    <string name="toggle_address_warning">Attention: confirmation of changing the address input method will result in the entered data to be reset</string>
 </resources>

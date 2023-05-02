@@ -32,9 +32,6 @@ class OrderPlacedFragment : BaseFragment<FragmentOrderPlacedBinding>() {
             sharedOrderViewModel.getOrder()?.let {
                 textviewWhere.text = it.address.address
                 textviewWhen.text = timeSlotToString(it.deliverySlot, resources)
-                textviewWhat.text = it.items.joinToString(", ") { itemModel ->
-                    itemModel.name
-                }
             }
             return root
         } ?: return null
@@ -45,7 +42,7 @@ class OrderPlacedFragment : BaseFragment<FragmentOrderPlacedBinding>() {
 
         binding?.run {
             buttonContinue.setOnClickListener {
-                App.router.newRootScreen(Screens.Orders())
+                App.router.newRootScreen(Screens.HostFragment(R.id.item_orders))
             }
         }
     }

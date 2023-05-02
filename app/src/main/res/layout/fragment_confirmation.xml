@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/tv_title_bring"
+        style="@style/section_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/title_bring"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_parcel"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_parcel"
+        app:layout_constraintStart_toStartOf="@+id/tv_title_bring"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_bring" />
+
+    <TextView
+        android:id="@+id/tv_parcel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/parcel"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_parcel"
+        app:layout_constraintStart_toEndOf="@+id/iv_parcel"
+        app:layout_constraintTop_toTopOf="@+id/iv_parcel" />
+
+    <TextView
+        android:id="@+id/tv_delivery"
+        style="@style/section_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/delivery_title"
+        app:layout_constraintStart_toStartOf="@+id/iv_parcel"
+        app:layout_constraintTop_toBottomOf="@+id/iv_parcel" />
+
+    <TextView
+        android:id="@+id/tv_change_delivery"
+        style="@style/change_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/change"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_delivery"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_delivery" />
+
+    <TextView
+        android:id="@+id/tv_delivery_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_delivery"
+        app:layout_constraintTop_toBottomOf="@+id/tv_delivery"
+        tools:text="с 10 до 13" />
+
+    <TextView
+        android:id="@+id/tv_delivery_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/sub_text"
+        app:layout_constraintStart_toStartOf="@+id/tv_delivery_time"
+        app:layout_constraintTop_toBottomOf="@+id/tv_delivery_time"
+        tools:text="пушкина 1" />
+
+    <TextView
+        android:id="@+id/tv_title_payment_method"
+        style="@style/section_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/payment_method"
+        app:layout_constraintStart_toStartOf="@+id/tv_delivery_address"
+        app:layout_constraintTop_toBottomOf="@+id/tv_delivery_address" />
+
+    <TextView
+        android:id="@+id/tv_payment_method"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_title_payment_method"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_payment_method"
+        tools:text="картой" />
+
+    <TextView
+        android:id="@+id/tv_change_payment_method"
+        style="@style/change_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/change"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title_payment_method"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_title_payment_method" />
+
+    <com.voxeldev.tinkofflab.ui.views.ContinueButtonView
+        android:id="@+id/button_continue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:text="@string/confirm" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
