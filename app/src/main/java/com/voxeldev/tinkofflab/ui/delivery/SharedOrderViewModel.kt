@@ -67,11 +67,7 @@ class SharedOrderViewModel @Inject constructor(
 
     fun setPaymentMethod(paymentMethod: PaymentMethod) {
         _paymentMethod.value = paymentMethod
-        val paymentMethodString = when (paymentMethod) {
-            PaymentMethod.CARD -> "CARD"
-            PaymentMethod.CASH -> "CASH"
-        }
-        orderBuilder.value?.paymentMethod(paymentMethodString)
+        orderBuilder.value?.paymentMethod(paymentMethod.toString())
     }
 
     fun setDeliverySlot(deliverySlot: TimeSlotModel) {
