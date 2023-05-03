@@ -28,16 +28,7 @@ class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
     private val sharedOrderViewModel by activityViewModels<SharedOrderViewModel>()
     private val addressAutofillViewModel by viewModels<AddressAutofillViewModel>()
 
-    private val adapter by lazy {
-        AddressAutofillAdapter {
-            binding?.edittextAddress?.apply {
-                // to skip search
-                addressAutofillViewModel.isNotAutofilled.set(false)
-                setText(it.fullAddress)
-                setSelection(it.fullAddress.length)
-            }
-        }
-    }
+    private val adapter by lazy { AddressAutofillAdapter { setAddress(it.fullAddress) } }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,6 +46,18 @@ class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
         setTextChangeListener()
         observeViewModel()
         addEndIconMenu()
+        sharedOrderViewModel.let {
+            if (it.orderEditModeEnabled) setAddress(it.sharedAddress.value?.address ?: "")
+        }
+    }
+
+    private fun setAddress(address: String) {
+        binding?.edittextAddress?.apply {
+            // to skip search
+            addressAutofillViewModel.isNotAutofilled.set(false)
+            setText(address)
+            setSelection(address.length)
+        }
     }
 
     private fun setAdapter() {
@@ -96,11 +99,14 @@ class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
         binding?.edittextAddress?.text
             ?.takeIf { it.isNotBlank() }
             ?.let {
-                sharedOrderViewModel.setAddress(
-                    // todo: fix lan and lon
-                    ExpressAddressModel(it.toString(), 0f, 0f)
-                )
-                App.router.navigateTo(Screens.Appointment())
+                with(sharedOrderViewModel) {
+                    setAddress(
+                        // todo: fix lan and lon
+                        ExpressAddressModel(it.toString(), 0f, 0f)
+                    )
+                    if (orderEditModeEnabled) App.router.exit()
+                    else App.router.navigateTo(Screens.Appointment())
+                }
             } ?: showSnackbar(R.string.empty_address_error)
     }
 

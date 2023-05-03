@@ -171,14 +171,17 @@ class ConfirmationFragment : BaseFragment<FragmentConfirmationBinding>() {
 
     private fun handleDeliverySlot(address: TimeSlotModel?) {
         if (address == null) return
-        val day = LocalDate
-            .parse(address.date, DateTimeFormatter.ISO_DATE)
-            .toRelativeString(LocalDate.now(), resources)
-        val result = getString(
-            R.string.time_range,
-            day, address.timeFrom, address.timeTo
-        )
-        binding?.tvDeliveryTime?.text = result
+        runCatching {
+            LocalDate.parse(address.date, DateTimeFormatter.ISO_DATE)
+                .toRelativeString(LocalDate.now(), resources)
+        }
+            .onSuccess {
+                val result = getString(
+                    R.string.time_range,
+                    it, address.timeFrom, address.timeTo
+                )
+                binding?.tvDeliveryTime?.text = result
+            }
     }
 
     private fun handlePaymentMethod(method: PaymentMethod?) {

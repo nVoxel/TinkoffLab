@@ -66,12 +66,14 @@ class AppointmentViewModel @Inject constructor(
      * @param index Selected chip index
      * @return Timeslots adapter
      */
-    fun getSlotsAdapter(index: Int) {
+    fun getSlotsAdapter(index: Int, preserveSelectedTimeSlot: Boolean = false) {
         checkedChipIndex = index
 
-        // reset selected time slot on day change
-        selectedTimeSlot = null
-        selectedTimeSlotIndex = null
+        if (!preserveSelectedTimeSlot) {
+            // reset selected time slot on day change
+            selectedTimeSlot = null
+            selectedTimeSlotIndex = null
+        }
 
         _isLoading.value = true
 
