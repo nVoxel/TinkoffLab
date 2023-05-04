@@ -96,6 +96,7 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
         with(sharedOrderViewModel) {
             observe(sharedAddress, ::handleAddress)
             observe(deliverySlot, ::handleDeliverySlot)
+            observe(comment, ::handleComment)
         }
 
         return binding?.root
@@ -130,6 +131,9 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
             }
         }
     }
+
+    private fun handleComment(comment: String?) =
+        binding?.textinputedittextComment?.setText(comment ?: "")
 
     private fun handleSlotsAdapter(adapter: AppointmentTimeslotsAdapter?) {
         adapter?.let { binding?.recyclerviewTimeslots?.adapter = adapter }

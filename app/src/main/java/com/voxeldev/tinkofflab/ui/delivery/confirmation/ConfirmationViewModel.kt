@@ -23,6 +23,7 @@ class ConfirmationViewModel @Inject constructor(
 
     val orderCreationSuccess = SingleLiveEvent<Unit>()
     val orderUpdateSuccess = SingleLiveEvent<Unit>()
+    val orderCancelSuccess = SingleLiveEvent<Unit>()
 
     fun createOrder(order: OrderModel) {
         _loading.value = true
@@ -34,11 +35,12 @@ class ConfirmationViewModel @Inject constructor(
         }
     }
 
-    fun updateOrder(order: OrderModel) {
+    fun updateOrder(order: OrderModel, cancelOrder: Boolean = false) {
         _loading.value = true
         updateOrderUseCase(order, viewModelScope) {either ->
             either.fold(::handleException) {
-                orderUpdateSuccess.value = Unit
+                if (cancelOrder) orderCancelSuccess.value = Unit
+                else orderUpdateSuccess.value = Unit
             }
             _loading.value = false
         }

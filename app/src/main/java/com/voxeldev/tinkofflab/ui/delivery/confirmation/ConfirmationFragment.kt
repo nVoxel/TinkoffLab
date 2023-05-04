@@ -71,6 +71,18 @@ class ConfirmationFragment : BaseFragment<FragmentConfirmationBinding>() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        // used to fix disappearing delivery slot and payment method
+        // when navigating back from appointment fragment
+        with(sharedOrderViewModel) {
+            if (!orderEditModeEnabled) return@with
+            handleDeliverySlot(deliverySlot.value!!)
+            handlePaymentMethod(paymentMethod.value!!)
+        }
+    }
+
     private fun observeViewModel() {
         with(sharedOrderViewModel) {
             observe(sharedAddress) {
@@ -93,6 +105,10 @@ class ConfirmationFragment : BaseFragment<FragmentConfirmationBinding>() {
                 )
             }
             observe(orderUpdateSuccess) {
+                if (it == null) return@observe
+                App.router.newRootScreen(Screens.HostFragment(R.id.item_orders))
+            }
+            observe(orderCancelSuccess) {
                 if (it == null) return@observe
                 App.router.newRootScreen(Screens.HostFragment(R.id.item_orders))
                 OrderCanceledDialog(requireContext()).run {
@@ -155,7 +171,7 @@ class ConfirmationFragment : BaseFragment<FragmentConfirmationBinding>() {
                 sharedOrderViewModel.apply {
                     setStatus(OrderModel.CANCELED_ORDER_STATUS)
                 }.getOrder()?.let {
-                    confirmationViewModel.updateOrder(it)
+                    confirmationViewModel.updateOrder(it, cancelOrder = true)
                 }
             }
             .setNegativeButton(R.string.order_cancel_no) { _, _ -> }
