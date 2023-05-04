@@ -64,7 +64,7 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
 
             textinputedittextComment.apply {
                 appointmentViewModel.commentTextCallback( // init counter text
-                    this.text?.toString() ?: "", resources
+                    text?.toString() ?: "", resources
                 )
 
                 addTextChangedListener(
@@ -132,8 +132,10 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
         }
     }
 
-    private fun handleComment(comment: String?) =
-        binding?.textinputedittextComment?.setText(comment ?: "")
+    private fun handleComment(comment: String?) {
+        if (sharedOrderViewModel.orderEditModeEnabled)
+            binding?.textinputedittextComment?.setText(comment ?: "")
+    }
 
     private fun handleSlotsAdapter(adapter: AppointmentTimeslotsAdapter?) {
         adapter?.let { binding?.recyclerviewTimeslots?.adapter = adapter }

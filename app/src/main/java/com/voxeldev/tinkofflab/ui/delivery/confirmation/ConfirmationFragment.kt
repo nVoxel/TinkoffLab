@@ -96,7 +96,7 @@ class ConfirmationFragment : BaseFragment<FragmentConfirmationBinding>() {
             observe(loading) {
                 binding?.buttonContinue?.showLoading = it == true
             }
-            observe(createdOrder) {
+            observe(orderCreationSuccess) {
                 if (it == null) return@observe
                 sharedOrderViewModel.createdOrder = it
                 App.router.newRootChain(
