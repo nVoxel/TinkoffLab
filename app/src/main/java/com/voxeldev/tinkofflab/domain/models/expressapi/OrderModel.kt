@@ -10,8 +10,8 @@ data class OrderModel(
     val id: Int
 ) {
     companion object {
-        const val NEW_ORDER_STATUS = "NEW"
-        const val CANCELED_ORDER_STATUS = "CANCELED"
+        const val NEW_ORDER_STATUS = "0"
+        const val CANCELED_ORDER_STATUS = "3"
     }
 
     class Builder {

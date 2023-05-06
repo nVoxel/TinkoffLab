@@ -8,9 +8,11 @@ import com.voxeldev.tinkofflab.domain.models.expressapi.OrderModel
 
 
 class OrdersAdapter(
-    private val orders: List<OrderModel>,
+    orders: List<OrderModel>,
     private val onClickCallback: (OrderModel) -> Unit = {}
 ) : RecyclerView.Adapter<OrdersAdapter.ViewHolder>() {
+
+    private val orders = orders.filterNot { it.status == OrderModel.CANCELED_ORDER_STATUS }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(
