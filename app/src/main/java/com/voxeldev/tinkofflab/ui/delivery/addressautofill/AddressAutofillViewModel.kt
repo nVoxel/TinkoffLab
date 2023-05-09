@@ -40,6 +40,7 @@ class AddressAutofillViewModel @Inject constructor(
     @OptIn(FlowPreview::class)
     private fun subscribeToChanges() {
         suggestionsFlow
+            .drop(1)
             .filterNot {
                 it.isNullOrBlank().also { isNullOrBlank ->
                     if (isNullOrBlank)

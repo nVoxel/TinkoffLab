@@ -9,7 +9,6 @@ import com.voxeldev.tinkofflab.data.local.AddressInputModeRepositoryImpl.Compani
 import com.voxeldev.tinkofflab.data.local.AddressInputModeRepositoryImpl.Companion.toBoolean
 import com.voxeldev.tinkofflab.databinding.FragmentToggleAddressBinding
 import com.voxeldev.tinkofflab.ui.App
-import com.voxeldev.tinkofflab.ui.Screens
 import com.voxeldev.tinkofflab.ui.base.BaseFragment
 import com.voxeldev.tinkofflab.ui.delivery.SharedOrderViewModel
 
@@ -41,12 +40,7 @@ class ToggleAddressFragment : BaseFragment<FragmentToggleAddressBinding>() {
     }
 
     private fun onSave(isChecked: Boolean) {
-        val newMode = isChecked.toAddressInputMode()
-        val oldMode = viewModel.addressInputMode
-        viewModel.setAddressInputMode(newMode)
-        if (newMode != oldMode)
-            App.router.backTo(Screens.Onboarding())
-        else
-            App.router.exit()
+        viewModel.setAddressInputMode(isChecked.toAddressInputMode())
+        App.router.exit()
     }
 }
