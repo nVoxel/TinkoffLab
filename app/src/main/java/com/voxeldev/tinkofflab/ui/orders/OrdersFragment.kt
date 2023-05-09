@@ -50,11 +50,11 @@ class OrdersFragment : BaseFragment<FragmentOrdersBinding>() {
         orders?.let {
             this.orders = it
             setupRecyclerView()
-        } ?: showSnackbar(R.string.orders_get_error)
+        } ?: showAlertDialog(R.string.orders_get_error)
     }
 
     private fun handleException(exception: Exception?) {
-        showSnackbar(R.string.orders_get_error)
+        showAlertDialog(R.string.orders_get_error)
         Log.e(LOG_TAG, exception?.stackTraceToString() ?: "Unknown error")
     }
 

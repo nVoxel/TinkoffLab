@@ -89,4 +89,6 @@
     <string name="order_update_error">Не удалось обновить заказ</string>
     <string name="delivery_canceled">Доставка отменена</string>
     <string name="no_connection">Нет интернета</string>
+    <string name="error_alert_dialog_title">Что-то пошло не так</string>
+    <string name="alert_dialog_ok">Понятно</string>
 </resources>

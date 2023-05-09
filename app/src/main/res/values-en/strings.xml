@@ -83,4 +83,6 @@
     <string name="order_cancel_no">NO</string>
     <string name="delivery_canceled">Delivery canceled</string>
     <string name="no_connection">No internet</string>
+    <string name="error_alert_dialog_title">Something went wrong</string>
+    <string name="alert_dialog_ok">OK</string>
 </resources>
