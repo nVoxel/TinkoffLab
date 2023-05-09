@@ -9,6 +9,11 @@ data class OrderModel(
     val status: String,
     val id: Int
 ) {
+    companion object {
+        const val NEW_ORDER_STATUS = "0"
+        const val CANCELED_ORDER_STATUS = "3"
+    }
+
     class Builder {
         private var address: AddressModel? = null
         private var paymentMethod: String? = null

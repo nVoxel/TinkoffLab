@@ -64,6 +64,18 @@
         <item name="android:textColor">@color/change_text</item>
     </style>
 
+    <style name="CancelAlertDialog" parent="@style/ThemeOverlay.Material3.Dialog.Alert">
+        <item name="dialogCornerRadius">8dp</item>
+        <item name="buttonBarNegativeButtonStyle">@style/CancelAlertDialog.ButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/CancelAlertDialog.ButtonStyle</item>
+        <item name="android:background">@color/alert_dialog_background</item>
+        <item name="android:dialogPreferredPadding">24dp</item>
+    </style>
+
+    <style name="CancelAlertDialog.ButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/alert_dialog_button</item>
+    </style>
+
     <style name="RoundedExtendedFloatingActionButton" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">28dp</item>

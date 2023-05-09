@@ -66,7 +66,8 @@ class AddressManualFragment : BaseFragment<FragmentAddressManualBinding>() {
                         0f
                     )
                 )
-                App.router.navigateTo(Screens.Appointment())
+                if (sharedOrderViewModel.orderEditModeEnabled) App.router.exit()
+                else App.router.navigateTo(Screens.Appointment())
             } ?: showSnackbar(R.string.empty_address_error)
     }
 }

@@ -5,9 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.voxeldev.tinkofflab.R
+import com.voxeldev.tinkofflab.domain.models.expressapi.OrderModel
 import com.voxeldev.tinkofflab.domain.models.expressapi.TimeSlotModel
 import com.voxeldev.tinkofflab.domain.usecases.expressapi.GetSlotsUseCase
+import com.voxeldev.tinkofflab.domain.usecases.expressapi.UpdateOrderUseCase
 import com.voxeldev.tinkofflab.ui.base.BaseViewModel
+import com.voxeldev.tinkofflab.ui.utils.SingleLiveEvent
 import com.voxeldev.tinkofflab.ui.utils.generateOrderedDates
 import com.voxeldev.tinkofflab.ui.utils.toRelativeString
 import com.voxeldev.tinkofflab.utils.exceptions.EmptyListException
@@ -18,7 +21,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AppointmentViewModel @Inject constructor(
-    private val getSlotsUseCase: GetSlotsUseCase
+    private val getSlotsUseCase: GetSlotsUseCase,
+    private val updateOrderUseCase: UpdateOrderUseCase
 ) : BaseViewModel() {
 
     private val _slotsAdapter: MutableLiveData<AppointmentTimeslotsAdapter> = MutableLiveData()
@@ -36,11 +40,25 @@ class AppointmentViewModel @Inject constructor(
     private val _commentCounterText: MutableLiveData<String> = MutableLiveData()
     val commentCounterText: LiveData<String> = _commentCounterText
 
+    val orderUpdateSuccess = SingleLiveEvent<Unit>()
+
+    val chipDays by lazy {
+        LocalDate.now().generateOrderedDates(DAYS_COUNT, editTimeSlotLocalDate)
+    }
+
+    var editTimeSlot: TimeSlotModel? = null
+    private val editTimeSlotLocalDate by lazy {
+        editTimeSlot?.date?.let {
+            runCatching { LocalDate.parse(it) }
+                .onSuccess { return@lazy it }
+        }
+
+        return@lazy null
+    }
+
     var selectedTimeSlot: TimeSlotModel? = null
 
     var selectedTimeSlotIndex: Int? = null
-
-    val chipDays by lazy { LocalDate.now().generateOrderedDates(DAYS_COUNT) }
 
     var checkedChipIndex: Int? = null
 
@@ -48,12 +66,14 @@ class AppointmentViewModel @Inject constructor(
      * @param index Selected chip index
      * @return Timeslots adapter
      */
-    fun getSlotsAdapter(index: Int) {
+    fun getSlotsAdapter(index: Int, preserveSelectedTimeSlot: Boolean = false) {
         checkedChipIndex = index
 
-        // reset selected time slot on day change
-        selectedTimeSlot = null
-        selectedTimeSlotIndex = null
+        if (!preserveSelectedTimeSlot) {
+            // reset selected time slot on day change
+            selectedTimeSlot = null
+            selectedTimeSlotIndex = null
+        }
 
         _isLoading.value = true
 
@@ -68,8 +88,13 @@ class AppointmentViewModel @Inject constructor(
                 }
 
                 if (selectedTimeSlotIndex == null) {
-                    selectedTimeSlot = it.first()
-                    selectedTimeSlotIndex = 0
+                    if (editTimeSlot != null && checkedChipIndex == findCheckedChipIndex()) {
+                        selectedTimeSlotIndex = findSelectedTimeSlotIndex(it)
+                        selectedTimeSlot = it[selectedTimeSlotIndex!!]
+                    } else {
+                        selectedTimeSlotIndex = 0
+                        selectedTimeSlot = it.first()
+                    }
                 }
 
                 _slotsAdapter.value = AppointmentTimeslotsAdapter(it) { slot, index ->
@@ -77,8 +102,19 @@ class AppointmentViewModel @Inject constructor(
                     selectedTimeSlotIndex = index
                 }
 
+
                 _slotsAdapter.value?.selectItem(selectedTimeSlotIndex!!)
             }
+        }
+    }
+
+    fun updateOrder(order: OrderModel) {
+        _isLoading.value = true
+        updateOrderUseCase(order, viewModelScope) {either ->
+            either.fold(::handleException) {
+                orderUpdateSuccess.value = Unit
+            }
+            _isLoading.value = false
         }
     }
 
@@ -111,8 +147,23 @@ class AppointmentViewModel @Inject constructor(
         )
     }
 
+    fun findCheckedChipIndex(): Int =
+        editTimeSlot?.let { _ ->
+            chipDays.indexOfFirst { it == editTimeSlotLocalDate }
+        } ?: DEFAULT_FIND_CHECKED_CHIP_INDEX_VALUE
+
+    private fun findSelectedTimeSlotIndex(list: List<TimeSlotModel>): Int =
+        editTimeSlot?.let { editTimeSlot ->
+            list.indexOfFirst {
+                it.timeFrom == editTimeSlot.timeFrom && it.timeTo == editTimeSlot.timeTo
+            }
+        } ?: DEFAULT_FIND_SELECTED_TIMESLOT_INDEX_VALUE
+
     companion object {
         private const val DAYS_COUNT = 15
         private const val COMMENT_MAX_LENGTH = 150
+
+        private const val DEFAULT_FIND_CHECKED_CHIP_INDEX_VALUE = 0
+        private const val DEFAULT_FIND_SELECTED_TIMESLOT_INDEX_VALUE = 0
     }
 }

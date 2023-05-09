@@ -36,12 +36,18 @@ class SharedOrderViewModel @Inject constructor(
     val deliverySlot: LiveData<TimeSlotModel>
         get() = _deliverySlot
 
+    private val _comment = MutableLiveData<String>()
+    val comment: LiveData<String>
+        get() = _comment
+
     var createdOrder: OrderModel? = null
 
     fun getOrder() = orderBuilder.value?.build()
 
     var addressInputMode: AddressInputMode? = null
         private set
+
+    var orderEditModeEnabled = false
 
     fun initAddressInputMode() {
         if (addressInputMode == null)
@@ -57,6 +63,18 @@ class SharedOrderViewModel @Inject constructor(
             either.fold(::handleException) {
                 addressInputMode = mode
             }
+        }
+    }
+
+    fun setOrder(orderModel: OrderModel) {
+        orderModel.run {
+            setAddress(address)
+            runCatching { setPaymentMethod(PaymentMethod.valueOf(paymentMethod)) }
+            setDeliverySlot(deliverySlot)
+            setItems(items)
+            setComment(comment)
+            setStatus(status)
+            setId(id)
         }
     }
 
@@ -79,7 +97,12 @@ class SharedOrderViewModel @Inject constructor(
 
     fun setItems(items: List<ItemModel>) = orderBuilder.value?.items(items)
 
-    fun setComment(comment: String) = orderBuilder.value?.comment(comment)
+    fun setComment(comment: String) {
+        _comment.value = comment
+        orderBuilder.value?.comment(comment)
+    }
 
     fun setStatus(status: String) = orderBuilder.value?.status(status)
+
+    fun setId(id: Int) = orderBuilder.value?.id(id)
 }

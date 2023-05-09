@@ -5,11 +5,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.voxeldev.tinkofflab.R
 import com.voxeldev.tinkofflab.databinding.FragmentOrdersBinding
 import com.voxeldev.tinkofflab.domain.models.expressapi.OrderModel
+import com.voxeldev.tinkofflab.ui.App
+import com.voxeldev.tinkofflab.ui.Screens
 import com.voxeldev.tinkofflab.ui.base.BaseFragment
+import com.voxeldev.tinkofflab.ui.delivery.SharedOrderViewModel
 import com.voxeldev.tinkofflab.utils.extensions.observe
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class OrdersFragment : BaseFragment<FragmentOrdersBinding>() {
 
     private val ordersViewModel: OrdersViewModel by viewModels()
+    private val sharedOrderViewModel: SharedOrderViewModel by activityViewModels()
 
     private var orders: List<OrderModel>? = null
 
@@ -54,9 +59,20 @@ class OrdersFragment : BaseFragment<FragmentOrdersBinding>() {
     }
 
     private fun setupRecyclerView() {
-        orders?.let {
-            binding?.recyclerviewOrders?.adapter = OrdersAdapter(it)
+        orders?.let { list ->
+            binding?.recyclerviewOrders?.adapter = OrdersAdapter(list) {
+                adapterItemOnClickListener(it)
+            }
         }
+    }
+
+    private fun adapterItemOnClickListener(orderModel: OrderModel) {
+        sharedOrderViewModel.run {
+            orderEditModeEnabled = true
+            setOrder(orderModel)
+        }
+
+        App.router.navigateTo(Screens.Confirmation())
     }
 
     companion object {
