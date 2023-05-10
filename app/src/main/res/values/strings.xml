@@ -7,12 +7,9 @@
     <string name="address_hint">Адрес</string>
     <string name="fav_addresses">Ваши адреса</string>
     <string name="cart_title_text">Корзина</string>
-    <string name="cart_items_count_text">1 товар</string>
-    <string name="cart_item_title_text">Чайник электрический Xiaomi Mi Smart Kettle RU EAC White</string>
-    <string name="price_new_text">3 556 ₽</string>
-    <string name="price_old_text"><strike>3 499 ₽</strike></string>
-    <string name="price_new_cross_text">3 556 ₽ ×</string>
-    <string name="item_count_text">1 шт.</string>
+    <string name="price_placeholder">%1$d ₽</string>
+    <string name="price_cross_placeholder">%1$d ₽ ×</string>
+    <string name="item_count_placeholder">%1$d шт.</string>
     <string name="total_cost_text">Итоговая стоимость</string>
     <string name="make_order_text">Оформить</string>
     <string name="item_image_desc_text">Картинка товара</string>
@@ -71,6 +68,15 @@
         <item quantity="other">символов</item>
     </plurals>
 
+    <plurals name="items">
+        <item quantity="zero">товаров</item>
+        <item quantity="one">товар</item>
+        <item quantity="two">товара</item>
+        <item quantity="few">товара</item>
+        <item quantity="many">товаров</item>
+        <item quantity="other">товаров</item>
+    </plurals>
+
     <string name="title_bring">Что привезем</string>
     <string name="delivery_title">Доставка</string>
     <string name="change">Изменить</string>
@@ -90,4 +96,9 @@
     <string name="error_alert_dialog_title">Что-то пошло не так</string>
     <string name="alert_dialog_ok">Понятно</string>
     <string name="address_input_hint">Введите адрес</string>
+
+    <string name="cart_item_kettle">Чайник электрический</string>
+    <string name="cart_item_phone">Смартфон</string>
+    <string name="cart_item_hammer">Молоток</string>
+    <string name="cart_items_count_placeholder">%1$d %2$s</string>
 </resources>
