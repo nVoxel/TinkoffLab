@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:paddingVertical="16dp"
-        app:endIcon="@drawable/ic_toolbar_menu"
         app:layout_constraintTop_toTopOf="parent"
         app:startIcon="@drawable/ic_toolbar_back"
         app:title="@string/address_actionbar_title" />

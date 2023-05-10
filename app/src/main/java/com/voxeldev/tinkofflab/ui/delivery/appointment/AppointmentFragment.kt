@@ -40,26 +40,36 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAppointmentBinding.inflate(inflater, container, false)
+        return binding?.root
+    }
 
-        if (!sharedOrderViewModel.orderEditModeEnabled) setupDaysChipGroup()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setListeners(savedInstanceState)
+        observeViewModels()
+        addEndIconMenu()
+    }
 
-        with(binding!!) {
+    private fun setListeners(savedInstanceState: Bundle?) {
+        binding?.run {
             savedInstanceState?.let { reloadDaysChipGroup() }
 
-            binding?.edittextAddress?.setOnClickListener {
-                if (sharedOrderViewModel.orderEditModeEnabled)
-                    App.router.navigateTo(
-                        when (sharedOrderViewModel.addressInputMode) {
-                            AddressInputMode.AUTOFILL -> Screens.AddressAutofill()
-                            AddressInputMode.MANUAL -> Screens.AddressManual()
-                            null -> Screens.Onboarding()
-                        }
-                    )
-                else App.router.exit()
+            edittextAddress.setOnClickListener {
+                App.router.navigateTo(
+                    when (sharedOrderViewModel.addressInputMode) {
+                        AddressInputMode.AUTOFILL -> Screens.AddressAutofill()
+                        AddressInputMode.MANUAL -> Screens.AddressManual()
+                        null -> Screens.Onboarding()
+                    }
+                )
             }
 
             chipgroupDays.setOnCheckedStateChangeListener { group, checkedId ->
-                if (checkedId.isNotEmpty()) chipCheckedCallback(group, checkedId[0])
+                if (checkedId.isNotEmpty())
+                    if (edittextAddress.text?.isNotEmpty() == true)
+                        chipCheckedCallback(group, checkedId[0])
+                    else
+                        showSnackbar(R.string.empty_address_error)
             }
 
             textinputedittextComment.apply {
@@ -79,6 +89,10 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
 
             buttonContinue.setOnClickListener { continueButtonOnClick() }
         }
+    }
+
+    private fun observeViewModels() {
+        if (!sharedOrderViewModel.orderEditModeEnabled) setupDaysChipGroup()
 
         with(appointmentViewModel) {
             observe(slotsAdapter, ::handleSlotsAdapter)
@@ -92,14 +106,11 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
             }
         }
 
-
         with(sharedOrderViewModel) {
             observe(sharedAddress, ::handleAddress)
             observe(deliverySlot, ::handleDeliverySlot)
             observe(comment, ::handleComment)
         }
-
-        return binding?.root
     }
 
     override fun onPause() {
@@ -161,7 +172,9 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
         binding?.run {
             setupDaysChipGroup()
             appointmentViewModel.checkedChipIndex?.let { index ->
-                chipgroupDays.check(chipgroupDays.getChildAt(index).id)
+                chipgroupDays.getChildAt(index)?.let { chip ->
+                    chipgroupDays.check(chip.id)
+                }
             }
         }
     }
@@ -222,6 +235,7 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
     }
 
     companion object {
+
         private const val LOG_TAG = "AppointmentFragment"
     }
 }

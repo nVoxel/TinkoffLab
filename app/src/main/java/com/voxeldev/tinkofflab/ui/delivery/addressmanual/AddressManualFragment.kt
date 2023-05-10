@@ -9,7 +9,6 @@ import androidx.fragment.app.activityViewModels
 import com.voxeldev.tinkofflab.R
 import com.voxeldev.tinkofflab.databinding.FragmentAddressManualBinding
 import com.voxeldev.tinkofflab.ui.App
-import com.voxeldev.tinkofflab.ui.Screens
 import com.voxeldev.tinkofflab.ui.base.BaseFragment
 import com.voxeldev.tinkofflab.ui.delivery.SharedOrderViewModel
 import com.voxeldev.tinkofflab.ui.utils.ExpressAddressModel
@@ -40,7 +39,6 @@ class AddressManualFragment : BaseFragment<FragmentAddressManualBinding>() {
                 true
             }
         }
-        addEndIconMenu()
     }
 
     private fun onDone() {
@@ -66,8 +64,7 @@ class AddressManualFragment : BaseFragment<FragmentAddressManualBinding>() {
                         0f
                     )
                 )
-                if (sharedOrderViewModel.orderEditModeEnabled) App.router.exit()
-                else App.router.navigateTo(Screens.Appointment())
+                App.router.exit()
             } ?: showSnackbar(R.string.empty_address_error)
     }
 }

@@ -85,6 +85,10 @@ class SharedOrderViewModel @Inject constructor(
         orderBuilder.value?.address(address)
     }
 
+    fun resetAddress() {
+        _sharedAddress.value = null
+    }
+
     fun setPaymentMethod(paymentMethod: PaymentMethod) {
         _paymentMethod.value = paymentMethod
         orderBuilder.value?.paymentMethod(paymentMethod.toString())

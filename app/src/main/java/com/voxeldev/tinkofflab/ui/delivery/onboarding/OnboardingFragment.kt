@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.voxeldev.tinkofflab.databinding.FragmentOnboardingBinding
-import com.voxeldev.tinkofflab.domain.models.config.AddressInputMode
 import com.voxeldev.tinkofflab.ui.App
 import com.voxeldev.tinkofflab.ui.Screens
 import com.voxeldev.tinkofflab.ui.base.BaseFragment
@@ -29,13 +28,7 @@ class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
         super.onViewCreated(view, savedInstanceState)
         binding?.buttonContinue?.setOnClickListener {
             viewModel.orderEditModeEnabled = false
-            App.router.navigateTo(
-                when (viewModel.addressInputMode) {
-                    AddressInputMode.AUTOFILL -> Screens.AddressAutofill()
-                    AddressInputMode.MANUAL -> Screens.AddressManual()
-                    null -> Screens.Onboarding()
-                }
-            )
+            App.router.navigateTo(Screens.Appointment())
         }
         addEndIconMenu()
     }

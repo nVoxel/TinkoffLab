@@ -80,8 +80,6 @@
     <string name="time_range">%1$s с %2$s до %3$s</string>
     <string name="confirm">Оформить</string>
     <string name="order_creation_error">Не удалось создать заказ</string>
-    <string name="toggle_address_warning">Внимание: при подтверждении смены способа ввода адреса введенные данные сбросятся</string>
-
     <string name="order_cancel">Отменить</string>
     <string name="order_cancel_confirmation">Вы уверены, что хотите отменить доставку?</string>
     <string name="order_cancel_yes">ДА</string>
@@ -91,4 +89,5 @@
     <string name="no_connection">Нет интернета</string>
     <string name="error_alert_dialog_title">Что-то пошло не так</string>
     <string name="alert_dialog_ok">Понятно</string>
+    <string name="address_input_hint">Введите адрес</string>
 </resources>

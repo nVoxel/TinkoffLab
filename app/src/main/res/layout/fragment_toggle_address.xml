@@ -24,16 +24,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:text="@string/save" />
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/toggle_address_warning"
-        android:textColor="@color/sub_text"
-        android:textSize="12sp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="@+id/address_switch"
-        app:layout_constraintStart_toStartOf="@+id/address_switch"
-        app:layout_constraintTop_toBottomOf="@+id/address_switch" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,6 @@ import com.voxeldev.tinkofflab.R
 import com.voxeldev.tinkofflab.databinding.FragmentAddressAutofillBinding
 import com.voxeldev.tinkofflab.domain.models.dadataapi.AddressModel
 import com.voxeldev.tinkofflab.ui.App
-import com.voxeldev.tinkofflab.ui.Screens
 import com.voxeldev.tinkofflab.ui.base.BaseFragment
 import com.voxeldev.tinkofflab.ui.delivery.SharedOrderViewModel
 import com.voxeldev.tinkofflab.ui.utils.ExpressAddressModel
@@ -45,10 +44,7 @@ class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
         setDoneListeners()
         setTextChangeListener()
         observeViewModel()
-        addEndIconMenu()
-        sharedOrderViewModel.let {
-            if (it.orderEditModeEnabled) setAddress(it.sharedAddress.value?.address ?: "")
-        }
+        setAddress(sharedOrderViewModel.sharedAddress.value?.address ?: "")
     }
 
     private fun setAddress(address: String) {
@@ -57,6 +53,7 @@ class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
             addressAutofillViewModel.isNotAutofilled.set(false)
             setText(address)
             setSelection(address.length)
+            binding?.textviewAddressNotFound?.isVisible = false
         }
     }
 
@@ -104,8 +101,7 @@ class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
                         // todo: fix lan and lon
                         ExpressAddressModel(it.toString(), 0f, 0f)
                     )
-                    if (orderEditModeEnabled) App.router.exit()
-                    else App.router.navigateTo(Screens.Appointment())
+                    App.router.exit()
                 }
             } ?: showSnackbar(R.string.empty_address_error)
     }
