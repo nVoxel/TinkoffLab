@@ -69,7 +69,7 @@ open class BaseFragment<T : ViewBinding> : Fragment() {
     }
 
     fun showAlertDialog(@StringRes message: Int) {
-        AlertDialog.Builder(requireContext())
+        AlertDialog.Builder(requireContext(), R.style.CancelAlertDialog)
             .setTitle(R.string.error_alert_dialog_title)
             .setMessage(message)
             .setPositiveButton(
