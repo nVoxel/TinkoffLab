@@ -117,7 +117,7 @@ class ConfirmationFragment : BaseFragment<FragmentConfirmationBinding>() {
                 }
             }
             observe(exception) {
-                showSnackbar(
+                showAlertDialog(
                     if (orderEditModeEnabled) R.string.order_update_error
                     else R.string.order_creation_error
                 )

@@ -1,5 +1,6 @@
 package com.voxeldev.tinkofflab.ui.base
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -12,6 +13,7 @@ import com.voxeldev.tinkofflab.R
 import com.voxeldev.tinkofflab.ui.App
 import com.voxeldev.tinkofflab.ui.Screens
 import com.voxeldev.tinkofflab.ui.views.CustomToolbar
+
 
 open class BaseFragment<T : ViewBinding> : Fragment() {
 
@@ -64,6 +66,16 @@ open class BaseFragment<T : ViewBinding> : Fragment() {
 
     fun showSnackbar(@StringRes message: Int) {
         Snackbar.make(binding?.root!!, message, Snackbar.LENGTH_LONG).show()
+    }
+
+    fun showAlertDialog(@StringRes message: Int) {
+        AlertDialog.Builder(requireContext(), R.style.CancelAlertDialog)
+            .setTitle(R.string.error_alert_dialog_title)
+            .setMessage(message)
+            .setPositiveButton(
+                R.string.alert_dialog_ok
+            ) { _, _ -> }
+            .show()
     }
 
     private fun getCustomToolbar(): CustomToolbar? = binding?.root?.findViewById(R.id.toolbar)

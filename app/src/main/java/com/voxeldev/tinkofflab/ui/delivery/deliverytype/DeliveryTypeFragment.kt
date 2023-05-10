@@ -13,6 +13,21 @@ import com.voxeldev.tinkofflab.ui.utils.SpaceItemDecoration
 
 class DeliveryTypeFragment : BaseFragment<FragmentDeliveryTypeBinding>() {
 
+    private val deliveryTypes by lazy {
+        listOf(
+            DeliveryTypeModel(
+                R.string.delivery_type_courier,
+                R.drawable.ic_delivery
+            ) {
+                App.router.navigateTo(Screens.Onboarding())
+            },
+            DeliveryTypeModel(
+                R.string.delivery_type_pickup,
+                R.drawable.ic_pickup
+            ) { }
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,21 +39,6 @@ class DeliveryTypeFragment : BaseFragment<FragmentDeliveryTypeBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // todo: move to data layer
-        val deliveryTypes = listOf(
-            DeliveryTypeModel(
-                R.string.delivery_type_courier,
-                R.drawable.ic_delivery
-            ) {
-                App.router.navigateTo(Screens.Onboarding())
-            },
-            // todo: remove pickup
-            DeliveryTypeModel(
-                R.string.delivery_type_pickup,
-                R.drawable.ic_pickup
-            ) { }
-        )
-
         binding?.run {
             rvDeliveryType.addItemDecoration(
                 SpaceItemDecoration(requireContext(), ITEM_DECORATION_SPACING)
@@ -52,6 +52,7 @@ class DeliveryTypeFragment : BaseFragment<FragmentDeliveryTypeBinding>() {
     }
 
     companion object {
+
         private const val ITEM_DECORATION_SPACING = 16f
     }
 }

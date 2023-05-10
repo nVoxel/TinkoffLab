@@ -215,7 +215,7 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
     }
 
     private fun handleException(exception: Exception?) {
-        showSnackbar(R.string.request_process_error)
+        showAlertDialog(R.string.request_process_error)
         Log.e(LOG_TAG, exception?.stackTraceToString() ?: "Unknown error")
 
         toggleErrorState()

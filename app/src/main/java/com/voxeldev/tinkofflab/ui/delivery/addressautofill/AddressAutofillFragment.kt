@@ -132,7 +132,7 @@ class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
     }
 
     private fun handleException(exception: Exception?) {
-        showSnackbar(R.string.address_get_error)
+        showAlertDialog(R.string.address_get_error)
         Log.e(LOG_TAG, exception?.stackTraceToString() ?: "Unknown error")
     }
 

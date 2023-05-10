@@ -29,20 +29,19 @@ class BottomNavigationFragment : BaseFragment<FragmentBottomNavigationContainerB
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setBottomNavigation()
-        if (savedInstanceState == null)
-            binding?.bnvMain?.selectedItemId =
-                arguments?.getInt(START_SCREEN_KEY)?.takeIf { it != 0 }
-                    ?: R.id.item_cart
     }
 
     private fun setBottomNavigation() {
-        binding?.bnvMain?.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.item_catalog -> {}
-                R.id.item_cart -> router.newRootScreen(Screens.Cart())
-                R.id.item_orders -> router.newRootScreen(Screens.Orders())
+        binding?.bnvMain?.apply {
+            selectedItemId = R.id.item_cart
+            setOnItemSelectedListener {
+                when (it.itemId) {
+                    R.id.item_catalog -> {}
+                    R.id.item_cart -> router.newRootScreen(Screens.Cart())
+                    R.id.item_orders -> router.newRootScreen(Screens.Orders())
+                }
+                true
             }
-            true
         }
     }
 
@@ -61,6 +60,11 @@ class BottomNavigationFragment : BaseFragment<FragmentBottomNavigationContainerB
     override fun onResume() {
         super.onResume()
         navigatorHolder.setNavigator(navigator)
+
+        binding?.bnvMain?.apply {
+            selectedItemId = arguments?.getInt(START_SCREEN_KEY)?.takeIf { it != 0 }
+                ?: selectedItemId
+        }
     }
 
     override fun onPause() {
