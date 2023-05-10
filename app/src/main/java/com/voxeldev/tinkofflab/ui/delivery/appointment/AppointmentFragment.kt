@@ -172,7 +172,9 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
         binding?.run {
             setupDaysChipGroup()
             appointmentViewModel.checkedChipIndex?.let { index ->
-                chipgroupDays.check(chipgroupDays.getChildAt(index).id)
+                chipgroupDays.getChildAt(index)?.let { chip ->
+                    chipgroupDays.check(chip.id)
+                }
             }
         }
     }

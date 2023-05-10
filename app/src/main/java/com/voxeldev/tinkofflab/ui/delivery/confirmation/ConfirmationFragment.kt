@@ -98,7 +98,10 @@ class ConfirmationFragment : BaseFragment<FragmentConfirmationBinding>() {
             }
             observe(orderCreationSuccess) {
                 if (it == null) return@observe
-                sharedOrderViewModel.createdOrder = it
+                sharedOrderViewModel.apply {
+                    createdOrder = it
+                    resetAddress()
+                }
                 App.router.newRootChain(
                     Screens.HostFragment(R.id.item_orders),
                     Screens.OrderPlaced()
