@@ -11,6 +11,7 @@ import com.voxeldev.tinkofflab.domain.usecases.base.BaseUseCase
 import com.voxeldev.tinkofflab.domain.usecases.config.GetAddressInputModeUseCase
 import com.voxeldev.tinkofflab.domain.usecases.config.SetAddressInputModeUseCase
 import com.voxeldev.tinkofflab.ui.base.BaseViewModel
+import com.voxeldev.tinkofflab.ui.cart.CartItemModel
 import com.voxeldev.tinkofflab.ui.delivery.confirmation.paymentmethod.PaymentMethod
 import com.voxeldev.tinkofflab.ui.utils.ExpressAddressModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,6 +24,10 @@ class SharedOrderViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val orderBuilder = MutableLiveData(OrderModel.Builder())
+
+    private val _cartItems = MutableLiveData<List<CartItemModel>?>()
+    val cartItems: LiveData<List<CartItemModel>?>
+        get() = _cartItems
 
     private val _sharedAddress = MutableLiveData<ExpressAddressModel?>(null)
     val sharedAddress: LiveData<ExpressAddressModel?>
@@ -100,6 +105,16 @@ class SharedOrderViewModel @Inject constructor(
     }
 
     fun setItems(items: List<ItemModel>) = orderBuilder.value?.items(items)
+
+    fun setItems(items: List<CartItemModel>) {
+        _cartItems.value = items
+        setItems(items.map { ItemModel(it.itemModel.name, it.itemModel.price) })
+    }
+
+    fun clearItems() {
+        _cartItems.value = null
+        setItems(listOf<ItemModel>())
+    }
 
     fun setComment(comment: String) {
         _comment.value = comment

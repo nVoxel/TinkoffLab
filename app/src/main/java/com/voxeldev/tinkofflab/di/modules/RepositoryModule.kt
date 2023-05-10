@@ -2,9 +2,11 @@ package com.voxeldev.tinkofflab.di.modules
 
 import android.content.Context
 import com.voxeldev.tinkofflab.data.local.AddressInputModeRepositoryImpl
+import com.voxeldev.tinkofflab.data.local.CatalogRepositoryMockImpl
 import com.voxeldev.tinkofflab.data.network.dadataapi.DaDataRepositoryImpl
 import com.voxeldev.tinkofflab.data.network.expressapi.DeliveryRepositoryImpl
 import com.voxeldev.tinkofflab.data.network.expressapi.OrdersRepositoryImpl
+import com.voxeldev.tinkofflab.domain.repository.catalog.CatalogRepository
 import com.voxeldev.tinkofflab.domain.repository.config.AddressInputModeRepository
 import com.voxeldev.tinkofflab.domain.repository.dadataapi.DaDataRepository
 import com.voxeldev.tinkofflab.domain.repository.expressapi.DeliveryRepository
@@ -36,6 +38,11 @@ abstract class RepositoryModule {
     abstract fun bindDaDataRepository(
         daDataRepository: DaDataRepositoryImpl
     ): DaDataRepository
+
+    @Binds
+    abstract fun bindCatalogRepository(
+        catalogRepository: CatalogRepositoryMockImpl
+    ): CatalogRepository
 
     @Module
     @InstallIn(SingletonComponent::class)
