@@ -3,7 +3,7 @@ package com.voxeldev.tinkofflab.ui.catalog
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.view.isVisible
+import androidx.core.view.isInvisible
 import androidx.recyclerview.widget.RecyclerView
 import com.voxeldev.tinkofflab.R
 import com.voxeldev.tinkofflab.databinding.ItemCatalogBinding
@@ -67,13 +67,13 @@ class CatalogAdapter(
             with(binding) {
                 when (item.count) {
                     0 -> {
-                        textviewCounter.isVisible = false
-                        imagebuttonRemove.isVisible = false
+                        textviewCounter.isInvisible = true
+                        imagebuttonRemove.isInvisible = true
                     }
 
                     else -> {
-                        textviewCounter.isVisible = true
-                        imagebuttonRemove.isVisible = true
+                        textviewCounter.isInvisible = false
+                        imagebuttonRemove.isInvisible = false
                     }
                 }
             }
