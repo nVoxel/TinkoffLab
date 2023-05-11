@@ -107,7 +107,14 @@ class SharedOrderViewModel @Inject constructor(
     fun setItems(items: List<ItemModel>) = orderBuilder.value?.items(items)
 
     fun setItems(items: List<CartItemModel>) {
-        _cartItems.value = items
+        _cartItems.value?.let {
+            // Fix catalog disappearing items
+            items.forEach { newItem ->
+                it.find { existingItem -> existingItem.itemModel == newItem.itemModel }
+                    ?.count = newItem.count
+            }
+        } ?: run { _cartItems.value = items }
+
         setItems(items.map { ItemModel(it.itemModel.name, it.itemModel.price) })
     }
 
