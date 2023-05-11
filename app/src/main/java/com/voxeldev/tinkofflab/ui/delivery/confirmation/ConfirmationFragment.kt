@@ -101,6 +101,7 @@ class ConfirmationFragment : BaseFragment<FragmentConfirmationBinding>() {
                 sharedOrderViewModel.apply {
                     createdOrder = it
                     resetAddress()
+                    clearItems()
                 }
                 App.router.newRootChain(
                     Screens.HostFragment(R.id.item_orders),
