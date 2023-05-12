@@ -100,4 +100,5 @@
     <string name="cart_item_phone">Смартфон</string>
     <string name="cart_item_hammer">Молоток</string>
     <string name="cart_items_count_placeholder">%1$d %2$s</string>
+    <string name="empty_cart_title">Ваша корзина пуста</string>
 </resources>

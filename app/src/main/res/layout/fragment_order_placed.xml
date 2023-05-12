@@ -4,17 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="16dp"
     android:paddingTop="64dp"
     android:paddingBottom="24dp">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollview_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
         android:clipToPadding="false"
         android:padding="15dp"
-        android:paddingBottom="90dp">
+        android:paddingBottom="90dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_continue"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_content"
@@ -102,6 +104,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginHorizontal="16dp"
         app:text="@string/ok_button_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

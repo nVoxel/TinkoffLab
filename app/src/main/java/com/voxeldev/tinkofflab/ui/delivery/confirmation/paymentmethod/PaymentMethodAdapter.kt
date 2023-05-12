@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.voxeldev.tinkofflab.databinding.PaymentItemBinding
+import com.voxeldev.tinkofflab.databinding.ItemPaymentBinding
 
 class PaymentMethodAdapter(
     private var list: List<PaymentMethodModel>,
@@ -14,7 +14,7 @@ class PaymentMethodAdapter(
     private var checkedItemPosition: Int? = list.indexOfFirst { it.isChecked }.takeIf { it != -1 }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
-        PaymentItemBinding.inflate(
+        ItemPaymentBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -38,7 +38,7 @@ class PaymentMethodAdapter(
     }
 
     inner class ViewHolder(
-        private val binding: PaymentItemBinding
+        private val binding: ItemPaymentBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(paymentMethod: PaymentMethodModel, position: Int) {

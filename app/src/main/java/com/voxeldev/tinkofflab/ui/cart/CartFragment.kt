@@ -55,10 +55,11 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
     private fun updateViews() {
         binding?.run {
             itemsCountsSum().let {
-                textviewItemsCount.text = resources.getString(
+                textviewItemsCount.text = if (it != 0) resources.getString(
                     R.string.cart_items_count_placeholder, it,
                     resources.getQuantityString(R.plurals.items, it)
-                )
+                ) else
+                    resources.getString(R.string.empty_cart_title)
                 cardviewMakeOrder.isVisible = it > 0
             }
 

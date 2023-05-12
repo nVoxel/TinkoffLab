@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,138 +15,153 @@
         app:startIcon="@drawable/ic_toolbar_back"
         app:title="@string/address_actionbar_title" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textinputlayout_country"
-        style="@style/Widget.TinkoffLab.CustomTextInputLayout"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@drawable/bg_edittext"
-        app:endIconDrawable="@drawable/ic_end_clear"
-        app:endIconMode="clear_text"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edittext_country"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/country_hint"
-            android:imeOptions="actionNext"
-            android:inputType="textImeMultiLine"
-            android:maxLines="1" />
+            android:layout_height="match_parent">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textinputlayout_country"
+                style="@style/Widget.TinkoffLab.CustomTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/bg_edittext"
+                app:endIconDrawable="@drawable/ic_end_clear"
+                app:endIconMode="clear_text"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="16dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textinputlayout_region"
-        style="@style/Widget.TinkoffLab.CustomTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@drawable/bg_edittext"
-        app:endIconDrawable="@drawable/ic_end_clear"
-        app:endIconMode="clear_text"
-        app:layout_constraintTop_toBottomOf="@id/textinputlayout_country">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/country_hint"
+                    android:imeOptions="actionNext"
+                    android:inputType="textImeMultiLine"
+                    android:maxLines="1" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edittext_region"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/region_hint"
-            android:imeOptions="actionNext"
-            android:inputType="textImeMultiLine"
-            android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textinputlayout_region"
+                style="@style/Widget.TinkoffLab.CustomTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/bg_edittext"
+                app:endIconDrawable="@drawable/ic_end_clear"
+                app:endIconMode="clear_text"
+                app:layout_constraintTop_toBottomOf="@id/textinputlayout_country">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textinputlayout_street"
-        style="@style/Widget.TinkoffLab.CustomTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@drawable/bg_edittext"
-        app:endIconDrawable="@drawable/ic_end_clear"
-        app:endIconMode="clear_text"
-        app:layout_constraintTop_toBottomOf="@id/textinputlayout_region">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_region"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/region_hint"
+                    android:imeOptions="actionNext"
+                    android:inputType="textImeMultiLine"
+                    android:maxLines="1" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edittext_street"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/street_hint"
-            android:imeOptions="actionNext"
-            android:inputType="textImeMultiLine"
-            android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textinputlayout_street"
+                style="@style/Widget.TinkoffLab.CustomTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/bg_edittext"
+                app:endIconDrawable="@drawable/ic_end_clear"
+                app:endIconMode="clear_text"
+                app:layout_constraintTop_toBottomOf="@id/textinputlayout_region">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textinputlayout_house"
-        style="@style/Widget.TinkoffLab.CustomTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@drawable/bg_edittext"
-        app:endIconDrawable="@drawable/ic_end_clear"
-        app:endIconMode="clear_text"
-        app:layout_constraintTop_toBottomOf="@id/textinputlayout_street">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_street"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/street_hint"
+                    android:imeOptions="actionNext"
+                    android:inputType="textImeMultiLine"
+                    android:maxLines="1" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edittext_house"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/house_hint"
-            android:imeOptions="actionNext"
-            android:inputType="textImeMultiLine"
-            android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textinputlayout_house"
+                style="@style/Widget.TinkoffLab.CustomTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/bg_edittext"
+                app:endIconDrawable="@drawable/ic_end_clear"
+                app:endIconMode="clear_text"
+                app:layout_constraintTop_toBottomOf="@id/textinputlayout_street">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textinputlayout_city"
-        style="@style/Widget.TinkoffLab.CustomTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@drawable/bg_edittext"
-        app:endIconDrawable="@drawable/ic_end_clear"
-        app:endIconMode="clear_text"
-        app:layout_constraintTop_toBottomOf="@id/textinputlayout_house">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_house"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/house_hint"
+                    android:imeOptions="actionNext"
+                    android:inputType="textImeMultiLine"
+                    android:maxLines="1" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edittext_city"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/city_hint"
-            android:imeOptions="actionNext"
-            android:inputType="textImeMultiLine"
-            android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textinputlayout_city"
+                style="@style/Widget.TinkoffLab.CustomTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/bg_edittext"
+                app:endIconDrawable="@drawable/ic_end_clear"
+                app:endIconMode="clear_text"
+                app:layout_constraintTop_toBottomOf="@id/textinputlayout_house">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textinputlayout_index"
-        style="@style/Widget.TinkoffLab.CustomTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@drawable/bg_edittext"
-        app:endIconDrawable="@drawable/ic_end_clear"
-        app:endIconMode="clear_text"
-        app:layout_constraintTop_toBottomOf="@id/textinputlayout_city">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/city_hint"
+                    android:imeOptions="actionNext"
+                    android:inputType="textImeMultiLine"
+                    android:maxLines="1" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edittext_index"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:digits="0123456789"
-            android:hint="@string/index_hint"
-            android:imeOptions="actionDone"
-            android:inputType="textImeMultiLine|numberDecimal"
-            android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textinputlayout_index"
+                style="@style/Widget.TinkoffLab.CustomTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/bg_edittext"
+                app:endIconDrawable="@drawable/ic_end_clear"
+                app:endIconMode="clear_text"
+                app:layout_constraintTop_toBottomOf="@id/textinputlayout_city">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_index"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="0123456789"
+                    android:hint="@string/index_hint"
+                    android:imeOptions="actionDone"
+                    android:inputType="textImeMultiLine|numberDecimal"
+                    android:maxLines="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/button_done"
