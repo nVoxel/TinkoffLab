@@ -45,12 +45,10 @@ class CatalogFragment : BaseFragment<FragmentCatalogBinding>() {
     }
 
     private fun handleCartItems(items: List<CartItemModel>?) {
-        items?.let { binding?.run { recyclerviewCatalog.adapter = getAdapter(items) } }
+        items?.let { binding?.run { recyclerviewCatalog.adapter = CatalogAdapter(items) } }
     }
 
     private fun handleCatalogItems(items: List<CatalogItemModel>?) {
         items?.let { sharedOrderViewModel.setItems(items.map { CartItemModel(it) }) }
     }
-
-    private fun getAdapter(items: List<CartItemModel>) = CatalogAdapter(items)
 }

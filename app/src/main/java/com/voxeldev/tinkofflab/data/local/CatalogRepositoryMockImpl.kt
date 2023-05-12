@@ -1,18 +1,15 @@
 package com.voxeldev.tinkofflab.data.local
 
-import android.content.Context
 import com.voxeldev.tinkofflab.R
 import com.voxeldev.tinkofflab.domain.models.catalog.CatalogItemModel
 import com.voxeldev.tinkofflab.domain.repository.catalog.CatalogRepository
 import com.voxeldev.tinkofflab.utils.functional.Either
-import dagger.hilt.android.qualifiers.ApplicationContext
+import com.voxeldev.tinkofflab.utils.providers.string.StringResourceProvider
 import javax.inject.Inject
 
 class CatalogRepositoryMockImpl @Inject constructor(
-    @ApplicationContext private val context: Context
+    private val stringResourceProvider: StringResourceProvider
 ) : CatalogRepository {
-
-    private val resources = context.resources
 
     companion object {
         private const val KETTLE_PRICE_RUB = 3556
@@ -24,17 +21,17 @@ class CatalogRepositoryMockImpl @Inject constructor(
 
     private fun getItems(): List<CatalogItemModel> = listOf(
         CatalogItemModel(
-            resources.getString(R.string.cart_item_kettle),
+            stringResourceProvider.getCartItemKettleString(),
             KETTLE_PRICE_RUB,
             imageRes = R.drawable.cart_item_kettle
         ),
         CatalogItemModel(
-            resources.getString(R.string.cart_item_phone),
+            stringResourceProvider.getCartItemPhoneString(),
             PHONE_PRICE_RUB,
             imageRes = R.drawable.cart_item_phone
         ),
         CatalogItemModel(
-            resources.getString(R.string.cart_item_hammer),
+            stringResourceProvider.getCartItemHammerString(),
             HAMMER_PRICE_RUB,
             imageRes = R.drawable.cart_item_hammer
         )

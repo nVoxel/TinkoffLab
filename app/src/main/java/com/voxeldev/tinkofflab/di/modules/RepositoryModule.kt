@@ -11,6 +11,8 @@ import com.voxeldev.tinkofflab.domain.repository.config.AddressInputModeReposito
 import com.voxeldev.tinkofflab.domain.repository.dadataapi.DaDataRepository
 import com.voxeldev.tinkofflab.domain.repository.expressapi.DeliveryRepository
 import com.voxeldev.tinkofflab.domain.repository.expressapi.OrdersRepository
+import com.voxeldev.tinkofflab.utils.providers.string.StringResourceProvider
+import com.voxeldev.tinkofflab.utils.providers.string.StringResourceProviderContextImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -53,6 +55,12 @@ abstract class RepositoryModule {
         fun provideAddressInputModeRepository(
             @ApplicationContext context: Context
         ): AddressInputModeRepository = AddressInputModeRepositoryImpl(context)
+
+        @Provides
+        @Singleton
+        fun provideStringResourceProvider(
+            @ApplicationContext context: Context
+        ): StringResourceProvider = StringResourceProviderContextImpl(context)
     }
 }
 
