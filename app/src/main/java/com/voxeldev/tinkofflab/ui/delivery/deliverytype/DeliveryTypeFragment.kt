@@ -20,11 +20,7 @@ class DeliveryTypeFragment : BaseFragment<FragmentDeliveryTypeBinding>() {
                 R.drawable.ic_delivery
             ) {
                 App.router.navigateTo(Screens.Onboarding())
-            },
-            DeliveryTypeModel(
-                R.string.delivery_type_pickup,
-                R.drawable.ic_pickup
-            ) { }
+            }
         )
     }
 
