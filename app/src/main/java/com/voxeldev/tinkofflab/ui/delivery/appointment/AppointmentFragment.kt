@@ -154,17 +154,21 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
     }
 
     private fun setupDaysChipGroup() {
-        fun createChip(text: String) {
-            (layoutInflater.inflate(
-                R.layout.item_day_chip, binding?.chipgroupDays, false
-            ) as Chip).apply {
-                this.text = text
-                binding?.chipgroupDays?.addView(this)
-            }
-        }
+        binding?.run {
+            if (chipgroupDays.childCount > 0) return
 
-        appointmentViewModel.chipDays.forEach {
-            createChip(it.toRelativeString(LocalDate.now(), resources))
+            fun createChip(text: String) {
+                (layoutInflater.inflate(
+                    R.layout.item_day_chip, chipgroupDays, false
+                ) as Chip).apply {
+                    this.text = text
+                    chipgroupDays.addView(this)
+                }
+            }
+
+            appointmentViewModel.chipDays.forEach {
+                createChip(it.toRelativeString(LocalDate.now(), resources))
+            }
         }
     }
 
