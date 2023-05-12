@@ -2,7 +2,6 @@
     <string name="app_name">Tinkoff Express</string>
     <string name="choose_delivery_type">Выберите способ получения</string>
     <string name="delivery_type_courier">Доставка</string>
-    <string name="delivery_type_pickup">Самовывоз</string>
     <string name="next">Продолжить</string>
     <string name="address_hint">Адрес</string>
     <string name="fav_addresses">Ваши адреса</string>
