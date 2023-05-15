@@ -2,7 +2,6 @@
     <string name="app_name">Tinkoff Express</string>
     <string name="choose_delivery_type">Выберите способ получения</string>
     <string name="delivery_type_courier">Доставка</string>
-    <string name="delivery_type_pickup">Самовывоз</string>
     <string name="next">Продолжить</string>
     <string name="address_hint">Адрес</string>
     <string name="fav_addresses">Ваши адреса</string>
@@ -101,4 +100,5 @@
     <string name="cart_item_phone">Смартфон</string>
     <string name="cart_item_hammer">Молоток</string>
     <string name="cart_items_count_placeholder">%1$d %2$s</string>
+    <string name="empty_cart_title">Ваша корзина пуста</string>
 </resources>

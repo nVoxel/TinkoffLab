@@ -53,6 +53,11 @@ class SharedOrderViewModel @Inject constructor(
         private set
 
     var orderEditModeEnabled = false
+        set(value) {
+            if (field != value && field)
+                resetAddress()
+            field = value
+        }
 
     fun initAddressInputMode() {
         if (addressInputMode == null)

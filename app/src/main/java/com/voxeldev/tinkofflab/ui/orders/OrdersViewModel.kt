@@ -18,9 +18,12 @@ class OrdersViewModel @Inject constructor(
     private val _orders: MutableLiveData<List<OrderModel>> = MutableLiveData()
     val orders: LiveData<List<OrderModel>> = _orders
 
-    fun getOrders() = getOrdersUseCase(BaseUseCase.None, viewModelScope) { either ->
-        either.fold(::handleException) {
-            _orders.value = it
-        }
+    fun getOrders() {
+        if (orders.value.isNullOrEmpty())
+            getOrdersUseCase(BaseUseCase.None, viewModelScope) { either ->
+                either.fold(::handleException) {
+                    _orders.value = it
+                }
+            }
     }
 }

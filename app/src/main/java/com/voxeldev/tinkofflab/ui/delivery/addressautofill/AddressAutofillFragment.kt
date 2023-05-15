@@ -17,7 +17,6 @@ import com.voxeldev.tinkofflab.ui.App
 import com.voxeldev.tinkofflab.ui.base.BaseFragment
 import com.voxeldev.tinkofflab.ui.delivery.SharedOrderViewModel
 import com.voxeldev.tinkofflab.ui.utils.ExpressAddressModel
-import com.voxeldev.tinkofflab.ui.utils.SpaceItemDecoration
 import com.voxeldev.tinkofflab.utils.extensions.observe
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,7 +39,7 @@ class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setAdapter()
+        binding?.recyclerAddressAutofill?.adapter = adapter
         setDoneListeners()
         setTextChangeListener()
         observeViewModel()
@@ -54,13 +53,6 @@ class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
             setText(address)
             setSelection(address.length)
             binding?.textviewAddressNotFound?.isVisible = false
-        }
-    }
-
-    private fun setAdapter() {
-        binding?.recyclerAddressAutofill?.also {
-            it.addItemDecoration(SpaceItemDecoration(requireContext(), ITEM_DECORATION_SPACING))
-            it.adapter = adapter
         }
     }
 
@@ -137,9 +129,18 @@ class AddressAutofillFragment : BaseFragment<FragmentAddressAutofillBinding>() {
         binding?.shimmerAddressAutofill?.hideShimmer()
     }
 
+    override fun onResume() {
+        super.onResume()
+        addressAutofillViewModel.isFragmentPaused.set(false)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        addressAutofillViewModel.isFragmentPaused.set(true)
+    }
+
     companion object {
 
         private const val LOG_TAG = "AddressAutofillFragment"
-        private const val ITEM_DECORATION_SPACING = 16f
     }
 }

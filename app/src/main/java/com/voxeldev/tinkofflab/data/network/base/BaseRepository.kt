@@ -24,7 +24,7 @@ open class BaseRepository(
 
             // if server error, then try again
             if (response.code().isServerError())
-                processResponse(call.execute(), transform)
+                processResponse(call.clone().execute(), transform)
             else
                 processResponse(response, transform)
         } catch (exception: Exception) {

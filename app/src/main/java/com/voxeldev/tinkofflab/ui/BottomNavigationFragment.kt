@@ -40,6 +40,7 @@ class BottomNavigationFragment : BaseFragment<FragmentBottomNavigationContainerB
                     R.id.item_cart -> router.newRootScreen(Screens.Cart())
                     R.id.item_orders -> router.newRootScreen(Screens.Orders())
                 }
+                arguments = null
                 true
             }
         }

@@ -29,9 +29,17 @@ class AddressAutofillViewModel @Inject constructor(
     val loading: LiveData<Boolean>
         get() = _loading
 
-    private val locale get() = Resources.getSystem().configuration.locales[0].language
+    private val locale
+        get() = Resources.getSystem().configuration.locales[0].language.let {
+            if (it !in supportedLanguages)
+                LANGUAGE_EN
+            else
+                it
+        }
 
     val isNotAutofilled = AtomicBoolean(true)
+
+    val isFragmentPaused = AtomicBoolean(false)
 
     init {
         subscribeToChanges()
@@ -43,7 +51,7 @@ class AddressAutofillViewModel @Inject constructor(
             .drop(1)
             .filterNot {
                 it.isNullOrBlank().also { isNullOrBlank ->
-                    if (isNullOrBlank)
+                    if (isNullOrBlank && !isFragmentPaused.get())
                         _suggestions.postValue(emptyList())
                 }
             }
@@ -73,7 +81,9 @@ class AddressAutofillViewModel @Inject constructor(
     companion object {
 
         private const val SEARCH_TIMEOUT = 1000L // millis
-
+        private const val LANGUAGE_RU = "ru"
+        private const val LANGUAGE_EN = "en"
         private const val MIN_QUERY_LENGTH = 3
+        private val supportedLanguages = listOf(LANGUAGE_RU, LANGUAGE_EN)
     }
 }

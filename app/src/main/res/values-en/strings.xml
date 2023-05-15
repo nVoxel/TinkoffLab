@@ -3,7 +3,6 @@
     <string name="app_name">Tinkoff Express</string>
     <string name="choose_delivery_type">Choose how to receive</string>
     <string name="delivery_type_courier">Delivery</string>
-    <string name="delivery_type_pickup">Self-pickup</string>
     <string name="next">Continue</string>
     <string name="address_hint">Address</string>
     <string name="fav_addresses">Your addresses</string>
@@ -92,4 +91,5 @@
     <string name="price_placeholder">%1$d ₽</string>
     <string name="price_cross_placeholder">%1$d ₽ ×</string>
     <string name="item_count_placeholder">%1$d pc.</string>
+    <string name="empty_cart_title">Your cart is empty</string>
 </resources>
