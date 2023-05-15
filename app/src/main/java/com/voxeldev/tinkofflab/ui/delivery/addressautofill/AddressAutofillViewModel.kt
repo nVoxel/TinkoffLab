@@ -39,6 +39,8 @@ class AddressAutofillViewModel @Inject constructor(
 
     val isNotAutofilled = AtomicBoolean(true)
 
+    val isFragmentPaused = AtomicBoolean(false)
+
     init {
         subscribeToChanges()
     }
@@ -49,7 +51,7 @@ class AddressAutofillViewModel @Inject constructor(
             .drop(1)
             .filterNot {
                 it.isNullOrBlank().also { isNullOrBlank ->
-                    if (isNullOrBlank)
+                    if (isNullOrBlank && !isFragmentPaused.get())
                         _suggestions.postValue(emptyList())
                 }
             }

@@ -15,6 +15,7 @@
     <color name="sub_text">#70333333</color>
     <color name="small_text">#FF9299A2</color>
     <color name="warning_text">#F52222</color>
+    <color name="address_ripple">#33ACACAC</color>
     <color name="bottom_nav_background">#F9F9F9</color>
     <color name="bottom_nav_not_selected">#9299A2</color>
     <color name="bottom_nav_selected">#428BF9</color>
