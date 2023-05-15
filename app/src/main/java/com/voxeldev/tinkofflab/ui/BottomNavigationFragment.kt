@@ -36,7 +36,7 @@ class BottomNavigationFragment : BaseFragment<FragmentBottomNavigationContainerB
             selectedItemId = R.id.item_cart
             setOnItemSelectedListener {
                 when (it.itemId) {
-                    R.id.item_catalog -> {}
+                    R.id.item_catalog -> router.newRootScreen(Screens.Catalog())
                     R.id.item_cart -> router.newRootScreen(Screens.Cart())
                     R.id.item_orders -> router.newRootScreen(Screens.Orders())
                 }

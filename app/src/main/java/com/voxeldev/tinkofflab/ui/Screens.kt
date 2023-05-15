@@ -2,6 +2,7 @@ package com.voxeldev.tinkofflab.ui
 
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.voxeldev.tinkofflab.ui.cart.CartFragment
+import com.voxeldev.tinkofflab.ui.catalog.CatalogFragment
 import com.voxeldev.tinkofflab.ui.delivery.addressautofill.AddressAutofillFragment
 import com.voxeldev.tinkofflab.ui.delivery.addressmanual.AddressManualFragment
 import com.voxeldev.tinkofflab.ui.delivery.appointment.AppointmentFragment
@@ -19,23 +20,25 @@ object Screens {
         BottomNavigationFragment.getInstance(startScreenId)
     }
 
-    fun ToggleAddress() = FragmentScreen { ToggleAddressFragment() }
-
-    fun AddressAutofill() = FragmentScreen { AddressAutofillFragment() }
-
-    fun AddressManual() = FragmentScreen { AddressManualFragment() }
-
-    fun Appointment() = FragmentScreen { AppointmentFragment() }
+    fun Catalog() = FragmentScreen { CatalogFragment() }
 
     fun Cart() = FragmentScreen { CartFragment() }
+
+    fun Orders() = FragmentScreen { OrdersFragment() }
+
+    fun ToggleAddress() = FragmentScreen { ToggleAddressFragment() }
 
     fun DeliveryType() = FragmentScreen { DeliveryTypeFragment() }
 
     fun Onboarding() = FragmentScreen { OnboardingFragment() }
 
-    fun OrderPlaced() = FragmentScreen { OrderPlacedFragment() }
+    fun Appointment() = FragmentScreen { AppointmentFragment() }
 
-    fun Orders() = FragmentScreen { OrdersFragment() }
+    fun AddressAutofill() = FragmentScreen { AddressAutofillFragment() }
+
+    fun AddressManual() = FragmentScreen { AddressManualFragment() }
 
     fun Confirmation() = FragmentScreen { ConfirmationFragment() }
+
+    fun OrderPlaced() = FragmentScreen { OrderPlacedFragment() }
 }
