@@ -45,7 +45,21 @@ class CatalogFragment : BaseFragment<FragmentCatalogBinding>() {
     }
 
     private fun handleCartItems(items: List<CartItemModel>?) {
-        items?.let { binding?.run { recyclerviewCatalog.adapter = CatalogAdapter(items) } }
+        items?.let {
+            binding?.run {
+                recyclerviewCatalog.adapter = CatalogAdapter(
+                    items,
+                    {
+                        it.count++
+                        sharedOrderViewModel.setItems(items)
+                    },
+                    {
+                        it.count--
+                        sharedOrderViewModel.setItems(items)
+                    }
+                )
+            }
+        }
     }
 
     private fun handleCatalogItems(items: List<CatalogItemModel>?) {

@@ -120,6 +120,8 @@ class SharedOrderViewModel @Inject constructor(
             }
         } ?: run { _cartItems.value = items }
 
+        _cartItems.value = _cartItems.value
+
         setItems(items.map { ItemModel(it.itemModel.name, it.itemModel.price) })
     }
 

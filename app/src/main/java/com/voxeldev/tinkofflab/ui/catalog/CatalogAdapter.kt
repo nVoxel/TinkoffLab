@@ -10,7 +10,9 @@ import com.voxeldev.tinkofflab.databinding.ItemCatalogBinding
 import com.voxeldev.tinkofflab.ui.cart.CartItemModel
 
 class CatalogAdapter(
-    private val items: List<CartItemModel>
+    private val items: List<CartItemModel>,
+    private val itemAddCallback: (CartItemModel) -> Unit,
+    private val itemRemoveCallback: (CartItemModel) -> Unit
 ) : RecyclerView.Adapter<CatalogAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -50,13 +52,13 @@ class CatalogAdapter(
                 toggleVisibility(this, item)
 
                 imagebuttonAdd.setOnClickListener {
-                    item.count++
+                    itemAddCallback(item)
                     textviewCounter.text = item.count.toString()
                     toggleVisibility(this, item)
                 }
 
                 imagebuttonRemove.setOnClickListener {
-                    item.count--
+                    itemRemoveCallback(item)
                     textviewCounter.text = item.count.toString()
                     toggleVisibility(this, item)
                 }

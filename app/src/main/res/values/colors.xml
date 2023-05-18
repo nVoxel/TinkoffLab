@@ -33,6 +33,8 @@
     <color name="alert_dialog_text">#F333</color>
     <color name="canceled_dialog_background">#FFFF</color>
     <color name="canceled_dialog_outer_background">#0000</color>
+    <color name="badge_background">#FFFFDD2D</color>
+    <color name="badge_text">#FF333333</color>
     <color name="md_theme_primary">#005CBC</color>
     <color name="md_theme_onPrimary">#FFFFFF</color>
     <color name="md_theme_primaryContainer">#D7E2FF</color>

@@ -5,14 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.voxeldev.tinkofflab.R
 import com.voxeldev.tinkofflab.databinding.FragmentBottomNavigationContainerBinding
 import com.voxeldev.tinkofflab.ui.base.BaseFragment
+import com.voxeldev.tinkofflab.ui.cart.CartItemModel
+import com.voxeldev.tinkofflab.ui.delivery.SharedOrderViewModel
+import com.voxeldev.tinkofflab.utils.extensions.observe
 
 class BottomNavigationFragment : BaseFragment<FragmentBottomNavigationContainerBinding>() {
 
+    private val sharedOrderViewModel by activityViewModels<SharedOrderViewModel>()
     private val navigator by lazy {
         AppNavigator(requireActivity(), R.id.nested_container)
     }
@@ -23,6 +28,11 @@ class BottomNavigationFragment : BaseFragment<FragmentBottomNavigationContainerB
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentBottomNavigationContainerBinding.inflate(inflater, container, false)
+
+        with(sharedOrderViewModel) {
+            observe(cartItems, ::handleCartItems)
+        }
+
         return binding?.root
     }
 
@@ -43,7 +53,22 @@ class BottomNavigationFragment : BaseFragment<FragmentBottomNavigationContainerB
                 arguments = null
                 true
             }
+            getOrCreateBadge(R.id.item_cart).apply {
+                with(resources) {
+                    val theme = requireContext().theme
+                    badgeTextColor = getColor(R.color.badge_text, theme)
+                    backgroundColor = getColor(R.color.badge_background, theme)
+                    number = 0
+                }
+            }
         }
+    }
+
+    private fun handleCartItems(cartItems: List<CartItemModel>?) {
+        val badge = binding?.bnvMain?.getOrCreateBadge(R.id.item_cart) ?: return
+        cartItems?.let { list ->
+            badge.number = list.filter { it.count > 0 }.sumOf { it.count }
+        } ?: run { badge.number = 0 }
     }
 
     override fun onStart() {
